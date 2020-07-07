@@ -1,0 +1,98 @@
+@import url("https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap");
+$font-middle: 1.2rem;
+$font-small: 1.1rem;
+$font-smaller: 0.8rem;
+
+// 공통
+html {
+  height: 100vh;
+}
+main,
+a,
+p,
+ul,
+li,
+div,
+h1,
+h2,
+h3,
+h4,
+h5 {
+  font-family: "Nanum Gothic", sans-serif;
+  color: rgb(61, 61, 61);
+  margin: 0;
+  padding: 0;
+}
+li {
+  list-style: none;
+}
+a {
+  text-decoration: none;
+  padding: 0.5rem;
+}
+
+// 네비게이션 바
+#nav-ul {
+  background-color: wheat;
+  display: flex;
+  justify-content: space-around;
+  li {
+    padding: 1rem 0;
+    a {
+      font-size: $font-middle;
+      font-weight: 900;
+    }
+  }
+}
+
+// 메인
+main {
+  padding: 1rem;
+  font-size: $font-small;
+}
+
+// chant
+.chant-ul {
+  display: grid;
+  grid-auto-flow: row;
+  li {
+    display: grid;
+    grid-template-columns: 1.5rem 1fr 1.5rem;
+    p {
+      padding: 0.3rem 0;
+    }
+    .chant-index {
+      cursor: default;
+      text-align: center;
+    }
+    .chant-title {
+      cursor: default;
+      padding-left: 0.5rem;
+    }
+    .chant-ellipsis {
+      cursor: pointer;
+      text-align: center;
+    }
+  }
+  li:hover {
+    background-color: rgb(231, 231, 231);
+  }
+  .chant-hidden {
+    background-color: rgb(255, 211, 195);
+    p {
+      grid-column: span 3;
+      display: flex;
+      justify-content: center;
+      span {
+        margin: 0 0.2rem;
+      }
+      .chant-v,
+      .chant-x {
+        cursor: pointer;
+      }
+    }
+  }
+  .hidden {
+    display: none;
+  }
+}
