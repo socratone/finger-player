@@ -1,7 +1,7 @@
 import React from "react";
 
 const ChantHidden = (props) => {
-  const { getEllipsisState, handleClickEllipsis } = props;
+  const { setHidden, handleClickEllipsis } = props;
 
   const handleClickV = () => {
     handleClickEllipsis();
@@ -12,7 +12,7 @@ const ChantHidden = (props) => {
   };
 
   return (
-    <li className={"chant-hidden " + getEllipsisState()}>
+    <li className={"chant-hidden " + setHidden()}>
       <p>
         <span>사용자 리스트에 추가 하시겠습니까?</span>
         <span className="chant-v" onClick={handleClickV}>

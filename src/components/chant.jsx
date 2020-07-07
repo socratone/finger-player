@@ -2,10 +2,12 @@ import React, { useState } from "react";
 import ChantHidden from "./chantHidden";
 
 const Chant = (props) => {
-  const { chant } = props;
+  const { chant, history } = props;
   const [onEllipsis, setEllipsis] = useState(false);
 
-  const handleClickTitle = (id) => {};
+  const handleClickTitle = (id) => {
+    history.push(`/player/${id}`);
+  };
 
   const handleClickEllipsis = () => {
     if (onEllipsis === false) {
@@ -15,7 +17,7 @@ const Chant = (props) => {
     }
   };
 
-  const getEllipsisState = () => {
+  const setHidden = () => {
     if (onEllipsis === false) {
       return "hidden";
     }
@@ -34,7 +36,7 @@ const Chant = (props) => {
         </p>
       </li>
       <ChantHidden
-        getEllipsisState={getEllipsisState}
+        setHidden={setHidden}
         handleClickEllipsis={handleClickEllipsis}
       />
     </>

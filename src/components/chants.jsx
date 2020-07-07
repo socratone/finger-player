@@ -2,17 +2,23 @@ import React from "react";
 import Chant from "./chant";
 
 const Chants = (props) => {
-  const { chants: allChants } = props;
+  const { chants: allChants, history } = props;
   const [startNum, endNum] = props.range;
 
-  let chants = [...allChants];
-  chants = chants.splice(startNum - 1, endNum - startNum); // 번호에 맞게 자른다.
+  let chants = [];
+  for (let i = 0; i < allChants.length; i++) {
+    if (allChants[i].id > endNum) {
+      break;
+    } else if (allChants[i].id >= startNum) {
+      chants.push(allChants[i]);
+    }
+  }
 
   return (
     <main>
       <ul className="chant-ul">
         {chants.map((chant) => (
-          <Chant chant={chant} key={chant.id} />
+          <Chant chant={chant} key={chant.id} history={history} />
         ))}
       </ul>
     </main>

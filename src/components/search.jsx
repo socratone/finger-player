@@ -2,12 +2,12 @@ import React from "react";
 import Chant from "./chant";
 
 const Search = (props) => {
-  const { chants } = props;
+  const { chants, history } = props;
   return (
     <main>
       <ul className="chant-ul">
         {chants.map((chant) => (
-          <Chant chant={chant} key={chant.id} />
+          <Chant chant={chant} key={chant.id} history={history} />
         ))}
       </ul>
     </main>
