@@ -1,6 +1,6 @@
 import React from "react";
 
-const ChantHidden = (props) => {
+const ChantSub = (props) => {
   const { setHidden, handleClickEllipsis } = props;
 
   const handleClickV = () => {
@@ -12,7 +12,7 @@ const ChantHidden = (props) => {
   };
 
   return (
-    <li className={"chant-hidden " + setHidden()}>
+    <li className={"chant-sub " + setHidden()}>
       <p>
         <span>사용자 리스트에 추가 하시겠습니까?</span>
         <span className="chant-v" onClick={handleClickV}>
@@ -26,4 +26,4 @@ const ChantHidden = (props) => {
   );
 };
 
-export default ChantHidden;
+export default ChantSub;

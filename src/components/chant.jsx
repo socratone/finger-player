@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import ChantHidden from "./chantHidden";
+import ChantSub from "./chantSub";
 
 const Chant = (props) => {
   const { chant, history } = props;
@@ -35,7 +35,7 @@ const Chant = (props) => {
           <i className="fa fa-ellipsis-v" />
         </p>
       </li>
-      <ChantHidden
+      <ChantSub
         setHidden={setHidden}
         handleClickEllipsis={handleClickEllipsis}
       />
