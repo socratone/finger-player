@@ -14,7 +14,7 @@ const ChantSub = (props) => {
   return (
     <li className={"chant-sub " + setHidden()}>
       <p>
-        <span>사용자 리스트에 추가 하시겠습니까?</span>
+        <span>홈 화면에 추가 하시겠습니까?</span>
         <span className="chant-v" onClick={handleClickV}>
           <i className="fa fa-check" />
         </span>

@@ -38,16 +38,18 @@ a {
   grid-template-columns: repeat(7, 1fr);
   height: 4rem;
   li {
-    // width: 100%;
-    // height: 100%;
     text-align: center;
     line-height: 4rem;
+    display: grid;
     a {
       font-size: $font-middle;
       font-weight: 900;
       cursor: pointer;
-      margin: 0 0.5rem;
+      // margin: 0 0.5rem;
     }
+  }
+  li:hover {
+    background-color: rgb(235, 211, 166);
   }
   .search-input {
     position: relative;
@@ -107,7 +109,7 @@ main {
     background-color: rgb(247, 247, 247);
   }
   .chant-sub {
-    background-color: rgb(255, 211, 195);
+    background-color: rgb(255, 222, 211);
     p {
       grid-column: span 3;
       display: flex;
@@ -115,11 +117,18 @@ main {
       span {
         margin: 0 0.2rem;
       }
-      .chant-v,
+      .chant-v {
+        cursor: pointer;
+        color: green;
+      }
       .chant-x {
         cursor: pointer;
+        color: red;
       }
     }
+  }
+  .chant-sub:hover {
+    background-color: rgb(248, 213, 202);
   }
 }
 
