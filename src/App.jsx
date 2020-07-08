@@ -62,6 +62,12 @@ export default function App() {
     }
   };
 
+  const handleReturnKeyUp = (e) => {
+    if (e.keyCode === 13) {
+      clickSearchButton();
+    }
+  };
+
   const setHidden = () => {
     if (onSearchButton === true) {
       return "hidden";
@@ -107,6 +113,7 @@ export default function App() {
                 value={querry}
                 onChange={(e) => setQuerry(e.target.value)}
                 onClick={clickSearchInputFirst}
+                onKeyUp={handleReturnKeyUp}
               />
               <p className={setVisible()} onClick={clickXButton}>
                 <i className="fa fa-times" />
