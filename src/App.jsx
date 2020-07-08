@@ -31,8 +31,7 @@ export default function App() {
       console.log("숫자로 들어옴");
       for (let i = 0; i < chants.length; i++) {
         if (Number(querry) === chants[i].id) {
-          setSearchedChants([chants[i]]);
-          break;
+          return setSearchedChants([chants[i]]);
         }
       }
       // 문자인 경우
@@ -43,8 +42,9 @@ export default function App() {
           results.push(chants[i]);
         }
       }
-      setSearchedChants(results);
+      if (results.length >= 1) return setSearchedChants(results);
     }
+    setSearchedChants(null); // 없을 경우
   };
 
   const clickSearchButton = () => {

@@ -3,13 +3,18 @@ import Chant from "./chant";
 
 const Search = (props) => {
   const { chants, history } = props;
+
+  const getChantsList = () => {
+    if (chants === null) return <ul>검색 결과가 없습니다.</ul>;
+    if (chants.length === 0) return <ul>_blank</ul>;
+    return chants.map((chant) => (
+      <Chant chant={chant} key={chant.id} history={history} />
+    ));
+  };
+
   return (
     <main>
-      <ul className="chant-ul">
-        {chants.map((chant) => (
-          <Chant chant={chant} key={chant.id} history={history} />
-        ))}
-      </ul>
+      <ul className="chant-ul">{getChantsList()}</ul>
     </main>
   );
 };
