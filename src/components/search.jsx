@@ -5,8 +5,12 @@ const Search = (props) => {
   const { chants, history } = props;
 
   const getChantsList = () => {
-    if (chants === null) return <ul>검색 결과가 없습니다.</ul>;
-    if (chants.length === 0) return <ul>_blank</ul>;
+    if (chants === null)
+      return (
+        <section className="section-padding">검색 결과가 없습니다.</section>
+      );
+    if (chants.length === 0)
+      return <section className="section-padding">_blank</section>;
     return chants.map((chant) => (
       <Chant chant={chant} key={chant.id} history={history} />
     ));

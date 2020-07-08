@@ -2,6 +2,7 @@
 $font-middle: 1.2rem;
 $font-small: 1.1rem;
 $font-smaller: 0.8rem;
+$section-padding: 0.3rem;
 
 // 공통
 html {
@@ -83,6 +84,9 @@ main {
 }
 
 // chant
+.section-padding {
+  padding: $section-padding;
+}
 .chant-ul {
   display: grid;
   grid-auto-flow: row;
@@ -90,7 +94,7 @@ main {
     display: grid;
     grid-template-columns: 2.3rem 1fr 1.5rem;
     p {
-      padding: 0.3rem 0;
+      padding: $section-padding 0;
     }
     .chant-index {
       cursor: default;

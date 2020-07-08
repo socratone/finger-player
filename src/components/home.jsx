@@ -1,11 +1,11 @@
-import React from 'react';
+import React from "react";
 
 const Home = () => {
-  return ( 
+  return (
     <main>
-      환영합니다.
+      <section className="section-padding">환영합니다.</section>
     </main>
   );
-}
- 
+};
+
 export default Home;
