@@ -2,12 +2,12 @@ import React, { useEffect } from "react";
 import { Midi } from "@tonejs/midi";
 
 const Player = (props) => {
-  const { pathname } = props.location;
+  const { pathname: path } = props.location;
   const { chants } = props;
 
   useEffect(() => {
     (async function () {
-      const midi = await Midi.fromUrl("../midi/0001.mid");
+      const midi = await Midi.fromUrl("../midi/0002.mid");
       console.log("midi : ", midi);
       const soprano = midi.tracks[0];
       const alto = midi.tracks[1];
@@ -68,39 +68,36 @@ const Player = (props) => {
         sopIdx++;
       }
 
-      // console.log("obj : ", obj);
-
-      // const lastTick = soprano.notes[length - 1].ticks;
-      // const allNotes = []
-      // for (let i = 0; i <= lastTick; i++) {
-      // }
-      // const allNotes = soprano.notes.map((note) => {
-      //   const { midi: pitch, ticks, durationTicks } = note;
-      //   return { soprano: { pitch, ticks, durationTicks } };
-      // });
-      // for (let i = 0; i < allNotes.length; i++) {
-      //   if (allNotes[i].soprano.ticks === )
-      // }
       console.log("allNotes : ", allNotes);
     })();
   }, []);
 
-  let path = pathname;
   const id = Number(path.substring(8));
 
-  const getChant = () => {
-    for (let i = 0; i < chants.length; i++) {
-      if (chants[i].id === id) return chants[i].title;
+  let chant;
+  for (let i = 0; i < chants.length; i++) {
+    if (chants[i].id === id) {
+      chant = chants[i];
+      break;
     }
-  };
+  }
 
   return (
     <main id="player">
       <section className="section-padding">
-        <p>
-          {id}번 {getChant()}
-        </p>
-        <div></div>
+        <h3>
+          {id}번 {chant.title}
+        </h3>
+        <div id="lyrics">
+          {chant.one && <p>1. {chant.one}</p>}
+          {chant.two && <p>2. {chant.two}</p>}
+          {chant.three && <p>3. {chant.three}</p>}
+          {chant.four && <p>4. {chant.four}</p>}
+          {chant.five && <p>5. {chant.five}</p>}
+          {chant.six && <p>6. {chant.six}</p>}
+          {chant.seven && <p>7. {chant.seven}</p>}
+          {chant.eight && <p>8. {chant.eight}</p>}
+        </div>
         <button className="beat-button">Tap</button>
       </section>
     </main>
