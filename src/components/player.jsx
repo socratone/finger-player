@@ -1,10 +1,12 @@
-import React, { useEffect } from "react";
+import React, { useState, useEffect, memo } from "react";
 import { Midi } from "@tonejs/midi";
 import Lyrics from "./lyrics";
 
 const Player = (props) => {
   const { pathname: path } = props.location;
   const { chants } = props;
+  const [wordIndex, setWordIndex] = useState(-1);
+  const [orderIndex, setOrderIndex] = useState(1);
 
   useEffect(() => {
     (async function () {
@@ -83,6 +85,11 @@ const Player = (props) => {
     }
   }
 
+  const handleTapButtonClick = () => {
+    const preIndex = wordIndex;
+    setWordIndex(preIndex + 1);
+  };
+
   return (
     <main id="player">
       <section className="section-padding">
@@ -90,19 +97,85 @@ const Player = (props) => {
           {id}번 {chant.title}
         </h3>
         <div id="lyrics">
-          {chant.one && <Lyrics key="1" order="1" lyrics={chant.one} />}
-          {chant.two && <Lyrics key="2" order="2" lyrics={chant.two} />}
-          {chant.three && <Lyrics key="3" order="3" lyrics={chant.three} />}
-          {chant.four && <Lyrics key="4" order="4" lyrics={chant.four} />}
-          {chant.five && <Lyrics key="5" order="5" lyrics={chant.five} />}
-          {chant.six && <Lyrics key="6" order="6" lyrics={chant.six} />}
-          {chant.seven && <Lyrics key="7" order="7" lyrics={chant.seven} />}
-          {chant.eight && <Lyrics key="8" order="8" lyrics={chant.eight} />}
+          {chant.one && (
+            <Lyrics
+              key="1"
+              order="1"
+              orderIndex={orderIndex}
+              lyrics={chant.one}
+              wordIndex={wordIndex}
+            />
+          )}
+          {chant.two && (
+            <Lyrics
+              key="2"
+              order="2"
+              orderIndex={orderIndex}
+              lyrics={chant.two}
+              wordIndex={wordIndex}
+            />
+          )}
+          {chant.three && (
+            <Lyrics
+              key="3"
+              order="3"
+              orderIndex={orderIndex}
+              lyrics={chant.three}
+              wordIndex={wordIndex}
+            />
+          )}
+          {chant.four && (
+            <Lyrics
+              key="4"
+              order="4"
+              orderIndex={orderIndex}
+              lyrics={chant.four}
+              wordIndex={wordIndex}
+            />
+          )}
+          {chant.five && (
+            <Lyrics
+              key="5"
+              order="5"
+              orderIndex={orderIndex}
+              lyrics={chant.five}
+              wordIndex={wordIndex}
+            />
+          )}
+          {chant.six && (
+            <Lyrics
+              key="6"
+              order="6"
+              orderIndex={orderIndex}
+              lyrics={chant.six}
+              wordIndex={wordIndex}
+            />
+          )}
+          {chant.seven && (
+            <Lyrics
+              key="7"
+              order="7"
+              orderIndex={orderIndex}
+              lyrics={chant.seven}
+              wordIndex={wordIndex}
+            />
+          )}
+          {chant.eight && (
+            <Lyrics
+              key="8"
+              order="8"
+              orderIndex={orderIndex}
+              lyrics={chant.eight}
+              wordIndex={wordIndex}
+            />
+          )}
         </div>
-        <button className="beat-button">Tap</button>
+        <button className="beat-button" onClick={handleTapButtonClick}>
+          Tap
+        </button>
       </section>
     </main>
   );
 };
 
-export default Player;
+export default memo(Player);

@@ -1,27 +1,32 @@
-import React from "react";
+import React, { useEffect, memo } from "react";
+import Word from "./word";
 
 const Lyrics = (props) => {
-  const { order, lyrics } = props;
+  const { order, orderIndex, lyrics, wordIndex } = props;
   const words = lyrics.split("");
-  let count = 0;
+
+  const wordParent = React.createRef();
+
+  useEffect(() => {
+    const spans = wordParent.current.children;
+    if (order === String(orderIndex) && spans[wordIndex]) {
+      spans[wordIndex].style.color = "green";
+      spans[wordIndex].style.fontWeight = "900";
+    }
+  }, [wordIndex, order, orderIndex, wordParent]);
 
   return (
-    <p>
+    <p ref={wordParent}>
       {order}.{" "}
-      {words.map((word) => {
-        if (word === "." || word === " ") {
-          return <span>{word}</span>;
+      {words.map((word, i) => {
+        if (word === "." || word === "," || word === " ") {
+          return <React.Fragment key={i}>{word}</React.Fragment>;
         } else {
-          count++;
-          return (
-            <span id={count} className="lyrics-word">
-              {word}
-            </span>
-          );
+          return <Word key={i} word={word} />;
         }
       })}
     </p>
   );
 };
 
-export default Lyrics;
+export default memo(Lyrics);
