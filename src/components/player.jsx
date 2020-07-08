@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import { Midi } from "@tonejs/midi";
+import Lyrics from "./lyrics";
 
 const Player = (props) => {
   const { pathname: path } = props.location;
@@ -89,14 +90,14 @@ const Player = (props) => {
           {id}번 {chant.title}
         </h3>
         <div id="lyrics">
-          {chant.one && <p>1. {chant.one}</p>}
-          {chant.two && <p>2. {chant.two}</p>}
-          {chant.three && <p>3. {chant.three}</p>}
-          {chant.four && <p>4. {chant.four}</p>}
-          {chant.five && <p>5. {chant.five}</p>}
-          {chant.six && <p>6. {chant.six}</p>}
-          {chant.seven && <p>7. {chant.seven}</p>}
-          {chant.eight && <p>8. {chant.eight}</p>}
+          {chant.one && <Lyrics key="1" order="1" lyrics={chant.one} />}
+          {chant.two && <Lyrics key="2" order="2" lyrics={chant.two} />}
+          {chant.three && <Lyrics key="3" order="3" lyrics={chant.three} />}
+          {chant.four && <Lyrics key="4" order="4" lyrics={chant.four} />}
+          {chant.five && <Lyrics key="5" order="5" lyrics={chant.five} />}
+          {chant.six && <Lyrics key="6" order="6" lyrics={chant.six} />}
+          {chant.seven && <Lyrics key="7" order="7" lyrics={chant.seven} />}
+          {chant.eight && <Lyrics key="8" order="8" lyrics={chant.eight} />}
         </div>
         <button className="beat-button">Tap</button>
       </section>
