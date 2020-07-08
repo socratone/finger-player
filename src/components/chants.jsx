@@ -2,7 +2,7 @@ import React from "react";
 import Chant from "./chant";
 
 const Chants = (props) => {
-  const { chants: allChants, history } = props;
+  const { chants: allChants, updateHomeChantLists, history } = props;
   const [startNum, endNum] = props.range;
 
   let chants = [];

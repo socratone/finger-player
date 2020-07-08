@@ -5,14 +5,33 @@ import Player from "./components/player";
 import Search from "./components/search";
 import Chants from "./components/chants";
 import chants from "./lib/chants";
-import "./App.scss";
 
 const SEARCH_INPUT_VALUE = "번호나 제목을 입력하세요.";
 
 export default function App() {
   const [onSearchButton, setSearchButton] = useState(false);
   const [searchedChants, setSearchedChants] = useState([]);
+  const [homeChantLists, setHomeChantLists] = useState({
+    intro: [{ id: 1, title: "나는 굳게 믿나이다" }], // 임시
+    offering: [],
+    eucharist: [],
+    dispatch: [],
+    etc: [],
+  });
   const [querry, setQuerry] = useState(SEARCH_INPUT_VALUE);
+
+  const updateHomeChantLists = (listName, chant, remove) => {
+    const chantLists = { ...homeChantLists };
+    if (remove) {
+      const index = chantLists[listName].indexOf(chant);
+      if (index < 0) return console.log("삭제하려는 chant가 없습니다.");
+      console.log("삭제하기 위해 발견한 index : ", index);
+      chantLists[listName].splice(index, 1);
+    } else {
+      chantLists[listName].push(chant);
+    }
+    setHomeChantLists(chantLists);
+  };
 
   const clickXButton = () => {
     setQuerry(SEARCH_INPUT_VALUE);
@@ -135,40 +154,78 @@ export default function App() {
           <Route
             path="/100"
             render={(props) => (
-              <Chants chants={chants} range={[100, 199]} {...props} />
+              <Chants
+                chants={chants}
+                updateHomeChantLists={updateHomeChantLists}
+                range={[100, 199]}
+                {...props}
+              />
             )}
           />
           <Route
             path="/200"
             render={(props) => (
-              <Chants chants={chants} range={[200, 299]} {...props} />
+              <Chants
+                chants={chants}
+                updateHomeChantLists={updateHomeChantLists}
+                range={[200, 299]}
+                {...props}
+              />
             )}
           />
           <Route
             path="/300"
             render={(props) => (
-              <Chants chants={chants} range={[300, 399]} {...props} />
+              <Chants
+                chants={chants}
+                updateHomeChantLists={updateHomeChantLists}
+                range={[300, 399]}
+                {...props}
+              />
             )}
           />
           <Route
             path="/400"
             render={(props) => (
-              <Chants chants={chants} range={[400, 499]} {...props} />
+              <Chants
+                chants={chants}
+                updateHomeChantLists={updateHomeChantLists}
+                range={[400, 499]}
+                {...props}
+              />
             )}
           />
           <Route
             path="/1"
             render={(props) => (
-              <Chants chants={chants} range={[1, 99]} {...props} />
+              <Chants
+                chants={chants}
+                updateHomeChantLists={updateHomeChantLists}
+                range={[1, 99]}
+                {...props}
+              />
             )}
           />
           <Route
             path="/search"
-            render={(props) => <Search chants={searchedChants} {...props} />}
+            render={(props) => (
+              <Search
+                chants={searchedChants}
+                updateHomeChantLists={updateHomeChantLists}
+                {...props}
+              />
+            )}
           />
-          <Route path="/">
-            <Home />
-          </Route>
+          <Route
+            path="/"
+            render={(props) => (
+              <Home
+                homeChantLists={homeChantLists}
+                updateHomeChantLists={updateHomeChantLists}
+                {...props}
+              />
+            )}
+          />
         </Switch>
       </div>
     </Router>

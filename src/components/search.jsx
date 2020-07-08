@@ -2,7 +2,7 @@ import React from "react";
 import Chant from "./chant";
 
 const Search = (props) => {
-  const { chants, history } = props;
+  const { chants, updateHomeChantLists, history } = props;
 
   const getChantsList = () => {
     if (chants === null)

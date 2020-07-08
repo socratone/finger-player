@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Modal from "react-modal";
 
 const ChantSub = (props) => {
-  const { setHidden, handleClickEllipsis } = props;
+  const { chant, setHidden, handleClickEllipsis } = props;
   const [modalIsOpen, setModalOpen] = useState(false);
 
   const customStyles = {
@@ -51,18 +51,24 @@ const ChantSub = (props) => {
         onAfterOpen={afterOpenModal}
         onRequestClose={closeModal}
         style={customStyles}
-        // contentLabel="Chant Select Modal"
+        contentLabel="Chant Select Modal"
+        ariaHideApp={false} // 오류 수정을 위해 추가
       >
-        {/* <h2 ref={_subtitle => (subtitle = _subtitle)}>Hello</h2> */}
-        <button onClick={closeModal}>close</button>
-        <div>어디에 추가하시겠습니까?</div>
-        <form>
-          <input />
-          <button>tab navigation</button>
-          <button>stays</button>
-          <button>inside</button>
-          <button>the modal</button>
-        </form>
+        <section className="modal-section">
+          <p onClick={closeModal}>
+            <i className="fa fa-times" />
+          </p>
+          <p>
+            {chant.id}번 {chant.title}
+            <br />
+            어디에 추가하시겠습니까?
+          </p>
+          <button>입당성가</button>
+          <button>봉헌성가</button>
+          <button>성체성가</button>
+          <button>파견성가</button>
+          <button>기타</button>
+        </section>
       </Modal>
     </li>
   );

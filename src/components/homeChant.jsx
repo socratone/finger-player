@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import ChantSub from "./chantSub";
+import HomeChantSub from "./homeChantSub";
 
-const Chant = (props) => {
-  const { chant, history } = props;
+const HomeChant = (props) => {
+  const { chant, updateHomeChantLists, homeChantListName, history } = props;
   const [onEllipsis, setEllipsis] = useState(false);
 
   const handleClickTitle = (id) => {
@@ -35,8 +35,10 @@ const Chant = (props) => {
           <i className="fa fa-ellipsis-v" />
         </p>
       </li>
-      <ChantSub
+      <HomeChantSub
         chant={chant}
+        updateHomeChantLists={updateHomeChantLists}
+        homeChantListName={homeChantListName}
         setHidden={setHidden}
         handleClickEllipsis={handleClickEllipsis}
       />
@@ -44,4 +46,4 @@ const Chant = (props) => {
   );
 };
 
-export default Chant;
+export default HomeChant;
