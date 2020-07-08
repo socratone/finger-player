@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import ChantSub from "./chantSub";
 
 const Chant = (props) => {
-  const { chant, history } = props;
+  const { chant, updateHomeChantLists, history } = props;
   const [onEllipsis, setEllipsis] = useState(false);
 
   const handleClickTitle = (id) => {
@@ -37,6 +37,7 @@ const Chant = (props) => {
       </li>
       <ChantSub
         chant={chant}
+        updateHomeChantLists={updateHomeChantLists}
         setHidden={setHidden}
         handleClickEllipsis={handleClickEllipsis}
       />

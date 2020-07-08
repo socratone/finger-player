@@ -13,12 +13,14 @@ const Player = (props) => {
   };
 
   return (
-    <main>
-      <p>
-        {id}번 {getChant()} 곡을 준비중입니다.
-      </p>
-      <p>가사</p>
-      <button style={{ fontSize: "1rem", padding: "1rem" }}>클릭</button>
+    <main id="player">
+      <section className="section-padding">
+        <p>
+          {id}번 {getChant()}
+        </p>
+        <div></div>
+        <button className="beat-button">Tap</button>
+      </section>
     </main>
   );
 };

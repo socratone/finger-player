@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Modal from "react-modal";
 
 const ChantSub = (props) => {
-  const { chant, setHidden, handleClickEllipsis } = props;
+  const { chant, updateHomeChantLists, setHidden, handleClickEllipsis } = props;
   const [modalIsOpen, setModalOpen] = useState(false);
 
   const customStyles = {
@@ -63,11 +63,46 @@ const ChantSub = (props) => {
             <br />
             어디에 추가하시겠습니까?
           </p>
-          <button>입당성가</button>
-          <button>봉헌성가</button>
-          <button>성체성가</button>
-          <button>파견성가</button>
-          <button>기타</button>
+          <button
+            onClick={() => {
+              updateHomeChantLists("intro", chant);
+              closeModal();
+            }}
+          >
+            입당성가
+          </button>
+          <button
+            onClick={() => {
+              updateHomeChantLists("offering", chant);
+              closeModal();
+            }}
+          >
+            봉헌성가
+          </button>
+          <button
+            onClick={() => {
+              updateHomeChantLists("eucharist", chant);
+              closeModal();
+            }}
+          >
+            성체성가
+          </button>
+          <button
+            onClick={() => {
+              updateHomeChantLists("dispatch", chant);
+              closeModal();
+            }}
+          >
+            파견성가
+          </button>
+          <button
+            onClick={() => {
+              updateHomeChantLists("etc", chant);
+              closeModal();
+            }}
+          >
+            기타
+          </button>
         </section>
       </Modal>
     </li>

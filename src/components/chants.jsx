@@ -18,7 +18,12 @@ const Chants = (props) => {
     <main>
       <ul className="chant-ul">
         {chants.map((chant) => (
-          <Chant chant={chant} key={chant.id} history={history} />
+          <Chant
+            chant={chant}
+            key={chant.id}
+            updateHomeChantLists={updateHomeChantLists}
+            history={history}
+          />
         ))}
       </ul>
     </main>

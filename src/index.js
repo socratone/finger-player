@@ -5,6 +5,8 @@ import * as serviceWorker from "./serviceWorker";
 import "./index.css";
 import "./styles/App.scss";
 import "./styles/modal.scss";
+import "./styles/button.scss";
+import "./styles/player.scss";
 
 ReactDOM.render(
   <React.StrictMode>

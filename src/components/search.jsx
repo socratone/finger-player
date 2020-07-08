@@ -12,7 +12,12 @@ const Search = (props) => {
     if (chants.length === 0)
       return <section className="section-padding">_blank</section>;
     return chants.map((chant) => (
-      <Chant chant={chant} key={chant.id} history={history} />
+      <Chant
+        chant={chant}
+        updateHomeChantLists={updateHomeChantLists}
+        key={chant.id}
+        history={history}
+      />
     ));
   };
 
