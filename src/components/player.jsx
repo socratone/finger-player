@@ -1,22 +1,42 @@
 import React, { useState, useEffect, memo } from "react";
 import { Midi } from "@tonejs/midi";
 import Lyrics from "./lyrics";
+import { playNote, stopNote } from "../helper/audioPlayer";
 
 const Player = (props) => {
   const { pathname: path } = props.location;
   const { chants } = props;
   const [wordIndex, setWordIndex] = useState(-1);
+  const [allNotes, setAllNotes] = useState([]);
+
+  // 파트
+  const [sopPlayer, setSopPlayer] = useState(undefined);
+  const [altoPlayer, setAltoPlayer] = useState(undefined);
+  const [tenPlayer, setTenPlayer] = useState(undefined);
+  const [bassPlayer, setBassPlayer] = useState(undefined);
+
+  // 절
   const [orderIndex, setOrderIndex] = useState(1);
+
+  const id = Number(path.substring(8));
+
+  let chant;
+  for (let i = 0; i < chants.length; i++) {
+    if (chants[i].id === id) {
+      chant = chants[i];
+      break;
+    }
+  }
 
   useEffect(() => {
     (async function () {
-      const midi = await Midi.fromUrl("../midi/0002.mid");
+      const midi = await Midi.fromUrl(`../midi/${id}.mid`);
       console.log("midi : ", midi);
       const soprano = midi.tracks[0];
       const alto = midi.tracks[1];
       const tenor = midi.tracks[2];
       const bass = midi.tracks[3];
-      const allNotes = [];
+      const newNotes = [];
       let [sopIdx, altoIdx, tenIdx, bassIdx] = [0, 0, 0, 0];
 
       // 소프라노 배열이 끝날 때까지 soprano의 값을 순서대로 넣는다.
@@ -67,27 +87,34 @@ const Player = (props) => {
           bassIdx++;
         }
 
-        allNotes.push(obj);
+        newNotes.push(obj);
         sopIdx++;
       }
 
-      console.log("allNotes : ", allNotes);
+      console.log("allNotes 설정 : ", newNotes);
+      setAllNotes(newNotes);
     })();
   }, []);
 
-  const id = Number(path.substring(8));
-
-  let chant;
-  for (let i = 0; i < chants.length; i++) {
-    if (chants[i].id === id) {
-      chant = chants[i];
-      break;
-    }
-  }
-
   const handleTapButtonClick = () => {
-    const preIndex = wordIndex;
-    setWordIndex(preIndex + 1);
+    const currentNotes = allNotes[wordIndex + 1];
+    console.log("currentNotes : ", currentNotes);
+
+    // 각 파트를 소리 내기 전에 이전의 소리를 멈춤
+    const { soprano, alto, tenor, bass } = currentNotes;
+    if (soprano && sopPlayer) stopNote(sopPlayer);
+    if (alto && altoPlayer) stopNote(altoPlayer);
+    if (tenor && tenPlayer) stopNote(tenPlayer);
+    if (bass && bassPlayer) stopNote(bassPlayer);
+
+    // 연주
+    if (soprano) setSopPlayer(playNote(soprano.pitch));
+    if (alto) setAltoPlayer(playNote(alto.pitch));
+    if (tenor) setTenPlayer(playNote(tenor.pitch));
+    if (bass) setBassPlayer(playNote(bass.pitch));
+
+    // 가사 인덱스 하나 올리기
+    setWordIndex(wordIndex + 1);
   };
 
   return (
