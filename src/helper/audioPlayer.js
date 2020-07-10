@@ -9,9 +9,17 @@ const convertNotation = (note) => {
   }
 };
 
+const loadNote = (...pitchs) => {
+  pitchs.forEach((pitch) => {
+    pitch = convertNotation(pitch);
+    notes[pitch] = new Audio(`../audio/${pitch}.mp3`);
+  });
+  console.log("로딩된 노트 : ", notes);
+};
+
 const playNote = (pitch) => {
   pitch = convertNotation(pitch);
-  const note = new Audio(`../audio/${pitch}.mp3`);
+  const note = notes[pitch];
   note.volume = 0.5;
   note.play();
   return note;
@@ -19,7 +27,8 @@ const playNote = (pitch) => {
 
 const stopNote = (player) => {
   player.pause();
+  player.currentTime = 0;
   // TODO: 페이드 아웃 구현
 };
 
-module.exports = { playNote, stopNote };
+module.exports = { loadNote, playNote, stopNote };

@@ -1,7 +1,7 @@
 import React, { useState, useEffect, memo } from "react";
 import { Midi } from "@tonejs/midi";
 import Lyrics from "./lyrics";
-import { playNote, stopNote } from "../helper/audioPlayer";
+import { loadNote, playNote, stopNote } from "../helper/audioPlayer";
 
 const Player = (props) => {
   const { pathname: path } = props.location;
@@ -95,6 +95,25 @@ const Player = (props) => {
       setAllNotes(newNotes);
     })();
   }, []);
+
+  // 필요한 음원 불러오기
+  useEffect(() => {
+    if (allNotes.length > 0) {
+      const pitchs = {};
+      allNotes.map((note) => {
+        if (note.soprano) pitchs[note.soprano.pitch] = 1;
+        if (note.alto) pitchs[note.alto.pitch] = 1;
+        if (note.bass) pitchs[note.bass.pitch] = 1;
+        if (note.tenor) pitchs[note.tenor.pitch] = 1;
+      });
+
+      const loadPitchs = [];
+      for (let key in pitchs) {
+        loadPitchs.push(key);
+      }
+      loadNote.apply(null, loadPitchs);
+    }
+  }, [allNotes]);
 
   const handleTapButtonClick = () => {
     const currentNotes = allNotes[wordIndex + 1];
