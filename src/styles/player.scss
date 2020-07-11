@@ -8,6 +8,17 @@
   #lyrics {
     p {
       line-height: 2rem;
+      .lyrics-word {
+        cursor: pointer;
+      }
+      .lyrics-word:hover {
+        color: red;
+        font-weight: 900;
+      }
+      .selected-word {
+        color: blue;
+        font-weight: 900;
+      }
     }
   }
   #buttons {

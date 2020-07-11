@@ -17,6 +17,7 @@ const Player = (props) => {
   const [bassPlayer, setBassPlayer] = useState(undefined);
   // 절
   const [verseIndex, setVerseIndex] = useState(1);
+  const [preludeIndex, setPreludeIndex] = useState(undefined);
 
   const id = Number(path.substring(8));
   let chant;
@@ -111,12 +112,20 @@ const Player = (props) => {
         for (let key in pitchs) {
           loadPitchs.push(key);
         }
-        console.log("필요한 음원 불러오기");
         loadNote.apply(null, loadPitchs);
         setIsLoad(true);
       }
     })();
   }, [allNotes]);
+
+  // 전주를 설정하면 wordIndex를 바꿔준다.
+  // useEffect(() => {
+  //   if (preludeIndex !== undefined) {
+  //     const index = preludeIndex - 1;
+  //     if (index === -1) return setWordIndex(undefined);
+  //     setWordIndex(index);
+  //   }
+  // }, [preludeIndex]);
 
   const handleReleaseButton = () => {
     if (sopPlayer) stopNote(sopPlayer);
@@ -125,30 +134,50 @@ const Player = (props) => {
     if (bassPlayer) stopNote(bassPlayer);
   };
 
-  const handlePlayButton = () => {
+  const handlePlayButton = async () => {
     let currentNotes;
-    // 처음 연주시
-    if (wordIndex === undefined) {
-      currentNotes = allNotes[0];
-      setWordIndex(0);
-    } else {
+    /* 전주 설정을 한 경우 */
+    if (preludeIndex !== undefined) {
       // 끝까지 연주했을 때
-      if (wordIndex + 1 === allNotes.length) {
+      if (preludeIndex === allNotes.length) {
+        console.log("전주를 끝내고 처음 절로 돌아갑니다.");
         currentNotes = allNotes[0];
         setWordIndex(0);
-        if (isNextChantDefined(verseIndex, chant)) {
-          console.log("다음 절로 갑니다.");
-          setVerseIndex(verseIndex + 1);
-        } else {
-          console.log("처음 절로 돌아갑니다.");
-          setVerseIndex(1);
-        }
-        // 처음 연주 이후
+        setPreludeIndex(undefined);
+        await setVerseIndex(0);
+        setVerseIndex(1);
       } else {
-        setWordIndex(wordIndex + 1);
-        currentNotes = allNotes[wordIndex + 1];
+        // 전주 연주 부분
+        setWordIndex(preludeIndex);
+        currentNotes = allNotes[preludeIndex];
+        setPreludeIndex(preludeIndex + 1);
+      }
+      /* 일반적인 경우 */
+    } else {
+      // 처음 연주시
+      if (wordIndex === undefined) {
+        currentNotes = allNotes[0];
+        setWordIndex(0);
+      } else {
+        // 끝까지 연주했을 때
+        if (wordIndex + 1 === allNotes.length) {
+          currentNotes = allNotes[0];
+          setWordIndex(0);
+          if (isNextChantDefined(verseIndex, chant)) {
+            console.log("다음 절로 갑니다.");
+            setVerseIndex(verseIndex + 1);
+          } else {
+            console.log("처음 절로 돌아갑니다.");
+            setVerseIndex(1);
+          }
+        } else {
+          // 처음 연주 이후
+          setWordIndex(wordIndex + 1);
+          currentNotes = allNotes[wordIndex + 1];
+        }
       }
     }
+
     console.log("currentNotes : ", currentNotes);
 
     // 각 파트를 소리 내기 전에 이전의 소리를 멈춤
@@ -179,6 +208,7 @@ const Player = (props) => {
               verseIndex={verseIndex}
               lyrics={chant.one}
               wordIndex={wordIndex}
+              setPreludeIndex={setPreludeIndex}
             />
           )}
           {chant.two && (
