@@ -17,7 +17,7 @@ const Player = (props) => {
   const [bassPlayer, setBassPlayer] = useState(undefined);
 
   // 절
-  const [orderIndex, setOrderIndex] = useState(1);
+  const [verseIndex, setVerseIndex] = useState(1);
 
   const id = Number(path.substring(8));
 
@@ -135,12 +135,12 @@ const Player = (props) => {
       if (wordIndex + 1 === allNotes.length) {
         currentNotes = allNotes[0];
         setWordIndex(0);
-        if (isNextChantDefined(orderIndex, chant)) {
+        if (isNextChantDefined(verseIndex, chant)) {
           console.log("다음 절로 갑니다.");
-          setOrderIndex(orderIndex + 1);
+          setVerseIndex(verseIndex + 1);
         } else {
           console.log("처음 절로 돌아갑니다.");
-          setOrderIndex(1);
+          setVerseIndex(1);
         }
         // 처음 연주 이후
       } else {
@@ -174,8 +174,8 @@ const Player = (props) => {
           {chant.one && (
             <Lyrics
               key="1"
-              order="1"
-              orderIndex={orderIndex}
+              verse="1"
+              verseIndex={verseIndex}
               lyrics={chant.one}
               wordIndex={wordIndex}
             />
@@ -183,8 +183,8 @@ const Player = (props) => {
           {chant.two && (
             <Lyrics
               key="2"
-              order="2"
-              orderIndex={orderIndex}
+              verse="2"
+              verseIndex={verseIndex}
               lyrics={chant.two}
               wordIndex={wordIndex}
             />
@@ -192,8 +192,8 @@ const Player = (props) => {
           {chant.three && (
             <Lyrics
               key="3"
-              order="3"
-              orderIndex={orderIndex}
+              verse="3"
+              verseIndex={verseIndex}
               lyrics={chant.three}
               wordIndex={wordIndex}
             />
@@ -201,8 +201,8 @@ const Player = (props) => {
           {chant.four && (
             <Lyrics
               key="4"
-              order="4"
-              orderIndex={orderIndex}
+              verse="4"
+              verseIndex={verseIndex}
               lyrics={chant.four}
               wordIndex={wordIndex}
             />
@@ -210,8 +210,8 @@ const Player = (props) => {
           {chant.five && (
             <Lyrics
               key="5"
-              order="5"
-              orderIndex={orderIndex}
+              verse="5"
+              verseIndex={verseIndex}
               lyrics={chant.five}
               wordIndex={wordIndex}
             />
@@ -219,8 +219,8 @@ const Player = (props) => {
           {chant.six && (
             <Lyrics
               key="6"
-              order="6"
-              orderIndex={orderIndex}
+              verse="6"
+              verseIndex={verseIndex}
               lyrics={chant.six}
               wordIndex={wordIndex}
             />
@@ -228,8 +228,8 @@ const Player = (props) => {
           {chant.seven && (
             <Lyrics
               key="7"
-              order="7"
-              orderIndex={orderIndex}
+              verse="7"
+              verseIndex={verseIndex}
               lyrics={chant.seven}
               wordIndex={wordIndex}
             />
@@ -237,8 +237,8 @@ const Player = (props) => {
           {chant.eight && (
             <Lyrics
               key="8"
-              order="8"
-              orderIndex={orderIndex}
+              verse="8"
+              verseIndex={verseIndex}
               lyrics={chant.eight}
               wordIndex={wordIndex}
             />
