@@ -101,7 +101,7 @@ const Player = (props) => {
   useEffect(() => {
     if (allNotes.length > 0) {
       const pitchs = {};
-      allNotes.map((note) => {
+      allNotes.forEach((note) => {
         if (note.soprano) pitchs[note.soprano.pitch] = 1;
         if (note.alto) pitchs[note.alto.pitch] = 1;
         if (note.bass) pitchs[note.bass.pitch] = 1;
@@ -245,11 +245,11 @@ const Player = (props) => {
           )}
         </div>
         <div id="buttons">
-          <button className="release-button" onClick={handleReleaseButton}>
+          <button className="release-button" onMouseDown={handleReleaseButton}>
             Release
           </button>
           <button className="next-button">Next</button>
-          <button className="play-button" onClick={handlePlayButton}>
+          <button className="play-button" onMouseDown={handlePlayButton}>
             Play
           </button>
         </div>
