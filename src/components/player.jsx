@@ -245,13 +245,8 @@ const Player = (props) => {
           )}
         </div>
         <div id="buttons">
-          <button className="release-button" onMouseDown={handleReleaseButton}>
-            Release
-          </button>
-          <button className="next-button">Next</button>
-          <button className="play-button" onMouseDown={handlePlayButton}>
-            Play
-          </button>
+          <button onMouseDown={handleReleaseButton}>Release</button>
+          <button onMouseDown={handlePlayButton}>Play</button>
         </div>
       </section>
     </main>
