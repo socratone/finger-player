@@ -9,18 +9,16 @@ const Player = (props) => {
   const { chants } = props;
   const [wordIndex, setWordIndex] = useState(undefined);
   const [allNotes, setAllNotes] = useState([]);
-
+  const [isLoad, setIsLoad] = useState(false);
   // 파트
   const [sopPlayer, setSopPlayer] = useState(undefined);
   const [altoPlayer, setAltoPlayer] = useState(undefined);
   const [tenPlayer, setTenPlayer] = useState(undefined);
   const [bassPlayer, setBassPlayer] = useState(undefined);
-
   // 절
   const [verseIndex, setVerseIndex] = useState(1);
 
   const id = Number(path.substring(8));
-
   let chant;
   for (let i = 0; i < chants.length; i++) {
     if (chants[i].id === id) {
@@ -99,22 +97,25 @@ const Player = (props) => {
 
   // 필요한 음원 불러오기
   useEffect(() => {
-    if (allNotes.length > 0) {
-      const pitchs = {};
-      allNotes.forEach((note) => {
-        if (note.soprano) pitchs[note.soprano.pitch] = 1;
-        if (note.alto) pitchs[note.alto.pitch] = 1;
-        if (note.bass) pitchs[note.bass.pitch] = 1;
-        if (note.tenor) pitchs[note.tenor.pitch] = 1;
-      });
+    (async function () {
+      if (allNotes.length > 0) {
+        const pitchs = {};
+        allNotes.forEach((note) => {
+          if (note.soprano) pitchs[note.soprano.pitch] = 1;
+          if (note.alto) pitchs[note.alto.pitch] = 1;
+          if (note.bass) pitchs[note.bass.pitch] = 1;
+          if (note.tenor) pitchs[note.tenor.pitch] = 1;
+        });
 
-      const loadPitchs = [];
-      for (let key in pitchs) {
-        loadPitchs.push(key);
+        const loadPitchs = [];
+        for (let key in pitchs) {
+          loadPitchs.push(key);
+        }
+        console.log("필요한 음원 불러오기");
+        loadNote.apply(null, loadPitchs);
+        setIsLoad(true);
       }
-      // console.log("필요한 음원 불러오기");
-      loadNote.apply(null, loadPitchs);
-    }
+    })();
   }, [allNotes]);
 
   const handleReleaseButton = () => {
@@ -245,8 +246,12 @@ const Player = (props) => {
           )}
         </div>
         <div id="buttons">
-          <button onMouseDown={handleReleaseButton}>Release</button>
-          <button onMouseDown={handlePlayButton}>Play</button>
+          <button disabled={!isLoad} onMouseDown={handleReleaseButton}>
+            Release
+          </button>
+          <button disabled={!isLoad} onMouseDown={handlePlayButton}>
+            Play
+          </button>
         </div>
       </section>
     </main>

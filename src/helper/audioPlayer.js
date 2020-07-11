@@ -14,10 +14,10 @@ const convertNotation = (note) => {
 };
 
 const loadNote = (...pitchs) => {
-  pitchs.forEach((pitch) => {
+  pitchs.forEach(async (pitch) => {
     pitch = convertNotation(pitch);
-    notes1[pitch] = new Audio(`../audio/${pitch}.mp3`);
-    notes2[pitch] = new Audio(`../audio/${pitch}.mp3`);
+    notes1[pitch] = await new Audio(`../audio/${pitch}.mp3`);
+    notes2[pitch] = await new Audio(`../audio/${pitch}.mp3`);
   });
 };
 
