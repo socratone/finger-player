@@ -1,4 +1,8 @@
-const notes = {};
+const notes1 = {};
+const notes2 = {};
+
+const MASTER_VOLUME = 0.5;
+const INTERVAL = 5;
 
 const convertNotation = (note) => {
   let alphabet = note[0].toLowerCase();
@@ -12,23 +16,48 @@ const convertNotation = (note) => {
 const loadNote = (...pitchs) => {
   pitchs.forEach((pitch) => {
     pitch = convertNotation(pitch);
-    notes[pitch] = new Audio(`../audio/${pitch}.mp3`);
+    notes1[pitch] = new Audio(`../audio/${pitch}.mp3`);
+    notes2[pitch] = new Audio(`../audio/${pitch}.mp3`);
   });
-  console.log("로딩된 노트 : ", notes);
 };
 
 const playNote = (pitch) => {
   pitch = convertNotation(pitch);
-  const note = notes[pitch];
-  note.volume = 0.5;
-  note.play();
-  return note;
+  const note1 = notes1[pitch];
+  const note2 = notes2[pitch];
+  if (note1.currentTime === 0) {
+    console.log("note1 재생");
+    note1.volume = MASTER_VOLUME;
+    note1.play();
+    return note1;
+  } else if (note2.currentTime === 0) {
+    console.log("note2 재생");
+    note2.volume = MASTER_VOLUME;
+    note2.play();
+    return note2;
+  }
 };
 
 const stopNote = (player) => {
+  let volume = MASTER_VOLUME;
+
+  // const fadeout = setInterval(() => {
+  //   volume -= 0.01;
+  //   if (volume > 0) {
+  //     player.volume = volume;
+  //     // console.log("볼륨 : ", player.volume);
+  //   } else {
+  //     // console.log("끝날 때 : ", player.volume);
+  //     clearInterval(fadeout);
+  //     player.volume = 0;
+  //     player.pause();
+  //     player.currentTime = 0;
+  //   }
+  // }, INTERVAL);
+
+  player.volume = 0;
   player.pause();
   player.currentTime = 0;
-  // TODO: 페이드 아웃 구현
 };
 
 module.exports = { loadNote, playNote, stopNote };
