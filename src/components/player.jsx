@@ -2,11 +2,12 @@ import React, { useState, useEffect, memo } from "react";
 import { Midi } from "@tonejs/midi";
 import Lyrics from "./lyrics";
 import { loadNote, playNote, stopNote } from "../helper/audioPlayer";
+import isNextChantDefined from "../helper/isNextChantDefined";
 
 const Player = (props) => {
   const { pathname: path } = props.location;
   const { chants } = props;
-  const [wordIndex, setWordIndex] = useState(-1);
+  const [wordIndex, setWordIndex] = useState(undefined);
   const [allNotes, setAllNotes] = useState([]);
 
   // 파트
@@ -111,12 +112,42 @@ const Player = (props) => {
       for (let key in pitchs) {
         loadPitchs.push(key);
       }
+      // console.log("필요한 음원 불러오기");
       loadNote.apply(null, loadPitchs);
     }
   }, [allNotes]);
 
-  const handleTapButtonClick = () => {
-    const currentNotes = allNotes[wordIndex + 1];
+  const handleReleaseButton = () => {
+    if (sopPlayer) stopNote(sopPlayer);
+    if (altoPlayer) stopNote(altoPlayer);
+    if (tenPlayer) stopNote(tenPlayer);
+    if (bassPlayer) stopNote(bassPlayer);
+  };
+
+  const handlePlayButton = () => {
+    let currentNotes;
+    // 처음 연주시
+    if (wordIndex === undefined) {
+      currentNotes = allNotes[0];
+      setWordIndex(0);
+    } else {
+      // 끝까지 연주했을 때
+      if (wordIndex + 1 === allNotes.length) {
+        currentNotes = allNotes[0];
+        setWordIndex(0);
+        if (isNextChantDefined(orderIndex, chant)) {
+          console.log("다음 절로 갑니다.");
+          setOrderIndex(orderIndex + 1);
+        } else {
+          console.log("처음 절로 돌아갑니다.");
+          setOrderIndex(1);
+        }
+        // 처음 연주 이후
+      } else {
+        setWordIndex(wordIndex + 1);
+        currentNotes = allNotes[wordIndex + 1];
+      }
+    }
     console.log("currentNotes : ", currentNotes);
 
     // 각 파트를 소리 내기 전에 이전의 소리를 멈춤
@@ -131,9 +162,6 @@ const Player = (props) => {
     if (alto) setAltoPlayer(playNote(alto.pitch));
     if (tenor) setTenPlayer(playNote(tenor.pitch));
     if (bass) setBassPlayer(playNote(bass.pitch));
-
-    // 가사 인덱스 하나 올리기
-    setWordIndex(wordIndex + 1);
   };
 
   return (
@@ -216,9 +244,15 @@ const Player = (props) => {
             />
           )}
         </div>
-        <button className="beat-button" onClick={handleTapButtonClick}>
-          Tap
-        </button>
+        <div id="buttons">
+          <button className="release-button" onClick={handleReleaseButton}>
+            Release
+          </button>
+          <button className="next-button">Next</button>
+          <button className="play-button" onClick={handlePlayButton}>
+            Play
+          </button>
+        </div>
       </section>
     </main>
   );

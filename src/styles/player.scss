@@ -10,4 +10,17 @@
       line-height: 2rem;
     }
   }
+  #buttons {
+    display: grid;
+    grid-template-rows: 1fr 1fr;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.5rem;
+    .release-button {
+    }
+    .next-button {
+    }
+    .play-button {
+      grid-column: span 2;
+    }
+  }
 }
