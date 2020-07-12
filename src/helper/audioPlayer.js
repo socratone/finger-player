@@ -2,7 +2,7 @@ const notes1 = {};
 const notes2 = {};
 
 const MASTER_VOLUME = 0.5;
-const INTERVAL = 5;
+const INTERVAL = 1;
 
 const convertNotation = (note) => {
   let alphabet = note[0].toLowerCase();
@@ -39,7 +39,7 @@ const playNote = (pitch) => {
 };
 
 const stopNote = (player) => {
-  let volume = MASTER_VOLUME;
+  // let volume = MASTER_VOLUME;
 
   // const fadeout = setInterval(() => {
   //   volume -= 0.01;
@@ -52,12 +52,14 @@ const stopNote = (player) => {
   //     player.volume = 0;
   //     player.pause();
   //     player.currentTime = 0;
+  //     return undefined;
   //   }
   // }, INTERVAL);
 
   player.volume = 0;
   player.pause();
   player.currentTime = 0;
+  return undefined;
 };
 
 module.exports = { loadNote, playNote, stopNote };

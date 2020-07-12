@@ -128,10 +128,10 @@ const Player = (props) => {
   // }, [preludeIndex]);
 
   const handleReleaseButton = () => {
-    if (sopPlayer) stopNote(sopPlayer);
-    if (altoPlayer) stopNote(altoPlayer);
-    if (tenPlayer) stopNote(tenPlayer);
-    if (bassPlayer) stopNote(bassPlayer);
+    if (sopPlayer) setSopPlayer(stopNote(sopPlayer));
+    if (altoPlayer) setAltoPlayer(stopNote(altoPlayer));
+    if (tenPlayer) setTenPlayer(stopNote(tenPlayer));
+    if (bassPlayer) setBassPlayer(stopNote(bassPlayer));
   };
 
   const handlePlayButton = async () => {
