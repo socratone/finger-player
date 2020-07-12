@@ -118,15 +118,6 @@ const Player = (props) => {
     })();
   }, [allNotes]);
 
-  // 전주를 설정하면 wordIndex를 바꿔준다.
-  // useEffect(() => {
-  //   if (preludeIndex !== undefined) {
-  //     const index = preludeIndex - 1;
-  //     if (index === -1) return setWordIndex(undefined);
-  //     setWordIndex(index);
-  //   }
-  // }, [preludeIndex]);
-
   const handleReleaseButton = () => {
     if (sopPlayer) setSopPlayer(stopNote(sopPlayer));
     if (altoPlayer) setAltoPlayer(stopNote(altoPlayer));

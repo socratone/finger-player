@@ -39,27 +39,27 @@ const playNote = (pitch) => {
 };
 
 const stopNote = (player) => {
-  // let volume = MASTER_VOLUME;
+  let volume = MASTER_VOLUME;
 
-  // const fadeout = setInterval(() => {
-  //   volume -= 0.01;
-  //   if (volume > 0) {
-  //     player.volume = volume;
-  //     // console.log("볼륨 : ", player.volume);
-  //   } else {
-  //     // console.log("끝날 때 : ", player.volume);
-  //     clearInterval(fadeout);
-  //     player.volume = 0;
-  //     player.pause();
-  //     player.currentTime = 0;
-  //     return undefined;
-  //   }
-  // }, INTERVAL);
+  const fadeout = setInterval(() => {
+    volume -= 0.01;
+    if (volume > 0) {
+      player.volume = volume.toFixed(2);
+      // console.log("볼륨 : ", player.volume);
+    } else {
+      // console.log("끝날 때 : ", player.volume);
+      clearInterval(fadeout);
+      player.volume = 0;
+      player.pause();
+      player.currentTime = 0;
+      return undefined;
+    }
+  }, INTERVAL);
 
-  player.volume = 0;
-  player.pause();
-  player.currentTime = 0;
-  return undefined;
+  // player.volume = 0;
+  // player.pause();
+  // player.currentTime = 0;
+  // return undefined;
 };
 
 module.exports = { loadNote, playNote, stopNote };
