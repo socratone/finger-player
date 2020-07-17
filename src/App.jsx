@@ -22,7 +22,9 @@ export default function App() {
 
   useEffect(() => {
     const lists = JSON.parse(localStorage.getItem("home-chant-lists"));
-    setHomeChantLists(lists);
+    if (lists) {
+      setHomeChantLists(lists);
+    }
   }, []);
 
   useEffect(() => {
