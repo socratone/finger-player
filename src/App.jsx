@@ -45,9 +45,6 @@ export default function App() {
   const updateHomeChantLists = (listName, chant, remove) => {
     const chantLists = { ...homeChantLists };
     let index;
-    // console.log("chant.id : ", chant.id);
-    // console.log("chantLists : ", chantLists);
-    // console.log("listName : ", listName);
     for (let i = 0; i < chantLists[listName].length; i++) {
       if (chantLists[listName][i].id === chant.id) {
         index = i;
@@ -58,7 +55,6 @@ export default function App() {
     if (remove) {
       if (index === undefined)
         return console.log("삭제하려는 chant가 없습니다.");
-      // console.log("삭제하기 위해 발견한 index : ", index);
       chantLists[listName].splice(index, 1);
     } else {
       if (index >= 0) return console.log("이미 있는 chant입니다.");
