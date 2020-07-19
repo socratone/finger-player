@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import Modal from "react-modal";
+import React, { useState } from 'react';
+import Modal from 'react-modal';
 
 const ChantSub = (props) => {
   const { chant, updateHomeChantLists, setHidden, handleClickEllipsis } = props;
@@ -7,12 +7,12 @@ const ChantSub = (props) => {
 
   const customStyles = {
     content: {
-      top: "50%",
-      left: "50%",
-      right: "auto",
-      bottom: "auto",
-      marginRight: "-50%",
-      transform: "translate(-50%, -50%)",
+      top: '50%',
+      left: '50%',
+      right: 'auto',
+      bottom: 'auto',
+      marginRight: '-50%',
+      transform: 'translate(-50%, -50%)',
     },
   };
 
@@ -36,7 +36,7 @@ const ChantSub = (props) => {
   };
 
   return (
-    <li className={"chant-sub " + setHidden()}>
+    <li className={'chant-sub ' + setHidden()}>
       <p>
         <span>홈 화면에 추가 하시겠습니까?</span>
         <span className="chant-v" onClick={handleClickV}>
@@ -65,7 +65,7 @@ const ChantSub = (props) => {
           </p>
           <button
             onClick={() => {
-              updateHomeChantLists("intro", chant);
+              updateHomeChantLists('intro', chant);
               closeModal();
             }}
           >
@@ -73,7 +73,7 @@ const ChantSub = (props) => {
           </button>
           <button
             onClick={() => {
-              updateHomeChantLists("offering", chant);
+              updateHomeChantLists('offering', chant);
               closeModal();
             }}
           >
@@ -81,7 +81,7 @@ const ChantSub = (props) => {
           </button>
           <button
             onClick={() => {
-              updateHomeChantLists("eucharist", chant);
+              updateHomeChantLists('eucharist', chant);
               closeModal();
             }}
           >
@@ -89,7 +89,7 @@ const ChantSub = (props) => {
           </button>
           <button
             onClick={() => {
-              updateHomeChantLists("dispatch", chant);
+              updateHomeChantLists('dispatch', chant);
               closeModal();
             }}
           >
@@ -97,7 +97,7 @@ const ChantSub = (props) => {
           </button>
           <button
             onClick={() => {
-              updateHomeChantLists("etc", chant);
+              updateHomeChantLists('etc', chant);
               closeModal();
             }}
           >

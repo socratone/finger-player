@@ -1,11 +1,11 @@
-import React, { useEffect, memo } from "react";
-import Word from "./word";
+import React, { useEffect, memo } from 'react';
+import Word from './word';
 
-const PLAYED_WORD_COLOR = "green";
+const PLAYED_WORD_COLOR = 'green';
 
 const Lyrics = (props) => {
   const { verse, verseIndex, lyrics, wordIndex, setPreludeIndex } = props;
-  const words = lyrics.split("");
+  const words = lyrics.split('');
 
   const wordParent = React.createRef();
 
@@ -14,7 +14,7 @@ const Lyrics = (props) => {
     const spans = wordParent.current.children;
     if (verse === String(verseIndex) && spans[wordIndex]) {
       spans[wordIndex].style.color = PLAYED_WORD_COLOR;
-      spans[wordIndex].style.fontWeight = "900";
+      spans[wordIndex].style.fontWeight = '900';
     }
   }, [wordIndex, verse, verseIndex, wordParent]);
 
@@ -23,19 +23,19 @@ const Lyrics = (props) => {
     const spans = wordParent.current.children;
     if (verse !== String(verseIndex)) {
       for (let i = 0; i < spans.length; i++) {
-        spans[i].style.color = "unset";
-        spans[i].style.fontWeight = "unset";
+        spans[i].style.color = 'unset';
+        spans[i].style.fontWeight = 'unset';
       }
     }
   }, [verseIndex]);
 
-  if (verse === "1") {
+  if (verse === '1') {
     let index = -1;
     return (
       <p ref={wordParent}>
-        {verse}.{" "}
+        {verse}.{' '}
         {words.map((word, i) => {
-          if (word === "." || word === "," || word === " ") {
+          if (word === '.' || word === ',' || word === ' ') {
             return <React.Fragment key={i}>{word}</React.Fragment>;
           } else {
             index++;
@@ -54,9 +54,9 @@ const Lyrics = (props) => {
   }
   return (
     <p ref={wordParent}>
-      {verse}.{" "}
+      {verse}.{' '}
       {words.map((word, i) => {
-        if (word === "." || word === "," || word === " ") {
+        if (word === '.' || word === ',' || word === ' ') {
           return <React.Fragment key={i}>{word}</React.Fragment>;
         } else {
           return <Word key={i} word={word} />;

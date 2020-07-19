@@ -1,8 +1,8 @@
-import React, { useState, useEffect, memo } from "react";
-import { Midi } from "@tonejs/midi";
-import Lyrics from "./lyrics";
-import { loadNote, playNote, stopNote } from "../helper/audioPlayer";
-import isNextChantDefined from "../helper/isNextChantDefined";
+import React, { useState, useEffect, memo } from 'react';
+import { Midi } from '@tonejs/midi';
+import Lyrics from './lyrics';
+import { loadNote, playNote, stopNote } from '../helper/audioPlayer';
+import isNextChantDefined from '../helper/isNextChantDefined';
 
 const Player = (props) => {
   const { pathname: path } = props.location;
@@ -31,7 +31,7 @@ const Player = (props) => {
   useEffect(() => {
     (async function () {
       const midi = await Midi.fromUrl(`../midi/${id}.mid`);
-      console.log("midi : ", midi);
+      console.log('midi : ', midi);
       const soprano = midi.tracks[0];
       const alto = midi.tracks[1];
       const tenor = midi.tracks[2];
@@ -43,14 +43,14 @@ const Player = (props) => {
       while (soprano.notes[sopIdx]) {
         let obj = {};
         const { name, ticks, durationTicks } = soprano.notes[sopIdx];
-        obj["soprano"] = { pitch: name, ticks, durationTicks };
+        obj['soprano'] = { pitch: name, ticks, durationTicks };
 
         // alto가 soprano보다 클 때까지
         while (alto.notes[altoIdx] && alto.notes[altoIdx].ticks <= ticks) {
           // 그러다 ticks이 일치하는 게 있으면 넣는다.
           if (alto.notes[altoIdx].ticks === ticks) {
             const { name, durationTicks } = alto.notes[altoIdx];
-            obj["alto"] = {
+            obj['alto'] = {
               pitch: name,
               ticks,
               durationTicks,
@@ -64,7 +64,7 @@ const Player = (props) => {
           // 그러다 ticks이 일치하는 게 있으면 넣는다.
           if (tenor.notes[tenIdx].ticks === ticks) {
             const { name, durationTicks } = tenor.notes[tenIdx];
-            obj["tenor"] = {
+            obj['tenor'] = {
               pitch: name,
               ticks,
               durationTicks,
@@ -78,7 +78,7 @@ const Player = (props) => {
           // 그러다 ticks이 일치하는 게 있으면 넣는다.
           if (bass.notes[bassIdx].ticks === ticks) {
             const { name, durationTicks } = bass.notes[bassIdx];
-            obj["bass"] = {
+            obj['bass'] = {
               pitch: name,
               ticks,
               durationTicks,
@@ -91,7 +91,7 @@ const Player = (props) => {
         sopIdx++;
       }
 
-      console.log("allNotes 설정 : ", newNotes);
+      console.log('allNotes 설정 : ', newNotes);
       setAllNotes(newNotes);
     })();
   }, []);
@@ -131,7 +131,7 @@ const Player = (props) => {
     if (preludeIndex !== undefined) {
       // 끝까지 연주했을 때
       if (preludeIndex === allNotes.length) {
-        console.log("전주를 끝내고 처음 절로 돌아갑니다.");
+        console.log('전주를 끝내고 처음 절로 돌아갑니다.');
         currentNotes = allNotes[0];
         setWordIndex(0);
         setPreludeIndex(undefined);
@@ -155,10 +155,10 @@ const Player = (props) => {
           currentNotes = allNotes[0];
           setWordIndex(0);
           if (isNextChantDefined(verseIndex, chant)) {
-            console.log("다음 절로 갑니다.");
+            console.log('다음 절로 갑니다.');
             setVerseIndex(verseIndex + 1);
           } else {
-            console.log("처음 절로 돌아갑니다.");
+            console.log('처음 절로 돌아갑니다.');
             setVerseIndex(1);
           }
         } else {
@@ -169,7 +169,7 @@ const Player = (props) => {
       }
     }
 
-    console.log("currentNotes : ", currentNotes);
+    console.log('currentNotes : ', currentNotes);
 
     // 각 파트를 소리 내기 전에 이전의 소리를 멈춤
     const { soprano, alto, tenor, bass } = currentNotes;

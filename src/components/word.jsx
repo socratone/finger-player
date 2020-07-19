@@ -1,4 +1,4 @@
-import React, { memo } from "react";
+import React, { memo } from 'react';
 
 const Word = (props) => {
   const { word, index, setPreludeIndex } = props;
@@ -8,7 +8,7 @@ const Word = (props) => {
   const handleClick = () => {
     console.log(`전주 인덱스를 ${index}로 설정했습니다.`);
     setPreludeIndex(index);
-    lyricsWord.current.classList.add("selected-word");
+    lyricsWord.current.classList.add('selected-word');
   };
 
   if (setPreludeIndex) {

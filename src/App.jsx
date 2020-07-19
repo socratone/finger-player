@@ -1,12 +1,12 @@
-import React, { useState, useEffect } from "react";
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
-import Home from "./components/home";
-import Player from "./components/player";
-import Search from "./components/search";
-import Chants from "./components/chants";
-import chants from "./lib/chants";
+import React, { useState, useEffect } from 'react';
+import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
+import Home from './components/home';
+import Player from './components/player';
+import Search from './components/search';
+import Chants from './components/chants';
+import chants from './lib/chants';
 
-const SEARCH_INPUT_VALUE = "번호나 제목을 입력하세요.";
+const SEARCH_INPUT_VALUE = '번호나 제목을 입력하세요.';
 
 export default function App() {
   const [onSearchButton, setSearchButton] = useState(false);
@@ -21,7 +21,7 @@ export default function App() {
   const [querry, setQuerry] = useState(SEARCH_INPUT_VALUE);
 
   useEffect(() => {
-    const lists = JSON.parse(localStorage.getItem("home-chant-lists"));
+    const lists = JSON.parse(localStorage.getItem('home-chant-lists'));
     if (lists) {
       setHomeChantLists(lists);
     }
@@ -29,7 +29,7 @@ export default function App() {
 
   useEffect(() => {
     const lists = JSON.stringify(homeChantLists);
-    localStorage.setItem("home-chant-lists", lists);
+    localStorage.setItem('home-chant-lists', lists);
   }, [homeChantLists]);
 
   const removeHomeLists = () => {
@@ -51,13 +51,13 @@ export default function App() {
         break;
       }
     }
-    console.log("index : ", index);
+    console.log('index : ', index);
     if (remove) {
       if (index === undefined)
-        return console.log("삭제하려는 chant가 없습니다.");
+        return console.log('삭제하려는 chant가 없습니다.');
       chantLists[listName].splice(index, 1);
     } else {
-      if (index >= 0) return console.log("이미 있는 chant입니다.");
+      if (index >= 0) return console.log('이미 있는 chant입니다.');
       chantLists[listName].push(chant);
     }
     setHomeChantLists(chantLists);
@@ -70,14 +70,14 @@ export default function App() {
 
   const clickSearchInputFirst = () => {
     if (querry === SEARCH_INPUT_VALUE) {
-      setQuerry("");
+      setQuerry('');
     }
   };
 
   const searchChants = (querry) => {
     // 숫자인 경우
     if (Number(querry)) {
-      console.log("숫자로 들어옴");
+      console.log('숫자로 들어옴');
       for (let i = 0; i < chants.length; i++) {
         if (Number(querry) === chants[i].id) {
           return setSearchedChants([chants[i]]);
@@ -99,11 +99,11 @@ export default function App() {
   const clickSearchButton = () => {
     if (onSearchButton === true) {
       // input이 비어 있을 때만 원래대로 돌아간다.
-      if (querry === "" || querry === SEARCH_INPUT_VALUE) {
+      if (querry === '' || querry === SEARCH_INPUT_VALUE) {
         setQuerry(SEARCH_INPUT_VALUE);
         setSearchButton(false);
       } else {
-        console.log("검색 요청");
+        console.log('검색 요청');
         searchChants(querry);
       }
     } else {
@@ -119,16 +119,16 @@ export default function App() {
 
   const setHidden = () => {
     if (onSearchButton === true) {
-      return "hidden";
+      return 'hidden';
     }
-    return "";
+    return '';
   };
 
   const setVisible = () => {
     if (onSearchButton === false) {
-      return "hidden";
+      return 'hidden';
     }
-    return "";
+    return '';
   };
 
   return (
@@ -156,7 +156,7 @@ export default function App() {
             <li className={setHidden()}>
               <Link to="/400">400</Link>
             </li>
-            <li className={"search-input " + setVisible()}>
+            <li className={'search-input ' + setVisible()}>
               <input
                 type="text"
                 value={querry}

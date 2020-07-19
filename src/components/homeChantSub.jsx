@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 // import Modal from "react-modal";
 
 const HomeChantSub = (props) => {
@@ -11,7 +11,7 @@ const HomeChantSub = (props) => {
   } = props;
 
   const handleClickV = () => {
-    updateHomeChantLists(homeChantListName, chant, "remove");
+    updateHomeChantLists(homeChantListName, chant, 'remove');
     handleClickEllipsis();
   };
 
@@ -20,7 +20,7 @@ const HomeChantSub = (props) => {
   };
 
   return (
-    <li className={"chant-sub " + setHidden()}>
+    <li className={'chant-sub ' + setHidden()}>
       <p>
         <span>홈 화면에서 지우시겠습니까?</span>
         <span className="chant-v" onClick={handleClickV}>

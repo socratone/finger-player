@@ -1,5 +1,5 @@
-import React from "react";
-import HomeChant from "./homeChant";
+import React from 'react';
+import HomeChant from './homeChant';
 
 const Home = (props) => {
   const {
@@ -25,7 +25,7 @@ const Home = (props) => {
             ))
           ) : (
             <li>
-              <p style={{ gridColumn: "span 3" }}>연주할 곡을 추가해 주세요.</p>
+              <p style={{ gridColumn: 'span 3' }}>연주할 곡을 추가해 주세요.</p>
             </li>
           )}
         </ul>
@@ -43,7 +43,7 @@ const Home = (props) => {
             ))
           ) : (
             <li>
-              <p style={{ gridColumn: "span 3" }}>연주할 곡을 추가해 주세요.</p>
+              <p style={{ gridColumn: 'span 3' }}>연주할 곡을 추가해 주세요.</p>
             </li>
           )}
         </ul>
@@ -61,7 +61,7 @@ const Home = (props) => {
             ))
           ) : (
             <li>
-              <p style={{ gridColumn: "span 3" }}>연주할 곡을 추가해 주세요.</p>
+              <p style={{ gridColumn: 'span 3' }}>연주할 곡을 추가해 주세요.</p>
             </li>
           )}
         </ul>
@@ -79,7 +79,7 @@ const Home = (props) => {
             ))
           ) : (
             <li>
-              <p style={{ gridColumn: "span 3" }}>연주할 곡을 추가해 주세요.</p>
+              <p style={{ gridColumn: 'span 3' }}>연주할 곡을 추가해 주세요.</p>
             </li>
           )}
         </ul>
@@ -97,7 +97,7 @@ const Home = (props) => {
             ))
           ) : (
             <li>
-              <p style={{ gridColumn: "span 3" }}>연주할 곡을 추가해 주세요.</p>
+              <p style={{ gridColumn: 'span 3' }}>연주할 곡을 추가해 주세요.</p>
             </li>
           )}
         </ul>

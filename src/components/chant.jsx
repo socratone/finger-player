@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import ChantSub from "./chantSub";
+import React, { useState } from 'react';
+import ChantSub from './chantSub';
 
 const Chant = (props) => {
   const { chant, updateHomeChantLists, history } = props;
@@ -19,9 +19,9 @@ const Chant = (props) => {
 
   const setHidden = () => {
     if (onEllipsis === false) {
-      return "hidden";
+      return 'hidden';
     }
-    return "";
+    return '';
   };
 
   return (
