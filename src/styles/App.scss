@@ -1,8 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap');
-$font-middle: 1.2rem;
-$font-small: 1.1rem;
-$font-smaller: 0.8rem;
-$section-padding: 0.3rem;
+@import 'variables';
 
 // 공통
 html {
@@ -48,54 +45,6 @@ h3 {
 main {
   padding: 1rem;
   font-size: $font-small;
-}
-
-nav {
-  display: grid;
-}
-// 네비게이션 바
-#nav-big {
-  background-color: wheat;
-  display: grid;
-  grid-template-columns: repeat(8, 1fr);
-  // height: 8vh;
-  li {
-    text-align: center;
-    line-height: 8vh;
-    display: grid;
-    a {
-      font-size: $font-middle;
-      font-weight: 900;
-      cursor: pointer;
-      // margin: 0 0.5rem;
-    }
-  }
-  li:hover {
-    background-color: rgb(235, 211, 166);
-  }
-  .search-input {
-    position: relative;
-    grid-column: span 6;
-    display: grid;
-    align-items: center;
-    input {
-      font-size: $font-small;
-      border: none;
-      padding: 0.5rem;
-    }
-    input:active {
-      border: none;
-    }
-    p {
-      position: absolute;
-      top: 0;
-      right: 1rem;
-      font-size: $font-middle;
-      font-weight: 900;
-      cursor: pointer;
-      color: gray;
-    }
-  }
 }
 
 // chant

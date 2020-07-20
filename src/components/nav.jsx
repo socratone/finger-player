@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
+import '../styles/nav.scss';
 import chants from '../lib/chants';
 
 const SEARCH_INPUT_VALUE = '번호나 제목을 입력하세요.';
 
-const NavBig = (props) => {
+const Nav = (props) => {
   const { Link, setSearchedChants } = props;
   const [onSearchButton, setSearchButton] = useState(false);
   const [querry, setQuerry] = useState(SEARCH_INPUT_VALUE);
@@ -77,49 +78,53 @@ const NavBig = (props) => {
   };
 
   return (
-    <ul id="nav-big">
-      <li>
-        <Link to="/">
-          <i className="fa fa-home" />
-        </Link>
-      </li>
-      <li className={setHidden()}>
-        <Link to="/1">1</Link>
-      </li>
-      <li className={setHidden()}>
-        <Link to="/100">100</Link>
-      </li>
-      <li className={setHidden()}>
-        <Link to="/200">200</Link>
-      </li>
-      <li className={setHidden()}>
-        <Link to="/300">300</Link>
-      </li>
-      <li className={setHidden()}>
-        <Link to="/400">400</Link>
-      </li>
-      <li className={setHidden()}>
-        <Link to="/400">500</Link>
-      </li>
-      <li className={'search-input ' + setVisible()}>
-        <input
-          type="text"
-          value={querry}
-          onChange={(e) => setQuerry(e.target.value)}
-          onClick={clickSearchInputFirst}
-          onKeyUp={handleReturnKeyUp}
-        />
-        <p className={setVisible()} onClick={clickXButton}>
-          <i className="fa fa-times" />
-        </p>
-      </li>
-      <li>
-        <Link to="/search" onClick={clickSearchButton}>
-          <i className="fa fa-search" />
-        </Link>
-      </li>
-    </ul>
+    <>
+      <ul id="nav-big">
+        <li>
+          <Link to="/">
+            <i className="fa fa-home" />
+          </Link>
+        </li>
+        <li className={setHidden()}>
+          <Link to="/1">1</Link>
+        </li>
+        <li className={setHidden()}>
+          <Link to="/100">100</Link>
+        </li>
+        <li className={setHidden()}>
+          <Link to="/200">200</Link>
+        </li>
+        <li className={setHidden()}>
+          <Link to="/300">300</Link>
+        </li>
+        <li className={setHidden()}>
+          <Link to="/400">400</Link>
+        </li>
+        <li className={setHidden()}>
+          <Link to="/400">500</Link>
+        </li>
+        <li className={'search-input ' + setVisible()}>
+          <input
+            type="text"
+            value={querry}
+            onChange={(e) => setQuerry(e.target.value)}
+            onClick={clickSearchInputFirst}
+            onKeyUp={handleReturnKeyUp}
+          />
+          <p className={setVisible()} onClick={clickXButton}>
+            <i className="fa fa-times" />
+          </p>
+        </li>
+        <li>
+          <Link to="/search" onClick={clickSearchButton}>
+            <i className="fa fa-search" />
+          </Link>
+        </li>
+      </ul>
+
+      {/* <ul id="nav-small"></ul> */}
+    </>
   );
 };
 
-export default NavBig;
+export default Nav;
