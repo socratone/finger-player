@@ -137,7 +137,7 @@ const Nav = (props) => {
       <ul id="nav-small">
         <li>
           <Link to="/">
-            <i className="fa fa-home" />
+            <i className="fa fa-bars" />
           </Link>
         </li>
         <li className="search-input">
