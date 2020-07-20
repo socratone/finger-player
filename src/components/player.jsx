@@ -20,6 +20,18 @@ const Player = (props) => {
   const [preludeIndex, setPreludeIndex] = useState(undefined);
 
   const id = Number(path.substring(8));
+
+  const getIdForMidiFile = (id) => {
+    id = id.toString();
+    if (id.length === 1) {
+      return '000' + id;
+    } else if (id.length === 2) {
+      return '00' + id;
+    } else if (id.length === 3) {
+      return '0' + id;
+    }
+  };
+
   let chant;
   for (let i = 0; i < chants.length; i++) {
     if (chants[i].id === id) {
@@ -30,7 +42,7 @@ const Player = (props) => {
 
   useEffect(() => {
     (async function () {
-      const midi = await Midi.fromUrl(`../midi/${id}.mid`);
+      const midi = await Midi.fromUrl(`../midi/${getIdForMidiFile(id)}.mid`);
       console.log('midi : ', midi);
       const soprano = midi.tracks[0];
       const alto = midi.tracks[1];
