@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap');
 $font-middle: 1.2rem;
 $font-small: 1.1rem;
 $font-smaller: 0.8rem;
@@ -20,7 +20,7 @@ h3,
 h4,
 h5,
 input {
-  font-family: "Nanum Gothic", sans-serif;
+  font-family: 'Nanum Gothic', sans-serif;
   color: rgb(61, 61, 61);
   margin: 0;
   padding: 0;
@@ -54,10 +54,10 @@ nav {
   display: grid;
 }
 // 네비게이션 바
-#nav-ul {
+#nav-big {
   background-color: wheat;
   display: grid;
-  grid-template-columns: repeat(7, 1fr);
+  grid-template-columns: repeat(8, 1fr);
   // height: 8vh;
   li {
     text-align: center;
@@ -75,7 +75,7 @@ nav {
   }
   .search-input {
     position: relative;
-    grid-column: span 5;
+    grid-column: span 6;
     display: grid;
     align-items: center;
     input {
