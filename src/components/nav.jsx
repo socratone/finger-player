@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
-import '../styles/nav.scss';
 import chants from '../lib/chants';
+import '../styles/nav.scss';
+
+const bigSearchButton = React.createRef();
+const smallSearchButton = React.createRef();
 
 const SEARCH_INPUT_VALUE = '번호나 제목을 입력하세요.';
 
@@ -8,12 +11,6 @@ const Nav = (props) => {
   const { Link, setSearchedChants } = props;
   const [onSearchButton, setSearchButton] = useState(false);
   const [querry, setQuerry] = useState(SEARCH_INPUT_VALUE);
-
-  const handleReturnKeyUp = (e) => {
-    if (e.keyCode === 13) {
-      clickSearchButton();
-    }
-  };
 
   const setHidden = () => {
     if (onSearchButton === true) {
@@ -34,7 +31,7 @@ const Nav = (props) => {
     setSearchButton(false);
   };
 
-  const clickSearchInputFirst = () => {
+  const clickSearchInput = () => {
     if (querry === SEARCH_INPUT_VALUE) {
       setQuerry('');
     }
@@ -69,11 +66,26 @@ const Nav = (props) => {
         setQuerry(SEARCH_INPUT_VALUE);
         setSearchButton(false);
       } else {
-        console.log('검색 요청');
         searchChants(querry);
       }
     } else {
       setSearchButton(true);
+    }
+  };
+
+  const handleReturnKeyUp = (e) => {
+    if (e.keyCode === 13) {
+      bigSearchButton.current.click();
+    }
+  };
+
+  const clickSmallSearchButton = () => {
+    searchChants(querry);
+  };
+
+  const handleSmallReturnKeyUp = (e) => {
+    if (e.keyCode === 13) {
+      smallSearchButton.current.click();
     }
   };
 
@@ -108,7 +120,7 @@ const Nav = (props) => {
             type="text"
             value={querry}
             onChange={(e) => setQuerry(e.target.value)}
-            onClick={clickSearchInputFirst}
+            onClick={clickSearchInput}
             onKeyUp={handleReturnKeyUp}
           />
           <p className={setVisible()} onClick={clickXButton}>
@@ -116,13 +128,37 @@ const Nav = (props) => {
           </p>
         </li>
         <li>
-          <Link to="/search" onClick={clickSearchButton}>
+          <Link to="/search" onClick={clickSearchButton} ref={bigSearchButton}>
             <i className="fa fa-search" />
           </Link>
         </li>
       </ul>
 
-      {/* <ul id="nav-small"></ul> */}
+      <ul id="nav-small">
+        <li>
+          <Link to="/">
+            <i className="fa fa-home" />
+          </Link>
+        </li>
+        <li className="search-input">
+          <input
+            type="text"
+            value={querry}
+            onChange={(e) => setQuerry(e.target.value)}
+            onClick={clickSearchInput}
+            onKeyUp={handleSmallReturnKeyUp}
+          />
+        </li>
+        <li>
+          <Link
+            to="/search"
+            onClick={clickSmallSearchButton}
+            ref={smallSearchButton}
+          >
+            <i className="fa fa-search" />
+          </Link>
+        </li>
+      </ul>
     </>
   );
 };
