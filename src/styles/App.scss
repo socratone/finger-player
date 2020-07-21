@@ -1,0 +1,107 @@
+@import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap');
+@import 'variables';
+
+// 공통
+html {
+  height: 100vh;
+}
+main,
+a,
+p,
+ul,
+li,
+div,
+h1,
+h2,
+h3,
+h4,
+h5,
+input {
+  font-family: 'Nanum Gothic', sans-serif;
+  color: rgb(61, 61, 61);
+  margin: 0;
+  padding: 0;
+}
+li {
+  list-style: none;
+}
+a {
+  text-decoration: none;
+}
+h3 {
+  margin: 0 0 0.5rem 0;
+}
+
+#root,
+#wrapper {
+  height: 100vh;
+}
+#wrapper {
+  display: grid;
+  grid-template-rows: 8vh 1fr;
+}
+
+// 메인
+main {
+  padding: 1rem;
+  font-size: $font-small;
+}
+
+// chant
+.section-padding {
+  padding: $section-padding;
+}
+.chant-ul {
+  margin-bottom: 1rem;
+  display: grid;
+  grid-auto-flow: row;
+  li {
+    display: grid;
+    grid-template-columns: 2.3rem 1fr 1.5rem;
+    p {
+      padding: $section-padding 0;
+    }
+    .chant-index {
+      cursor: default;
+      text-align: center;
+    }
+    .chant-title {
+      cursor: default;
+      padding-left: 0.7rem;
+    }
+    .chant-ellipsis {
+      cursor: pointer;
+      text-align: center;
+    }
+  }
+  li:hover {
+    background-color: rgb(247, 247, 247);
+  }
+  .chant-sub {
+    background-color: rgb(255, 222, 211);
+    p {
+      grid-column: span 3;
+      display: flex;
+      justify-content: center;
+      span {
+        margin: 0 0.2rem;
+      }
+      .chant-v {
+        cursor: pointer;
+        color: green;
+      }
+      .chant-x {
+        cursor: pointer;
+        color: red;
+      }
+    }
+  }
+  .chant-sub:hover {
+    background-color: rgb(248, 213, 202);
+  }
+}
+
+// 공통 특수
+.hidden {
+  display: none !important;
+}
