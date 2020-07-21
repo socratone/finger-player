@@ -1,0 +1,32 @@
+@import 'variables';
+
+#drop-down {
+  background-color: rgba(255, 255, 255, 0);
+  border: 0;
+  cursor: pointer;
+  ul {
+    display: none;
+  }
+}
+
+#drop-down:hover {
+  background-color: rgb(235, 211, 166);
+  border: 0;
+  ul {
+    display: block;
+    position: absolute;
+    top: 8vh;
+    z-index: 2;
+    width: 8rem;
+    background-color: whitesmoke;
+    li {
+      line-height: 6vh;
+      a {
+        font-size: $font-small;
+      }
+    }
+    li:hover {
+      background-color: rgb(233, 233, 233);
+    }
+  }
+}

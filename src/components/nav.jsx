@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import DropDown from './dropDown';
 import chants from '../lib/chants';
 import '../styles/nav.scss';
 
@@ -113,7 +114,7 @@ const Nav = (props) => {
           <Link to="/400">400</Link>
         </li>
         <li className={setHidden()}>
-          <Link to="/400">500</Link>
+          <Link to="/500">500</Link>
         </li>
         <li className={'search-input ' + setVisible()}>
           <input
@@ -136,9 +137,7 @@ const Nav = (props) => {
 
       <ul id="nav-small">
         <li>
-          <Link to="/">
-            <i className="fa fa-bars" />
-          </Link>
+          <DropDown Link={Link} />
         </li>
         <li className="search-input">
           <input
