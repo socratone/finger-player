@@ -117,6 +117,17 @@ export default function App() {
             )}
           />
           <Route
+            path="/500"
+            render={(props) => (
+              <Chants
+                chants={chants}
+                updateHomeChantLists={updateHomeChantLists}
+                range={[500, 599]}
+                {...props}
+              />
+            )}
+          />
+          <Route
             path="/1"
             render={(props) => (
               <Chants
