@@ -10,7 +10,7 @@ const Search = (props) => {
         <section className="section-padding">검색 결과가 없습니다.</section>
       );
     if (chants.length === 0)
-      return <section className="section-padding">_blank</section>;
+      return <section className="section-padding">성가를 검색하세요.</section>;
     return chants.map((chant) => (
       <Chant
         chant={chant}

@@ -1,0 +1,66 @@
+@import 'variables';
+
+nav {
+  display: grid;
+  ul {
+    background-color: wheat;
+    display: grid;
+    li {
+      text-align: center;
+      line-height: 8vh;
+      display: grid;
+      a {
+        font-size: $font-middle;
+        font-weight: 900;
+        cursor: pointer;
+      }
+    }
+    li:hover {
+      background-color: rgb(235, 211, 166);
+    }
+    .search-input {
+      position: relative;
+      display: grid;
+      align-items: center;
+      input {
+        font-size: $font-small;
+        border: none;
+        padding: 0.5rem;
+      }
+      input:active {
+        border: none;
+      }
+      p {
+        position: absolute;
+        top: 0;
+        right: 1rem;
+        font-size: $font-middle;
+        font-weight: 900;
+        cursor: pointer;
+        color: gray;
+      }
+    }
+  }
+}
+
+#nav-big {
+  grid-template-columns: repeat(8, 1fr);
+  .search-input {
+    grid-column: span 6;
+  }
+}
+
+#nav-small {
+  display: none;
+}
+
+@media (max-width: 500px) {
+  #nav-big {
+    display: none;
+  }
+
+  #nav-small {
+    display: grid;
+    grid-template-columns: 1fr 4fr 1fr;
+  }
+}
