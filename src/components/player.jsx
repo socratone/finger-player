@@ -204,76 +204,76 @@ const Player = (props) => {
           {id}번 {chant.title}
         </h3>
         <div id="lyrics">
-          {chant.one && (
+          {chant.lyrics[1] && (
             <Lyrics
               key="1"
               verse="1"
               verseIndex={verseIndex}
-              lyrics={chant.one}
+              lyrics={chant.lyrics[1]}
               wordIndex={wordIndex}
               setPreludeIndex={setPreludeIndex}
             />
           )}
-          {chant.two && (
+          {chant.lyrics[2] && (
             <Lyrics
               key="2"
               verse="2"
               verseIndex={verseIndex}
-              lyrics={chant.two}
+              lyrics={chant.lyrics[2]}
               wordIndex={wordIndex}
             />
           )}
-          {chant.three && (
+          {chant.lyrics[3] && (
             <Lyrics
               key="3"
               verse="3"
               verseIndex={verseIndex}
-              lyrics={chant.three}
+              lyrics={chant.lyrics[3]}
               wordIndex={wordIndex}
             />
           )}
-          {chant.four && (
+          {chant.lyrics[4] && (
             <Lyrics
               key="4"
               verse="4"
               verseIndex={verseIndex}
-              lyrics={chant.four}
+              lyrics={chant.lyrics[4]}
               wordIndex={wordIndex}
             />
           )}
-          {chant.five && (
+          {chant.lyrics[5] && (
             <Lyrics
               key="5"
               verse="5"
               verseIndex={verseIndex}
-              lyrics={chant.five}
+              lyrics={chant.lyrics[5]}
               wordIndex={wordIndex}
             />
           )}
-          {chant.six && (
+          {chant.lyrics[6] && (
             <Lyrics
               key="6"
               verse="6"
               verseIndex={verseIndex}
-              lyrics={chant.six}
+              lyrics={chant.lyrics[6]}
               wordIndex={wordIndex}
             />
           )}
-          {chant.seven && (
+          {chant.lyrics[7] && (
             <Lyrics
               key="7"
               verse="7"
               verseIndex={verseIndex}
-              lyrics={chant.seven}
+              lyrics={chant.lyrics[7]}
               wordIndex={wordIndex}
             />
           )}
-          {chant.eight && (
+          {chant.lyrics[8] && (
             <Lyrics
               key="8"
               verse="8"
               verseIndex={verseIndex}
-              lyrics={chant.eight}
+              lyrics={chant.lyrics[8]}
               wordIndex={wordIndex}
             />
           )}
