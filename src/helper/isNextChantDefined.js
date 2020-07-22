@@ -1,27 +1,27 @@
-const isNextChantDefined = (orderIndex, chant) => {
+const isNextChantDefined = (orderIndex, lyrics) => {
   if (orderIndex === 1) {
-    if (chant.two === undefined) return false;
+    if (lyrics[1] === undefined) return false;
     return true;
   } else if (orderIndex === 2) {
-    if (chant.three === undefined) return false;
+    if (lyrics[2] === undefined) return false;
     return true;
   } else if (orderIndex === 3) {
-    if (chant.four === undefined) return false;
+    if (lyrics[3] === undefined) return false;
     return true;
   } else if (orderIndex === 4) {
-    if (chant.five === undefined) return false;
+    if (lyrics[4] === undefined) return false;
     return true;
   } else if (orderIndex === 5) {
-    if (chant.six === undefined) return false;
+    if (lyrics[5] === undefined) return false;
     return true;
   } else if (orderIndex === 6) {
-    if (chant.seven === undefined) return false;
+    if (lyrics[6] === undefined) return false;
     return true;
   } else if (orderIndex === 7) {
-    if (chant.eight === undefined) return false;
+    if (lyrics[7] === undefined) return false;
     return true;
   } else if (orderIndex === 8) {
-    if (chant.nine === undefined) return false;
+    if (lyrics[8] === undefined) return false;
     return true;
   }
 };
