@@ -12,7 +12,7 @@ const Lyrics = (props) => {
   // 연주되는 가사가 녹색으로 바뀐다.
   useEffect(() => {
     const spans = wordParent.current.children;
-    if (verse === String(verseIndex) && spans[wordIndex]) {
+    if (verse === verseIndex && spans[wordIndex]) {
       spans[wordIndex].style.color = PLAYED_WORD_COLOR;
       spans[wordIndex].style.fontWeight = '900';
     }
@@ -21,7 +21,7 @@ const Lyrics = (props) => {
   // 절이 바뀌면 글자가 초기화 된다.
   useEffect(() => {
     const spans = wordParent.current.children;
-    if (verse !== String(verseIndex)) {
+    if (verse !== verseIndex) {
       for (let i = 0; i < spans.length; i++) {
         spans[i].style.color = 'unset';
         spans[i].style.fontWeight = 'unset';
@@ -29,7 +29,7 @@ const Lyrics = (props) => {
     }
   }, [verseIndex]);
 
-  if (verse === '1') {
+  if (verse === 1) {
     let index = -1;
     return (
       <p ref={wordParent}>

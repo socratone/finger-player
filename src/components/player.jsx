@@ -166,7 +166,7 @@ const Player = (props) => {
         if (wordIndex + 1 === allNotes.length) {
           currentNotes = allNotes[0];
           setWordIndex(0);
-          if (isNextChantDefined(verseIndex, chant)) {
+          if (isNextChantDefined(verseIndex, chant.lyrics)) {
             console.log('다음 절로 갑니다.');
             setVerseIndex(verseIndex + 1);
           } else {
@@ -204,79 +204,17 @@ const Player = (props) => {
           {id}번 {chant.title}
         </h3>
         <div id="lyrics">
-          {chant.one && (
-            <Lyrics
-              key="1"
-              verse="1"
-              verseIndex={verseIndex}
-              lyrics={chant.one}
-              wordIndex={wordIndex}
-              setPreludeIndex={setPreludeIndex}
-            />
-          )}
-          {chant.two && (
-            <Lyrics
-              key="2"
-              verse="2"
-              verseIndex={verseIndex}
-              lyrics={chant.two}
-              wordIndex={wordIndex}
-            />
-          )}
-          {chant.three && (
-            <Lyrics
-              key="3"
-              verse="3"
-              verseIndex={verseIndex}
-              lyrics={chant.three}
-              wordIndex={wordIndex}
-            />
-          )}
-          {chant.four && (
-            <Lyrics
-              key="4"
-              verse="4"
-              verseIndex={verseIndex}
-              lyrics={chant.four}
-              wordIndex={wordIndex}
-            />
-          )}
-          {chant.five && (
-            <Lyrics
-              key="5"
-              verse="5"
-              verseIndex={verseIndex}
-              lyrics={chant.five}
-              wordIndex={wordIndex}
-            />
-          )}
-          {chant.six && (
-            <Lyrics
-              key="6"
-              verse="6"
-              verseIndex={verseIndex}
-              lyrics={chant.six}
-              wordIndex={wordIndex}
-            />
-          )}
-          {chant.seven && (
-            <Lyrics
-              key="7"
-              verse="7"
-              verseIndex={verseIndex}
-              lyrics={chant.seven}
-              wordIndex={wordIndex}
-            />
-          )}
-          {chant.eight && (
-            <Lyrics
-              key="8"
-              verse="8"
-              verseIndex={verseIndex}
-              lyrics={chant.eight}
-              wordIndex={wordIndex}
-            />
-          )}
+          {chant.lyrics &&
+            chant.lyrics.map((lyric, index) => (
+              <Lyrics
+                key={index + 1}
+                verse={index + 1}
+                verseIndex={verseIndex}
+                lyrics={lyric}
+                wordIndex={wordIndex}
+                setPreludeIndex={setPreludeIndex}
+              />
+            ))}
         </div>
         <div id="buttons">
           <button disabled={!isLoad} onMouseDown={handleReleaseButton}>
