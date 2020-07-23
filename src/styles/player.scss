@@ -1,11 +1,15 @@
 #player {
   display: grid;
+  height: 92vh;
+  padding: 0;
   section {
     display: grid;
     grid-auto-flow: row;
-    grid-template-rows: 30px 1fr 10rem;
+    grid-template-rows: 1fr 62vh 20vh;
+    padding: 1rem;
   }
   #lyrics {
+    overflow: auto;
     p {
       line-height: 2rem;
       .lyrics-word {
@@ -25,5 +29,6 @@
     display: grid;
     grid-template-columns: 1fr 4fr;
     gap: 0.5rem;
+    padding-top: 1rem;
   }
 }
