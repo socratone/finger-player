@@ -58,7 +58,11 @@ const Player = (props) => {
         obj['soprano'] = { pitch: name, ticks, durationTicks };
 
         // alto가 soprano보다 클 때까지
-        while (alto.notes[altoIdx] && alto.notes[altoIdx].ticks <= ticks) {
+        while (
+          alto &&
+          alto.notes[altoIdx] &&
+          alto.notes[altoIdx].ticks <= ticks
+        ) {
           // 그러다 ticks이 일치하는 게 있으면 넣는다.
           if (alto.notes[altoIdx].ticks === ticks) {
             const { name, durationTicks } = alto.notes[altoIdx];
@@ -72,7 +76,11 @@ const Player = (props) => {
         }
 
         // tenor가 soprano보다 클 때까지
-        while (tenor.notes[tenIdx] && tenor.notes[tenIdx].ticks <= ticks) {
+        while (
+          tenor &&
+          tenor.notes[tenIdx] &&
+          tenor.notes[tenIdx].ticks <= ticks
+        ) {
           // 그러다 ticks이 일치하는 게 있으면 넣는다.
           if (tenor.notes[tenIdx].ticks === ticks) {
             const { name, durationTicks } = tenor.notes[tenIdx];
@@ -86,7 +94,11 @@ const Player = (props) => {
         }
 
         // bass가 soprano보다 클 때까지
-        while (bass.notes[bassIdx] && bass.notes[bassIdx].ticks <= ticks) {
+        while (
+          bass &&
+          bass.notes[bassIdx] &&
+          bass.notes[bassIdx].ticks <= ticks
+        ) {
           // 그러다 ticks이 일치하는 게 있으면 넣는다.
           if (bass.notes[bassIdx].ticks === ticks) {
             const { name, durationTicks } = bass.notes[bassIdx];
