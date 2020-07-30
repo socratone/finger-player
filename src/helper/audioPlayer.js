@@ -3,7 +3,7 @@ const AudioContext = window.AudioContext || window.webkitAudioContext;
 const notes1 = {};
 const notes2 = {};
 
-const MASTER_VOLUME = 0;
+const MASTER_VOLUME = -0.5;
 const INTERVAL = 1;
 
 const convertNotation = (note) => {
@@ -49,13 +49,13 @@ const playNote = (pitch) => {
   const note2 = notes2[pitch];
   if (note1.audio.currentTime === 0) {
     if (note1.audioContext.state === 'suspended') note1.audioContext.resume();
-    // console.log('note1 재생');
+    console.log('note1 재생');
     note1.gainNode.gain.value = MASTER_VOLUME;
     note1.audio.play();
     return note1;
   } else if (note2.audio.currentTime === 0) {
     if (note2.audioContext.state === 'suspended') note2.audioContext.resume();
-    // console.log('note2 재생');
+    console.log('note2 재생');
     note2.gainNode.gain.value = MASTER_VOLUME;
     note2.audio.play();
     return note2;
@@ -75,7 +75,6 @@ const stopNote = (note) => {
       note.gainNode.gain.value = -1;
       note.audio.pause();
       note.audio.currentTime = 0;
-      return undefined;
     }
   }, INTERVAL);
 };
