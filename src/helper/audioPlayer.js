@@ -25,16 +25,16 @@ const loadNote = (...pitchs) => {
     const audioContext2 = new AudioContext();
 
     // pass it into the audio context
-    const track1 = audioContext1.createMediaElementSource(notes1[pitch].audio);
-    const track2 = audioContext2.createMediaElementSource(notes2[pitch].audio);
-    track1.connect(audioContext1.destination);
-    track2.connect(audioContext2.destination);
+    const source1 = audioContext1.createMediaElementSource(notes1[pitch].audio);
+    const source2 = audioContext2.createMediaElementSource(notes2[pitch].audio);
+    source1.connect(audioContext1.destination);
+    source2.connect(audioContext2.destination);
 
     // 게인 조절
     const gainNode1 = audioContext1.createGain();
     const gainNode2 = audioContext2.createGain();
-    track1.connect(gainNode1).connect(audioContext1.destination);
-    track2.connect(gainNode2).connect(audioContext2.destination);
+    source1.connect(gainNode1).connect(audioContext1.destination);
+    source2.connect(gainNode2).connect(audioContext2.destination);
 
     notes1[pitch]['gainNode'] = gainNode1;
     notes2[pitch]['gainNode'] = gainNode2;
