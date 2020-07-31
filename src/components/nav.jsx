@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 import DropDown from './dropDown';
 import chants from '../lib/chants';
 import '../styles/nav.scss';
@@ -7,11 +8,23 @@ const bigSearchButton = React.createRef();
 const smallSearchButton = React.createRef();
 
 const SEARCH_INPUT_VALUE = '번호나 제목을 입력하세요.';
+let prePath = '';
 
 const Nav = (props) => {
   const { Link, setSearchedChants } = props;
   const [onSearchButton, setSearchButton] = useState(false);
   const [querry, setQuerry] = useState(SEARCH_INPUT_VALUE);
+
+  let location = useLocation();
+  useEffect(() => {
+    const curPath = location.pathname;
+    if (prePath.indexOf('/player/') !== -1) {
+      console.log('새로고침');
+      prePath = '';
+      window.location.reload();
+    }
+    prePath = location.pathname;
+  }, [location]);
 
   const setHidden = () => {
     if (onSearchButton === true) {
