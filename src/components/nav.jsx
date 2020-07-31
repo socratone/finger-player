@@ -17,7 +17,6 @@ const Nav = (props) => {
 
   let location = useLocation();
   useEffect(() => {
-    const curPath = location.pathname;
     if (prePath.indexOf('/player/') !== -1) {
       console.log('새로고침');
       prePath = '';

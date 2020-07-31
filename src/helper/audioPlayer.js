@@ -3,7 +3,7 @@ const AudioContext = window.AudioContext || window.webkitAudioContext;
 const notes1 = {};
 const notes2 = {};
 
-const MASTER_VOLUME = -0.5;
+// const MASTER_VOLUME = -0.5;
 const FADEOUT_SECONDS = 0.2;
 
 const convertNotation = (note) => {
