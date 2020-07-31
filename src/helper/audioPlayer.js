@@ -65,7 +65,7 @@ const playNote = (pitch) => {
   }
 };
 
-const stopNote = (note) => {
+const fadeoutNote = (note) => {
   const { audio, gainNode, audioContext } = note;
   gainNode.gain.setValueAtTime(gainNode.gain.value, audioContext.currentTime);
   gainNode.gain.exponentialRampToValueAtTime(
@@ -79,4 +79,4 @@ const stopNote = (note) => {
   }, FADEOUT_SECONDS * 1000);
 };
 
-module.exports = { loadNote, playNote, stopNote };
+module.exports = { loadNote, playNote, fadeoutNote };

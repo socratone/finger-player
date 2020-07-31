@@ -1,7 +1,7 @@
 import React, { useState, useEffect, memo } from 'react';
 import { Midi } from '@tonejs/midi';
 import Lyrics from './lyrics';
-import { loadNote, playNote, stopNote } from '../helper/audioPlayer';
+import { loadNote, playNote, fadeoutNote } from '../helper/audioPlayer';
 import isNextChantDefined from '../helper/isNextChantDefined';
 
 const Player = (props) => {
@@ -144,19 +144,19 @@ const Player = (props) => {
 
   const handleReleaseButton = () => {
     if (sopPlayer) {
-      stopNote(sopPlayer);
+      fadeoutNote(sopPlayer);
       setSopPlayer(undefined);
     }
     if (altoPlayer) {
-      stopNote(altoPlayer);
+      fadeoutNote(altoPlayer);
       setAltoPlayer(undefined);
     }
     if (tenPlayer) {
-      stopNote(tenPlayer);
+      fadeoutNote(tenPlayer);
       setTenPlayer(undefined);
     }
     if (bassPlayer) {
-      stopNote(bassPlayer);
+      fadeoutNote(bassPlayer);
       setBassPlayer(undefined);
     }
   };
@@ -209,10 +209,10 @@ const Player = (props) => {
 
     // 각 파트를 소리 내기 전에 이전의 소리를 멈춤
     const { soprano, alto, tenor, bass } = currentNotes;
-    if (soprano && sopPlayer) stopNote(sopPlayer);
-    if (alto && altoPlayer) stopNote(altoPlayer);
-    if (tenor && tenPlayer) stopNote(tenPlayer);
-    if (bass && bassPlayer) stopNote(bassPlayer);
+    if (soprano && sopPlayer) fadeoutNote(sopPlayer);
+    if (alto && altoPlayer) fadeoutNote(altoPlayer);
+    if (tenor && tenPlayer) fadeoutNote(tenPlayer);
+    if (bass && bassPlayer) fadeoutNote(bassPlayer);
 
     // 연주
     if (soprano) setSopPlayer(playNote(soprano.pitch));
