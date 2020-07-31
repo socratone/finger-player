@@ -143,10 +143,22 @@ const Player = (props) => {
   }, [allNotes]);
 
   const handleReleaseButton = () => {
-    if (sopPlayer) setSopPlayer(stopNote(sopPlayer));
-    if (altoPlayer) setAltoPlayer(stopNote(altoPlayer));
-    if (tenPlayer) setTenPlayer(stopNote(tenPlayer));
-    if (bassPlayer) setBassPlayer(stopNote(bassPlayer));
+    if (sopPlayer) {
+      stopNote(sopPlayer);
+      setSopPlayer(undefined);
+    }
+    if (altoPlayer) {
+      stopNote(altoPlayer);
+      setAltoPlayer(undefined);
+    }
+    if (tenPlayer) {
+      stopNote(tenPlayer);
+      setTenPlayer(undefined);
+    }
+    if (bassPlayer) {
+      stopNote(bassPlayer);
+      setBassPlayer(undefined);
+    }
   };
 
   const handlePlayButton = async () => {
