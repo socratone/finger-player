@@ -1,4 +1,4 @@
-const isNextChantDefined = (orderIndex, lyrics) => {
+export default (orderIndex, lyrics) => {
   if (orderIndex === 1) {
     if (lyrics[1] === undefined) return false;
     return true;
@@ -25,5 +25,3 @@ const isNextChantDefined = (orderIndex, lyrics) => {
     return true;
   }
 };
-
-module.exports = isNextChantDefined;

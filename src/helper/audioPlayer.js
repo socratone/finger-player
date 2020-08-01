@@ -79,4 +79,4 @@ const fadeoutNote = (note) => {
   }, FADEOUT_SECONDS * 1000);
 };
 
-module.exports = { loadNote, playNote, fadeoutNote };
+export { loadNote, playNote, fadeoutNote };
