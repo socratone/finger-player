@@ -2,12 +2,13 @@
 
 nav {
   display: grid;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.05), 0 3px 6px rgba(0, 0, 0, 0.05);
   ul {
     background-color: wheat;
     display: grid;
     li {
       text-align: center;
-      line-height: 8vh;
+      line-height: $nav-height;
       display: grid;
       a {
         font-size: $font-middle;
