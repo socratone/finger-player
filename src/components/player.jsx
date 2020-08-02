@@ -224,9 +224,11 @@ const Player = (props) => {
   return (
     <main id="player">
       <section className="section-padding">
-        <h3>
-          {id}번 {chant.title}
-        </h3>
+        <div>
+          <h3>
+            {id}번 {chant.title}
+          </h3>
+        </div>
         <div id="lyrics">
           {chant.lyrics &&
             chant.lyrics.map((lyric, index) => (
