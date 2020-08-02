@@ -142,6 +142,10 @@ const Player = (props) => {
     })();
   }, [allNotes]);
 
+  const handlePreludeButton = () => {
+    console.log('전주 설정');
+  };
+
   const handleReleaseButton = () => {
     if (sopPlayer) {
       fadeoutNote(sopPlayer);
@@ -224,10 +228,13 @@ const Player = (props) => {
   return (
     <main id="player">
       <section className="section-padding">
-        <div>
+        <div id="top">
           <h3>
             {id}번 {chant.title}
           </h3>
+          <button disabled={!isLoad} onClick={handlePreludeButton}>
+            전주 설정
+          </button>
         </div>
         <div id="lyrics">
           {chant.lyrics &&

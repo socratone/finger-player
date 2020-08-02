@@ -8,6 +8,10 @@
     gap: 0.5rem;
     padding: 1rem;
   }
+  #top {
+    display: flex;
+    justify-content: space-between;
+  }
   #lyrics {
     overflow: auto;
     p {
