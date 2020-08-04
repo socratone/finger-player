@@ -158,22 +158,7 @@ const Player = (props) => {
   };
 
   const handlePlayButton = async () => {
-    // wordIndex가 끝에 이르렀을 경우
-    if (allNotes.length - 1 === wordIndex) {
-      if (isNextLyrics(currentLyricsNumber, chant.lyrics)) {
-        console.log('다음 절로 갑니다.');
-        setCurrentLyricsNumber(currentLyricsNumber + 1);
-      } else {
-        console.log('처음 절로 돌아갑니다.');
-        setCurrentLyricsNumber(1);
-      }
-      setWordIndex(0);
-    } else {
-      setWordIndex(wordIndex + 1);
-    }
-
     let currentNotes = allNotes[wordIndex];
-    if (currentNotes === undefined) currentNotes = allNotes[0]; // 다음 절로 넘어갈 때 state가 바로 바뀌지 않아서 추가
     console.log('currentNotes : ', currentNotes);
 
     // 각 파트를 소리 내기 전에 이전의 소리를 멈춤
@@ -188,6 +173,27 @@ const Player = (props) => {
     if (alto) setAltoPlayer(playNote(alto.pitch));
     if (tenor) setTenPlayer(playNote(tenor.pitch));
     if (bass) setBassPlayer(playNote(bass.pitch));
+
+    // wordIndex가 끝에 이르렀을 경우
+    if (allNotes.length - 1 === wordIndex) {
+      if (isNextLyrics(currentLyricsNumber, chant.lyrics)) {
+        console.log('다음 절로 갑니다.');
+        setCurrentLyricsNumber(currentLyricsNumber + 1);
+      } else {
+        console.log('처음 절로 돌아갑니다.');
+        setCurrentLyricsNumber(1);
+      }
+      setWordIndex(0);
+    } else {
+      setWordIndex(wordIndex + 1);
+    }
+
+    console.log(
+      'wordIndex:',
+      wordIndex,
+      'currentLyricsNumber:',
+      currentLyricsNumber
+    );
   };
 
   return (
