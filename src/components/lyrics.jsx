@@ -43,7 +43,7 @@ const Lyrics = (props) => {
       words.push(
         <Word
           key={i}
-          word={word}
+          word={word === '-' ? ' - ' : word}
           wordNumber={index}
           currentWordIndex={wordIndex}
           lyricsNumber={lyricsNumber}
