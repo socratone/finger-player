@@ -22,7 +22,7 @@ const Lyrics = (props) => {
             <Word
               key={i}
               word={word}
-              wordIndex={index}
+              wordNumber={index}
               currentWordIndex={wordIndex}
             />
           );
