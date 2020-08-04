@@ -16,7 +16,7 @@ const Player = (props) => {
   const [tenPlayer, setTenPlayer] = useState(undefined);
   const [bassPlayer, setBassPlayer] = useState(undefined);
   // 절
-  const [verseIndex, setVerseIndex] = useState(1);
+  const [currentLyricsNumber, setCurrentLyricsNumber] = useState(1);
   const [isPrelude, setIsPrelude] = useState(false);
 
   const id = Number(path.substring(8));
@@ -195,12 +195,12 @@ const Player = (props) => {
     if (bass) setBassPlayer(playNote(bass.pitch));
 
     if (allNotes.length - 1 === wordIndex) {
-      if (isNextLyrics(verseIndex, chant.lyrics)) {
+      if (isNextLyrics(currentLyricsNumber, chant.lyrics)) {
         console.log('다음 절로 갑니다.');
-        setVerseIndex(verseIndex + 1);
+        setCurrentLyricsNumber(currentLyricsNumber + 1);
       } else {
         console.log('처음 절로 돌아갑니다.');
-        setVerseIndex(1);
+        setCurrentLyricsNumber(1);
       }
       setWordIndex(0);
     } else {
@@ -224,11 +224,11 @@ const Player = (props) => {
           {chant.lyrics &&
             chant.lyrics.map((lyric, index) => (
               <Lyrics
-                key={index + 1}
-                verse={index + 1}
-                verseIndex={verseIndex}
+                key={index}
+                lyricsNumber={index + 1}
+                currentLyricsNumber={currentLyricsNumber}
                 lyrics={lyric}
-                wordIndex={wordIndex}
+                wordIndex={wordIndex - 1}
               />
             ))}
         </div>
