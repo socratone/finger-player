@@ -224,6 +224,9 @@ const Player = (props) => {
           </div>
         </div>
         <div id="lyrics">
+          {isPrelude && (
+            <div id="lyrics-sub">전주로 시작할 가사를 클릭해주세요!</div>
+          )}
           {chant.lyrics &&
             chant.lyrics.map((words, index) => (
               <Lyrics

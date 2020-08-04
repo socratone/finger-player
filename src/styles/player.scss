@@ -1,3 +1,5 @@
+$chant-sub-background: rgb(255, 239, 234);
+
 #player {
   display: grid;
   padding: 0;
@@ -20,21 +22,29 @@
     }
   }
   #lyrics {
-    overflow: auto;
+    overflow: visible;
     p {
       line-height: 2rem;
-      .lyrics-word {
+      span {
         cursor: pointer;
       }
-      .lyrics-word:hover {
-        color: red;
+      span:hover {
+        color: green;
         font-weight: 900;
       }
-      .selected-word {
+      span:active {
         color: blue;
         font-weight: 900;
       }
     }
+  }
+  #lyrics-sub {
+    background-color: $chant-sub-background;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.025), 0 3px 6px rgba(0, 0, 0, 0.05);
+    height: 3rem;
+    border-radius: 0.5rem;
+    text-align: center;
+    line-height: 3rem;
   }
   #buttons {
     display: grid;
