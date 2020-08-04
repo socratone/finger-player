@@ -187,13 +187,6 @@ const Player = (props) => {
     } else {
       setWordIndex(wordIndex + 1);
     }
-
-    console.log(
-      'wordIndex:',
-      wordIndex,
-      'currentLyricsNumber:',
-      currentLyricsNumber
-    );
   };
 
   return (
