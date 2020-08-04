@@ -33,7 +33,8 @@ const Player = (props) => {
   };
 
   let [chant] = chants.filter((chant) => {
-    if (chant.id === id) return chant;
+    if (chant.id === id) return true;
+    return false;
   });
 
   const convertWordIndex = (wordIndex, lyricsNumber) => {
