@@ -36,6 +36,17 @@ const Player = (props) => {
     if (chant.id === id) return chant;
   });
 
+  const convertWordIndex = (wordIndex, lyricsNumber) => {
+    console.log(
+      'wordIndex 수정:',
+      wordIndex,
+      'lyricsNumber 수정:',
+      lyricsNumber
+    );
+    setWordIndex(wordIndex);
+    setCurrentLyricsNumber(lyricsNumber);
+  };
+
   useEffect(() => {
     (async function () {
       const midi = await Midi.fromUrl(`../midi/${getIdForMidiFile(id)}.mid`);
@@ -210,6 +221,7 @@ const Player = (props) => {
                 currentLyricsNumber={currentLyricsNumber}
                 lyrics={words}
                 wordIndex={wordIndex}
+                convertWordIndex={convertWordIndex}
               />
             ))}
         </div>
