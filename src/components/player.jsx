@@ -32,13 +32,9 @@ const Player = (props) => {
     }
   };
 
-  let chant;
-  for (let i = 0; i < chants.length; i++) {
-    if (chants[i].id === id) {
-      chant = chants[i];
-      break;
-    }
-  }
+  let [chant] = chants.filter((chant) => {
+    if (chant.id === id) return chant;
+  });
 
   useEffect(() => {
     (async function () {
