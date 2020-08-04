@@ -37,12 +37,6 @@ const Player = (props) => {
   });
 
   const convertWordIndex = (wordIndex, lyricsNumber) => {
-    console.log(
-      'wordIndex 수정:',
-      wordIndex,
-      'lyricsNumber 수정:',
-      lyricsNumber
-    );
     setWordIndex(wordIndex);
     setCurrentLyricsNumber(lyricsNumber);
   };
@@ -187,7 +181,11 @@ const Player = (props) => {
 
     // wordIndex가 끝에 이르렀을 경우
     if (allNotes.length - 1 === wordIndex) {
-      if (isNextLyrics(currentLyricsNumber, chant.lyrics)) {
+      if (isPrelude) {
+        console.log('전주를 끝내고 처음 절로 돌아갑니다.');
+        setCurrentLyricsNumber(1);
+        setIsPrelude(false);
+      } else if (isNextLyrics(currentLyricsNumber, chant.lyrics)) {
         console.log('다음 절로 갑니다.');
         setCurrentLyricsNumber(currentLyricsNumber + 1);
       } else {
@@ -200,6 +198,14 @@ const Player = (props) => {
     }
   };
 
+  const handleCheckBox = () => {
+    if (isPrelude) {
+      setIsPrelude(false);
+    } else {
+      setIsPrelude(true);
+    }
+  };
+
   return (
     <main id="player">
       <section className="section-padding">
@@ -209,7 +215,12 @@ const Player = (props) => {
           </h3>
           <div>
             <span>전주</span>
-            <input type="checkbox" className="check-box" />
+            <input
+              type="checkbox"
+              className="check-box"
+              checked={isPrelude}
+              onChange={handleCheckBox}
+            />
           </div>
         </div>
         <div id="lyrics">
