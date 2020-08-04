@@ -158,27 +158,22 @@ const Player = (props) => {
   };
 
   const handlePlayButton = async () => {
-    let currentNotes;
-    // // 처음 연주시
-    //   // 끝까지 연주했을 때
-    //   if (wordIndex + 1 === allNotes.length) {
-    //     currentNotes = allNotes[0];
-    //     setWordIndex(0);
-    //     if (isNextChantDefined(verseIndex, chant.lyrics)) {
-    //       console.log('다음 절로 갑니다.');
-    //       setVerseIndex(verseIndex + 1);
-    //     } else {
-    //       console.log('처음 절로 돌아갑니다.');
-    //       setVerseIndex(1);
-    //     }
-    //   } else {
-    //     // 처음 연주 이후
-    //     setWordIndex(wordIndex + 1);
-    //     currentNotes = allNotes[wordIndex + 1];
-    //   }
+    // wordIndex가 끝에 이르렀을 경우
+    if (allNotes.length - 1 === wordIndex) {
+      if (isNextLyrics(currentLyricsNumber, chant.lyrics)) {
+        console.log('다음 절로 갑니다.');
+        setCurrentLyricsNumber(currentLyricsNumber + 1);
+      } else {
+        console.log('처음 절로 돌아갑니다.');
+        setCurrentLyricsNumber(1);
+      }
+      setWordIndex(0);
+    } else {
+      setWordIndex(wordIndex + 1);
+    }
 
-    currentNotes = allNotes[wordIndex];
-
+    let currentNotes = allNotes[wordIndex];
+    if (currentNotes === undefined) currentNotes = allNotes[0]; // 다음 절로 넘어갈 때 state가 바로 바뀌지 않아서 추가
     console.log('currentNotes : ', currentNotes);
 
     // 각 파트를 소리 내기 전에 이전의 소리를 멈춤
@@ -193,19 +188,6 @@ const Player = (props) => {
     if (alto) setAltoPlayer(playNote(alto.pitch));
     if (tenor) setTenPlayer(playNote(tenor.pitch));
     if (bass) setBassPlayer(playNote(bass.pitch));
-
-    if (allNotes.length - 1 === wordIndex) {
-      if (isNextLyrics(currentLyricsNumber, chant.lyrics)) {
-        console.log('다음 절로 갑니다.');
-        setCurrentLyricsNumber(currentLyricsNumber + 1);
-      } else {
-        console.log('처음 절로 돌아갑니다.');
-        setCurrentLyricsNumber(1);
-      }
-      setWordIndex(0);
-    } else {
-      setWordIndex(wordIndex + 1);
-    }
   };
 
   return (
@@ -222,13 +204,13 @@ const Player = (props) => {
         </div>
         <div id="lyrics">
           {chant.lyrics &&
-            chant.lyrics.map((lyric, index) => (
+            chant.lyrics.map((words, index) => (
               <Lyrics
                 key={index}
                 lyricsNumber={index + 1}
                 currentLyricsNumber={currentLyricsNumber}
-                lyrics={lyric}
-                wordIndex={wordIndex - 1}
+                lyrics={words}
+                wordIndex={wordIndex}
               />
             ))}
         </div>
