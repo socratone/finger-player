@@ -11,6 +11,13 @@
   #top {
     display: flex;
     justify-content: space-between;
+    div {
+      display: flex;
+      span {
+        line-height: 1.5rem;
+        margin-right: 0.2rem;
+      }
+    }
   }
   #lyrics {
     overflow: auto;

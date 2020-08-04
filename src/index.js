@@ -7,6 +7,7 @@ import './styles/App.scss';
 import './styles/modal.scss';
 import './styles/button.scss';
 import './styles/player.scss';
+import './styles/checkBox.scss';
 
 ReactDOM.render(
   <React.StrictMode>

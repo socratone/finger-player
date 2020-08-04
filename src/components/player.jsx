@@ -232,9 +232,10 @@ const Player = (props) => {
           <h3>
             {id}번 {chant.title}
           </h3>
-          <button disabled={!isLoad} onClick={handlePreludeButton}>
-            전주 설정
-          </button>
+          <div>
+            <span>전주</span>
+            <input type="checkbox" className="check-box" />
+          </div>
         </div>
         <div id="lyrics">
           {chant.lyrics &&
