@@ -2,12 +2,12 @@ import React, { useState, useEffect, memo } from 'react';
 import { Midi } from '@tonejs/midi';
 import Lyrics from './lyrics';
 import { loadNote, playNote, fadeoutNote } from '../helper/audioPlayer';
-import isNextChantDefined from '../helper/isNextChantDefined';
+import isNextLyrics from '../helper/isNextLyrics';
 
 const Player = (props) => {
   const { pathname: path } = props.location;
   const { chants } = props;
-  const [wordIndex, setWordIndex] = useState(undefined);
+  const [wordIndex, setWordIndex] = useState(0);
   const [allNotes, setAllNotes] = useState([]);
   const [isLoad, setIsLoad] = useState(false);
   // 파트
@@ -17,7 +17,7 @@ const Player = (props) => {
   const [bassPlayer, setBassPlayer] = useState(undefined);
   // 절
   const [verseIndex, setVerseIndex] = useState(1);
-  const [preludeIndex, setPreludeIndex] = useState(undefined);
+  const [isPrelude, setIsPrelude] = useState(false);
 
   const id = Number(path.substring(8));
 
@@ -142,10 +142,6 @@ const Player = (props) => {
     })();
   }, [allNotes]);
 
-  const handlePreludeButton = () => {
-    console.log('전주 설정');
-  };
-
   const handleReleaseButton = () => {
     if (sopPlayer) {
       fadeoutNote(sopPlayer);
@@ -167,47 +163,25 @@ const Player = (props) => {
 
   const handlePlayButton = async () => {
     let currentNotes;
-    /* 전주 설정을 한 경우 */
-    if (preludeIndex !== undefined) {
-      // 끝까지 연주했을 때
-      if (preludeIndex === allNotes.length) {
-        console.log('전주를 끝내고 처음 절로 돌아갑니다.');
-        currentNotes = allNotes[0];
-        setWordIndex(0);
-        setPreludeIndex(undefined);
-        await setVerseIndex(0);
-        setVerseIndex(1);
-      } else {
-        // 전주 연주 부분
-        setWordIndex(preludeIndex);
-        currentNotes = allNotes[preludeIndex];
-        setPreludeIndex(preludeIndex + 1);
-      }
-      /* 일반적인 경우 */
-    } else {
-      // 처음 연주시
-      if (wordIndex === undefined) {
-        currentNotes = allNotes[0];
-        setWordIndex(0);
-      } else {
-        // 끝까지 연주했을 때
-        if (wordIndex + 1 === allNotes.length) {
-          currentNotes = allNotes[0];
-          setWordIndex(0);
-          if (isNextChantDefined(verseIndex, chant.lyrics)) {
-            console.log('다음 절로 갑니다.');
-            setVerseIndex(verseIndex + 1);
-          } else {
-            console.log('처음 절로 돌아갑니다.');
-            setVerseIndex(1);
-          }
-        } else {
-          // 처음 연주 이후
-          setWordIndex(wordIndex + 1);
-          currentNotes = allNotes[wordIndex + 1];
-        }
-      }
-    }
+    // // 처음 연주시
+    //   // 끝까지 연주했을 때
+    //   if (wordIndex + 1 === allNotes.length) {
+    //     currentNotes = allNotes[0];
+    //     setWordIndex(0);
+    //     if (isNextChantDefined(verseIndex, chant.lyrics)) {
+    //       console.log('다음 절로 갑니다.');
+    //       setVerseIndex(verseIndex + 1);
+    //     } else {
+    //       console.log('처음 절로 돌아갑니다.');
+    //       setVerseIndex(1);
+    //     }
+    //   } else {
+    //     // 처음 연주 이후
+    //     setWordIndex(wordIndex + 1);
+    //     currentNotes = allNotes[wordIndex + 1];
+    //   }
+
+    currentNotes = allNotes[wordIndex];
 
     console.log('currentNotes : ', currentNotes);
 
@@ -223,6 +197,19 @@ const Player = (props) => {
     if (alto) setAltoPlayer(playNote(alto.pitch));
     if (tenor) setTenPlayer(playNote(tenor.pitch));
     if (bass) setBassPlayer(playNote(bass.pitch));
+
+    if (allNotes.length - 1 === wordIndex) {
+      if (isNextLyrics(verseIndex, chant.lyrics)) {
+        console.log('다음 절로 갑니다.');
+        setVerseIndex(verseIndex + 1);
+      } else {
+        console.log('처음 절로 돌아갑니다.');
+        setVerseIndex(1);
+      }
+      setWordIndex(0);
+    } else {
+      setWordIndex(wordIndex + 1);
+    }
   };
 
   return (
@@ -246,7 +233,6 @@ const Player = (props) => {
                 verseIndex={verseIndex}
                 lyrics={lyric}
                 wordIndex={wordIndex}
-                setPreludeIndex={setPreludeIndex}
               />
             ))}
         </div>

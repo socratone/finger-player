@@ -4,7 +4,7 @@ import Word from './word';
 const PLAYED_WORD_COLOR = 'green';
 
 const Lyrics = (props) => {
-  const { verse, verseIndex, lyrics, wordIndex, setPreludeIndex } = props;
+  const { verse, verseIndex, lyrics, wordIndex } = props;
   const words = lyrics.split('');
 
   const wordParent = React.createRef();
@@ -39,14 +39,7 @@ const Lyrics = (props) => {
             return <React.Fragment key={i}>{word}</React.Fragment>;
           } else {
             index++;
-            return (
-              <Word
-                key={i}
-                word={word}
-                index={index}
-                setPreludeIndex={setPreludeIndex}
-              />
-            );
+            return <Word key={i} word={word} index={index} />;
           }
         })}
       </p>
