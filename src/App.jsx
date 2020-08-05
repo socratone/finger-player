@@ -6,6 +6,11 @@ import Search from './components/search';
 import Chants from './components/chants';
 import Nav from './components/nav';
 import chants from './lib/chants';
+require('dotenv').config();
+
+const env = process.env.REACT_APP_ENV || 'development';
+if (env === 'production') console.log = function () {};
+if (env === 'development') console.log('개발 환경입니다.');
 
 export default function App() {
   const [searchedChants, setSearchedChants] = useState([]);
