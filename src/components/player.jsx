@@ -23,13 +23,9 @@ const Player = (props) => {
 
   const getIdForMidiFile = (id) => {
     id = id.toString();
-    if (id.length === 1) {
-      return '000' + id;
-    } else if (id.length === 2) {
-      return '00' + id;
-    } else if (id.length === 3) {
-      return '0' + id;
-    }
+    if (id.length === 1) return '000' + id;
+    else if (id.length === 2) return '00' + id;
+    else if (id.length === 3) return '0' + id;
   };
 
   let [chant] = chants.filter((chant) => {
@@ -200,11 +196,8 @@ const Player = (props) => {
   };
 
   const handleCheckBox = () => {
-    if (isPrelude) {
-      setIsPrelude(false);
-    } else {
-      setIsPrelude(true);
-    }
+    if (isPrelude) setIsPrelude(false);
+    else setIsPrelude(true);
   };
 
   return (
