@@ -1,10 +1,7 @@
-const AudioContext = window.AudioContext || window.webkitAudioContext;
-
 const notes1 = {};
 const notes2 = {};
 
-// const MASTER_VOLUME = -0.5;
-const FADEOUT_SECONDS = 0.2;
+const MASTER_VOLUME = 0.5;
 
 const convertNotation = (note) => {
   let alphabet = note[0].toLowerCase();
@@ -16,33 +13,10 @@ const convertNotation = (note) => {
 };
 
 const loadNote = (...pitchs) => {
-  pitchs.forEach(async (pitch) => {
+  pitchs.forEach((pitch) => {
     pitch = convertNotation(pitch);
-    notes1[pitch] = { audio: await new Audio(`../audio/${pitch}.mp3`) };
-    notes2[pitch] = { audio: await new Audio(`../audio/${pitch}.mp3`) };
-
-    const audioContext1 = new AudioContext();
-    const audioContext2 = new AudioContext();
-
-    // pass it into the audio context
-    const source1 = audioContext1.createMediaElementSource(notes1[pitch].audio);
-    const source2 = audioContext2.createMediaElementSource(notes2[pitch].audio);
-
-    // 게인 조절
-    const gainNode1 = audioContext1.createGain();
-    const gainNode2 = audioContext2.createGain();
-
-    gainNode1.gain.setValueAtTime(0, audioContext1.currentTime);
-    gainNode2.gain.setValueAtTime(0, audioContext2.currentTime);
-    source1.connect(gainNode1);
-    source2.connect(gainNode2);
-    gainNode1.connect(audioContext1.destination);
-    gainNode2.connect(audioContext2.destination);
-
-    notes1[pitch]['gainNode'] = gainNode1;
-    notes2[pitch]['gainNode'] = gainNode2;
-    notes1[pitch]['audioContext'] = audioContext1;
-    notes2[pitch]['audioContext'] = audioContext2;
+    notes1[pitch] = new Audio(`../audio/${pitch}.mp3`);
+    notes2[pitch] = new Audio(`../audio/${pitch}.mp3`);
   });
 };
 
@@ -50,33 +24,23 @@ const playNote = (pitch) => {
   pitch = convertNotation(pitch);
   const note1 = notes1[pitch];
   const note2 = notes2[pitch];
-  if (note1.audio.currentTime === 0) {
-    if (note1.audioContext.state === 'suspended') note1.audioContext.resume();
+  if (note1.currentTime === 0) {
     console.log('note1 재생');
-    note1.gainNode.gain.setValueAtTime(1, note1.audioContext.currentTime);
-    note1.audio.play();
+    note1.volume = MASTER_VOLUME;
+    note1.play();
     return note1;
-  } else if (note2.audio.currentTime === 0) {
-    if (note2.audioContext.state === 'suspended') note2.audioContext.resume();
+  } else if (note2.currentTime === 0) {
     console.log('note2 재생');
-    note2.gainNode.gain.setValueAtTime(1, note2.audioContext.currentTime);
-    note2.audio.play();
+    note2.volume = MASTER_VOLUME;
+    note2.play();
     return note2;
   }
 };
 
-const fadeoutNote = (note) => {
-  const { audio, gainNode, audioContext } = note;
-  gainNode.gain.setValueAtTime(gainNode.gain.value, audioContext.currentTime);
-  gainNode.gain.exponentialRampToValueAtTime(
-    0.0001,
-    audioContext.currentTime + FADEOUT_SECONDS
-  );
-
-  setTimeout(() => {
-    audio.pause();
-    audio.currentTime = 0;
-  }, FADEOUT_SECONDS * 1000);
+const fadeoutNote = (player) => {
+  player.volume = 0;
+  player.pause();
+  player.currentTime = 0;
 };
 
-export { loadNote, playNote, fadeoutNote };
+module.exports = { loadNote, playNote, fadeoutNote };
