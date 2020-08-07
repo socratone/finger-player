@@ -2,6 +2,7 @@ const notes1 = {};
 const notes2 = {};
 
 const MASTER_VOLUME = 0.5;
+const INTERVAL = 1;
 
 const convertNotation = (note) => {
   let alphabet = note[0].toLowerCase();
@@ -13,10 +14,10 @@ const convertNotation = (note) => {
 };
 
 const loadNote = (...pitchs) => {
-  pitchs.forEach((pitch) => {
+  pitchs.forEach(async (pitch) => {
     pitch = convertNotation(pitch);
-    notes1[pitch] = new Audio(`../audio/${pitch}.mp3`);
-    notes2[pitch] = new Audio(`../audio/${pitch}.mp3`);
+    notes1[pitch] = await new Audio(`../audio/${pitch}.mp3`);
+    notes2[pitch] = await new Audio(`../audio/${pitch}.mp3`);
   });
 };
 
@@ -38,9 +39,20 @@ const playNote = (pitch) => {
 };
 
 const fadeoutNote = (player) => {
-  player.volume = 0;
-  player.pause();
-  player.currentTime = 0;
+  let volume = MASTER_VOLUME;
+
+  const fadeout = setInterval(() => {
+    volume -= 0.01;
+    if (volume > 0) {
+      player.volume = volume.toFixed(2);
+    } else {
+      clearInterval(fadeout);
+      player.volume = 0;
+      player.pause();
+      player.currentTime = 0;
+      return undefined;
+    }
+  }, INTERVAL);
 };
 
 module.exports = { loadNote, playNote, fadeoutNote };
