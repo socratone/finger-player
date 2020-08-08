@@ -8,6 +8,18 @@ const Home = (props) => {
     removeHomeLists,
     history,
   } = props;
+
+  const isAddedChants = () => {
+    const chantsLength =
+      homeChantLists.intro.length +
+      homeChantLists.offering.length +
+      homeChantLists.eucharist.length +
+      homeChantLists.dispatch.length +
+      homeChantLists.etc.length;
+    if (chantsLength > 0) return true;
+    return false;
+  };
+
   return (
     <main>
       <section className="section-padding">
@@ -101,9 +113,11 @@ const Home = (props) => {
             </li>
           )}
         </ul>
-        <button className="normal-button" onClick={removeHomeLists}>
-          초기화
-        </button>
+        {isAddedChants() && (
+          <button className="normal-button" onClick={removeHomeLists}>
+            초기화
+          </button>
+        )}
       </section>
     </main>
   );
