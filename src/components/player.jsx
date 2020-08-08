@@ -234,11 +234,19 @@ const Player = (props) => {
             ))}
         </div>
         <div id="buttons">
-          <button disabled={!isLoad} onMouseDown={handleReleaseButton}>
-            Release
+          <button
+            disabled={!isLoad}
+            onMouseDown={handleReleaseButton}
+            className="normal-button"
+          >
+            멈 춤
           </button>
-          <button disabled={!isLoad} onMouseDown={handlePlayButton}>
-            Play
+          <button
+            disabled={!isLoad}
+            onMouseDown={handlePlayButton}
+            className="normal-button"
+          >
+            연 주
           </button>
         </div>
       </section>
