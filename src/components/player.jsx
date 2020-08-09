@@ -1,7 +1,12 @@
 import React, { useState, useEffect, memo } from 'react';
 import { Midi } from '@tonejs/midi';
 import Lyrics from './lyrics';
-import { loadNote, playNote, fadeoutNote } from '../helper/audioPlayer';
+import {
+  loadNote,
+  playNote,
+  fadeoutNote,
+  removeNote,
+} from '../helper/audioPlayer';
 import isNextLyrics from '../helper/isNextLyrics';
 
 const Player = (props) => {
@@ -116,6 +121,11 @@ const Player = (props) => {
       console.log('allNotes 설정 : ', newNotes);
       setAllNotes(newNotes);
     })();
+
+    // componentWillUnmount
+    return () => {
+      removeNote();
+    };
   }, []);
 
   // 필요한 음원 불러오기

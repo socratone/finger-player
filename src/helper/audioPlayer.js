@@ -1,7 +1,7 @@
 const AudioContext = window.AudioContext || window.webkitAudioContext;
 
-const notes1 = {};
-const notes2 = {};
+let notes1 = {};
+let notes2 = {};
 
 // const MASTER_VOLUME = -0.5;
 const FADEOUT_SECONDS = 0.2;
@@ -79,4 +79,16 @@ const fadeoutNote = (note) => {
   }, FADEOUT_SECONDS * 1000);
 };
 
-export { loadNote, playNote, fadeoutNote };
+const removeNote = () => {
+  console.log('메모리에서 노트 제거');
+  for (let pitch in notes1) {
+    notes1[pitch].audioContext.close();
+  }
+  for (let pitch in notes2) {
+    notes2[pitch].audioContext.close();
+  }
+  notes1 = {};
+  notes2 = {};
+};
+
+export { loadNote, playNote, fadeoutNote, removeNote };
