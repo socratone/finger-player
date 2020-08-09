@@ -80,15 +80,23 @@ const fadeoutNote = (note) => {
 };
 
 const removeNote = () => {
-  console.log('메모리에서 노트 제거');
   for (let pitch in notes1) {
-    notes1[pitch].audioContext.close();
+    fadeoutNote(notes1[pitch]);
   }
   for (let pitch in notes2) {
-    notes2[pitch].audioContext.close();
+    fadeoutNote(notes2[pitch]);
   }
-  notes1 = {};
-  notes2 = {};
+  setTimeout(function () {
+    console.log('메모리에서 노트 제거');
+    for (let pitch in notes1) {
+      notes1[pitch].audioContext.close();
+    }
+    for (let pitch in notes2) {
+      notes2[pitch].audioContext.close();
+    }
+    notes1 = {};
+    notes2 = {};
+  }, FADEOUT_SECONDS * 1000 + 100);
 };
 
 export { loadNote, playNote, fadeoutNote, removeNote };
