@@ -1,5 +1,6 @@
 import React, { useState, useEffect, memo } from 'react';
 import { Midi } from '@tonejs/midi';
+import Mousetrap from 'mousetrap';
 import Lyrics from './lyrics';
 import {
   loadNote,
@@ -23,6 +24,20 @@ const Player = (props) => {
   // 절
   const [currentLyricsNumber, setCurrentLyricsNumber] = useState(1);
   const [isPrelude, setIsPrelude] = useState(false);
+
+  // 단축키 설정
+  Mousetrap.bind('space', () => {
+    handlePlayButton();
+  });
+  Mousetrap.bind('backspace', () => {
+    handleReleaseButton();
+  });
+  useEffect(() => {
+    return () => {
+      Mousetrap.unbind('space');
+      Mousetrap.unbind('backspace');
+    };
+  }, []);
 
   const id = Number(path.substring(8));
 
