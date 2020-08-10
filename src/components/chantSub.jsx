@@ -68,6 +68,7 @@ const ChantSub = (props) => {
               updateHomeChantLists('intro', chant);
               closeModal();
             }}
+            className="normal-button"
           >
             입당성가
           </button>
@@ -76,6 +77,7 @@ const ChantSub = (props) => {
               updateHomeChantLists('offering', chant);
               closeModal();
             }}
+            className="normal-button"
           >
             봉헌성가
           </button>
@@ -84,6 +86,7 @@ const ChantSub = (props) => {
               updateHomeChantLists('eucharist', chant);
               closeModal();
             }}
+            className="normal-button"
           >
             성체성가
           </button>
@@ -92,6 +95,7 @@ const ChantSub = (props) => {
               updateHomeChantLists('dispatch', chant);
               closeModal();
             }}
+            className="normal-button"
           >
             파견성가
           </button>
@@ -100,6 +104,7 @@ const ChantSub = (props) => {
               updateHomeChantLists('etc', chant);
               closeModal();
             }}
+            className="normal-button"
           >
             기타
           </button>
