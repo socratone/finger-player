@@ -114,10 +114,20 @@ const Home = (props) => {
           )}
         </ul>
         {isAddedChants() && (
-          <button className="normal-button" onClick={removeHomeLists}>
+          <button
+            className="normal-button"
+            onClick={removeHomeLists}
+            style={{ marginRight: 10 }}
+          >
             초기화
           </button>
         )}
+        <button
+          className="normal-button"
+          onClick={() => history.push('/settings')}
+        >
+          <i className="fa fa-cog" />
+        </button>
       </section>
     </main>
   );
