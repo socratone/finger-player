@@ -6,6 +6,7 @@ import Search from './components/search';
 import Chants from './components/chants';
 import Nav from './components/nav';
 import chants from './lib/chants';
+import Settings from './components/settings';
 require('dotenv').config();
 
 const env = process.env.REACT_APP_ENV || 'development';
@@ -77,6 +78,9 @@ export default function App() {
             path="/player"
             render={(props) => <Player chants={chants} {...props} />}
           />
+          <Route path="/settings">
+            <Settings />
+          </Route>
           <Route
             path="/100"
             render={(props) => (
