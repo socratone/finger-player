@@ -1,5 +1,5 @@
 import React from 'react';
-import HomeChant from './homeChant';
+import HomeChant from '../homeChant';
 
 const Home = (props) => {
   const {

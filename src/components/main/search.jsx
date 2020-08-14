@@ -1,5 +1,5 @@
 import React from 'react';
-import Chant from './chant';
+import Chant from '../chant';
 
 const Search = (props) => {
   const { chants, updateHomeChantLists, history } = props;

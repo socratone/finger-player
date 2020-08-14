@@ -1,5 +1,5 @@
 import React from 'react';
-import '../styles/dropDown.scss';
+import '../../styles/dropDown.scss';
 
 const DropDown = (props) => {
   const { Link } = props;

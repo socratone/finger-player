@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import DropDown from './dropDown';
-import chants from '../lib/chants';
-import '../styles/nav.scss';
+import chants from '../../lib/chants';
+import '../../styles/nav.scss';
 
 const bigSearchButton = React.createRef();
 const smallSearchButton = React.createRef();
