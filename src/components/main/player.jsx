@@ -10,17 +10,19 @@ import {
 } from '../../helper/audioPlayer';
 import isNextLyrics from '../../helper/isNextLyrics';
 
+// 파트
+let sopPlayer = undefined;
+let altoPlayer = undefined;
+let tenPlayer = undefined;
+let bassPlayer = undefined;
+
 const Player = (props) => {
   const { pathname: path } = props.location;
   const { chants } = props;
   const [wordIndex, setWordIndex] = useState(0);
   const [allNotes, setAllNotes] = useState([]);
   const [isLoad, setIsLoad] = useState(false);
-  // 파트
-  const [sopPlayer, setSopPlayer] = useState(undefined);
-  const [altoPlayer, setAltoPlayer] = useState(undefined);
-  const [tenPlayer, setTenPlayer] = useState(undefined);
-  const [bassPlayer, setBassPlayer] = useState(undefined);
+
   // 절
   const [currentLyricsNumber, setCurrentLyricsNumber] = useState(1);
   const [isPrelude, setIsPrelude] = useState(false);
@@ -168,19 +170,23 @@ const Player = (props) => {
   const handleReleaseButton = () => {
     if (sopPlayer) {
       fadeoutNote(sopPlayer);
-      setSopPlayer(undefined);
+      // setSopPlayer(undefined);
+      sopPlayer = undefined;
     }
     if (altoPlayer) {
       fadeoutNote(altoPlayer);
-      setAltoPlayer(undefined);
+      // setAltoPlayer(undefined);
+      altoPlayer = undefined;
     }
     if (tenPlayer) {
       fadeoutNote(tenPlayer);
-      setTenPlayer(undefined);
+      // setTenPlayer(undefined);
+      tenPlayer = undefined;
     }
     if (bassPlayer) {
       fadeoutNote(bassPlayer);
-      setBassPlayer(undefined);
+      // setBassPlayer(undefined);
+      bassPlayer = undefined;
     }
   };
 
@@ -196,10 +202,10 @@ const Player = (props) => {
     if (bass && bassPlayer) fadeoutNote(bassPlayer);
 
     // 연주
-    if (soprano) setSopPlayer(playNote(soprano.pitch));
-    if (alto) setAltoPlayer(playNote(alto.pitch));
-    if (tenor) setTenPlayer(playNote(tenor.pitch));
-    if (bass) setBassPlayer(playNote(bass.pitch));
+    if (soprano) sopPlayer = playNote(soprano.pitch);
+    if (alto) altoPlayer = playNote(alto.pitch);
+    if (tenor) tenPlayer = playNote(tenor.pitch);
+    if (bass) bassPlayer = playNote(bass.pitch);
 
     // wordIndex가 끝에 이르렀을 경우
     if (allNotes.length - 1 === wordIndex) {
