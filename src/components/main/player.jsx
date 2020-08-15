@@ -141,7 +141,7 @@ const Player = (props) => {
 
     // componentWillUnmount
     return () => {
-      removeNote();
+      removeNote(sopPlayer, altoPlayer, tenPlayer, bassPlayer);
     };
   }, []);
 
