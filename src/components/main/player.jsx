@@ -11,10 +11,7 @@ import {
 import isNextLyrics from '../../helper/isNextLyrics';
 
 // 파트
-let sopPlayer = undefined;
-let altoPlayer = undefined;
-let tenPlayer = undefined;
-let bassPlayer = undefined;
+let sopPlayer, altoPlayer, tenPlayer, bassPlayer;
 
 const Player = (props) => {
   const { pathname: path } = props.location;
