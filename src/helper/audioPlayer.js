@@ -76,16 +76,14 @@ const fadeoutNote = (note) => {
   setTimeout(() => {
     audio.pause();
     audio.currentTime = 0;
-  }, FADEOUT_SECONDS * 1000);
+  }, FADEOUT_SECONDS * 1000 + 10);
 };
 
-const removeNote = () => {
-  for (let pitch in notes1) {
-    fadeoutNote(notes1[pitch]);
-  }
-  for (let pitch in notes2) {
-    fadeoutNote(notes2[pitch]);
-  }
+const removeNote = (...notes) => {
+  notes.forEach((note) => {
+    if (note) fadeoutNote(note);
+  });
+
   setTimeout(function () {
     console.log('메모리에서 노트 제거');
     for (let pitch in notes1) {
