@@ -1,12 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-import Home from './components/main/home';
-import Player from './components/main/player';
-import Search from './components/main/search';
-import Chants from './components/main/chants';
+
+import { Home, Player, Search, Chants, Settings } from './components/pages';
 import Nav from './components/nav/nav';
 import chants from './lib/chants';
-import Settings from './components/main/settings';
 require('dotenv').config();
 
 const env = process.env.REACT_APP_ENV || 'development';
