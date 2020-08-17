@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 
 import NavLink from './navLink';
 import NavTextInput from './navTextInput';
-import DropDown from './dropDown';
-import chants from '../../lib/chants';
+import NavDropDown from './navDropDown';
+import chantsData from '../../lib/chantsData';
 import './nav.scss';
 
 const bigSearchButton = React.createRef();
@@ -29,17 +29,17 @@ const Nav = (props) => {
     // 숫자인 경우
     if (Number(querry)) {
       console.log('숫자로 들어옴');
-      for (let i = 0; i < chants.length; i++) {
-        if (Number(querry) === chants[i].id) {
-          return setSearchedChants([chants[i]]);
+      for (let i = 0; i < chantsData.length; i++) {
+        if (Number(querry) === chantsData[i].id) {
+          return setSearchedChants([chantsData[i]]);
         }
       }
       // 문자인 경우
     } else {
       const results = [];
-      for (let i = 0; i < chants.length; i++) {
-        if (chants[i].title.indexOf(querry) !== -1) {
-          results.push(chants[i]);
+      for (let i = 0; i < chantsData.length; i++) {
+        if (chantsData[i].title.indexOf(querry) !== -1) {
+          results.push(chantsData[i]);
         }
       }
       if (results.length >= 1) return setSearchedChants(results);
@@ -105,7 +105,7 @@ const Nav = (props) => {
       </ul>
 
       <ul id="nav-small">
-        <DropDown />
+        <NavDropDown />
         <NavTextInput
           value={querry}
           onChange={(e) => setQuerry(e.target.value)}

@@ -1,12 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-import Home from './components/main/home';
-import Player from './components/main/player';
-import Search from './components/main/search';
-import Chants from './components/main/chants';
+
+import { Home, Player, Search, Chants, Settings } from './components/pages';
 import Nav from './components/nav/nav';
-import chants from './lib/chants';
-import Settings from './components/main/settings';
+import chantsData from './lib/chantsData';
 require('dotenv').config();
 
 const env = process.env.REACT_APP_ENV || 'development';
@@ -74,7 +71,7 @@ export default function App() {
         <Switch>
           <Route
             path="/player"
-            render={(props) => <Player chants={chants} {...props} />}
+            render={(props) => <Player chants={chantsData} {...props} />}
           />
           <Route path="/settings">
             <Settings />
@@ -83,7 +80,7 @@ export default function App() {
             path="/100"
             render={(props) => (
               <Chants
-                chants={chants}
+                chants={chantsData}
                 updateHomeChantLists={updateHomeChantLists}
                 range={[100, 199]}
                 {...props}
@@ -94,7 +91,7 @@ export default function App() {
             path="/200"
             render={(props) => (
               <Chants
-                chants={chants}
+                chants={chantsData}
                 updateHomeChantLists={updateHomeChantLists}
                 range={[200, 299]}
                 {...props}
@@ -105,7 +102,7 @@ export default function App() {
             path="/300"
             render={(props) => (
               <Chants
-                chants={chants}
+                chants={chantsData}
                 updateHomeChantLists={updateHomeChantLists}
                 range={[300, 399]}
                 {...props}
@@ -116,7 +113,7 @@ export default function App() {
             path="/400"
             render={(props) => (
               <Chants
-                chants={chants}
+                chants={chantsData}
                 updateHomeChantLists={updateHomeChantLists}
                 range={[400, 499]}
                 {...props}
@@ -127,7 +124,7 @@ export default function App() {
             path="/500"
             render={(props) => (
               <Chants
-                chants={chants}
+                chants={chantsData}
                 updateHomeChantLists={updateHomeChantLists}
                 range={[500, 599]}
                 {...props}
@@ -138,7 +135,7 @@ export default function App() {
             path="/1"
             render={(props) => (
               <Chants
-                chants={chants}
+                chants={chantsData}
                 updateHomeChantLists={updateHomeChantLists}
                 range={[1, 99]}
                 {...props}

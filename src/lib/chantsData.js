@@ -1,4 +1,4 @@
-const chants = [
+const chantsData = [
   {
     id: 1,
     title: '나는 굳게 믿나이다',
@@ -4347,4 +4347,4 @@ const chants = [
   },
 ];
 
-module.exports = chants;
+module.exports = chantsData;

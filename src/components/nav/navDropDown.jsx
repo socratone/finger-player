@@ -1,9 +1,9 @@
 import React from 'react';
 
 import NavLink from './navLink';
-import './dropDown.scss';
+import './navDropDown.scss';
 
-const DropDown = () => {
+const NavDropDown = () => {
   return (
     <li>
       <div id="drop-down">
@@ -24,4 +24,4 @@ const DropDown = () => {
   );
 };
 
-export default DropDown;
+export default NavDropDown;

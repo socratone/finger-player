@@ -1,5 +1,6 @@
 import React from 'react';
-import Chant from '../chant';
+
+import ChantList from '../common/chantList';
 
 const Search = (props) => {
   const { chants, updateHomeChantLists, history } = props;
@@ -12,7 +13,7 @@ const Search = (props) => {
     if (chants.length === 0)
       return <section className="section-padding">성가를 검색하세요.</section>;
     return chants.map((chant) => (
-      <Chant
+      <ChantList
         chant={chant}
         updateHomeChantLists={updateHomeChantLists}
         key={chant.id}

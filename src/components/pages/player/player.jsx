@@ -1,14 +1,16 @@
 import React, { useState, useEffect, memo } from 'react';
 import { Midi } from '@tonejs/midi';
 import Mousetrap from 'mousetrap';
-import Lyrics from '../lyrics';
+
+import Lyrics from './lyrics';
 import {
   loadNote,
   playNote,
   fadeoutNote,
   removeNote,
-} from '../../helper/audioPlayer';
-import isNextLyrics from '../../helper/isNextLyrics';
+} from './helper/audioPlayer';
+import isNextLyrics from './helper/isNextLyrics';
+import './player.scss';
 
 // 파트
 let sopPlayer, altoPlayer, tenPlayer, bassPlayer;
