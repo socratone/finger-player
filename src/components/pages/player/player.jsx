@@ -10,6 +10,7 @@ import {
   removeNote,
 } from './helper/audioPlayer';
 import isNextLyrics from './helper/isNextLyrics';
+import './player.scss';
 
 // 파트
 let sopPlayer, altoPlayer, tenPlayer, bassPlayer;
