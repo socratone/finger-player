@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 
 import NavLink from './navLink';
+import NavTextInput from './navTextInput';
 import DropDown from './dropDown';
 import chants from '../../lib/chants';
 import './nav.scss';
@@ -14,11 +15,6 @@ const Nav = (props) => {
   const { setSearchedChants } = props;
   const [isSearchButtonOn, setIsSearchButtonOn] = useState(false);
   const [querry, setQuerry] = useState(SEARCH_INPUT_VALUE);
-
-  const setVisible = () => {
-    if (!isSearchButtonOn) return 'hidden';
-    return '';
-  };
 
   const clickXButton = () => {
     setQuerry(SEARCH_INPUT_VALUE);
@@ -89,18 +85,18 @@ const Nav = (props) => {
         {!isSearchButtonOn && <NavLink route="/300">300</NavLink>}
         {!isSearchButtonOn && <NavLink route="/400">400</NavLink>}
         {!isSearchButtonOn && <NavLink route="/500">500</NavLink>}
-        <li className={'search-input ' + setVisible()}>
-          <input
-            type="text"
+        {isSearchButtonOn && (
+          <NavTextInput
             value={querry}
             onChange={(e) => setQuerry(e.target.value)}
             onClick={clickSearchInput}
             onKeyUp={handleReturnKeyUp}
-          />
-          <p className={setVisible()} onClick={clickXButton}>
-            <i className="fa fa-times" />
-          </p>
-        </li>
+          >
+            <p onClick={clickXButton}>
+              <i className="fa fa-times" />
+            </p>
+          </NavTextInput>
+        )}
         <NavLink
           route="/search"
           onClick={clickSearchButton}
@@ -112,15 +108,12 @@ const Nav = (props) => {
 
       <ul id="nav-small">
         <DropDown />
-        <li className="search-input">
-          <input
-            type="text"
-            value={querry}
-            onChange={(e) => setQuerry(e.target.value)}
-            onClick={clickSearchInput}
-            onKeyUp={handleSmallReturnKeyUp}
-          />
-        </li>
+        <NavTextInput
+          value={querry}
+          onChange={(e) => setQuerry(e.target.value)}
+          onClick={clickSearchInput}
+          onKeyUp={handleReturnKeyUp}
+        />
         <NavLink
           route="/search"
           onClick={clickSmallSearchButton}
