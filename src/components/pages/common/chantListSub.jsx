@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import Modal from 'react-modal';
 
+import './modal.scss';
+
 const ChantListSub = (props) => {
   const { chant, updateHomeChantLists, setHidden, handleClickEllipsis } = props;
   const [modalIsOpen, setModalOpen] = useState(false);
