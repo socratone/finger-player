@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
+
 import DropDown from './dropDown';
 import chants from '../../lib/chants';
 import '../../styles/nav.scss';
@@ -9,21 +11,17 @@ const smallSearchButton = React.createRef();
 const SEARCH_INPUT_VALUE = '번호나 제목을 입력하세요.';
 
 const Nav = (props) => {
-  const { Link, setSearchedChants } = props;
+  const { setSearchedChants } = props;
   const [onSearchButton, setSearchButton] = useState(false);
   const [querry, setQuerry] = useState(SEARCH_INPUT_VALUE);
 
   const setHidden = () => {
-    if (onSearchButton === true) {
-      return 'hidden';
-    }
+    if (onSearchButton === true) return 'hidden';
     return '';
   };
 
   const setVisible = () => {
-    if (onSearchButton === false) {
-      return 'hidden';
-    }
+    if (onSearchButton === false) return 'hidden';
     return '';
   };
 
@@ -33,9 +31,7 @@ const Nav = (props) => {
   };
 
   const clickSearchInput = () => {
-    if (querry === SEARCH_INPUT_VALUE) {
-      setQuerry('');
-    }
+    if (querry === SEARCH_INPUT_VALUE) setQuerry('');
   };
 
   const searchChants = (querry) => {
@@ -75,9 +71,7 @@ const Nav = (props) => {
   };
 
   const handleReturnKeyUp = (e) => {
-    if (e.keyCode === 13) {
-      bigSearchButton.current.click();
-    }
+    if (e.keyCode === 13) bigSearchButton.current.click();
   };
 
   const clickSmallSearchButton = () => {
@@ -85,13 +79,11 @@ const Nav = (props) => {
   };
 
   const handleSmallReturnKeyUp = (e) => {
-    if (e.keyCode === 13) {
-      smallSearchButton.current.click();
-    }
+    if (e.keyCode === 13) smallSearchButton.current.click();
   };
 
   return (
-    <>
+    <nav>
       <ul id="nav-big">
         <li>
           <Link to="/">
@@ -158,7 +150,7 @@ const Nav = (props) => {
           </Link>
         </li>
       </ul>
-    </>
+    </nav>
   );
 };
 
