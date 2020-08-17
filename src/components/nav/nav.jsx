@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
 
+import NavLink from './navLink';
 import DropDown from './dropDown';
 import chants from '../../lib/chants';
 import './nav.scss';
@@ -85,29 +85,27 @@ const Nav = (props) => {
   return (
     <nav>
       <ul id="nav-big">
-        <li>
-          <Link to="/">
-            <i className="fa fa-home" />
-          </Link>
-        </li>
-        <li className={setHidden()}>
-          <Link to="/1">1</Link>
-        </li>
-        <li className={setHidden()}>
-          <Link to="/100">100</Link>
-        </li>
-        <li className={setHidden()}>
-          <Link to="/200">200</Link>
-        </li>
-        <li className={setHidden()}>
-          <Link to="/300">300</Link>
-        </li>
-        <li className={setHidden()}>
-          <Link to="/400">400</Link>
-        </li>
-        <li className={setHidden()}>
-          <Link to="/500">500</Link>
-        </li>
+        <NavLink route="/">
+          <i className="fa fa-home" />
+        </NavLink>
+        <NavLink hidden={setHidden()} route="/1">
+          1
+        </NavLink>
+        <NavLink hidden={setHidden()} route="/100">
+          100
+        </NavLink>
+        <NavLink hidden={setHidden()} route="/200">
+          200
+        </NavLink>
+        <NavLink hidden={setHidden()} route="/300">
+          300
+        </NavLink>
+        <NavLink hidden={setHidden()} route="/400">
+          400
+        </NavLink>
+        <NavLink hidden={setHidden()} route="/500">
+          500
+        </NavLink>
         <li className={'search-input ' + setVisible()}>
           <input
             type="text"
@@ -120,11 +118,13 @@ const Nav = (props) => {
             <i className="fa fa-times" />
           </p>
         </li>
-        <li>
-          <Link to="/search" onClick={clickSearchButton} ref={bigSearchButton}>
-            <i className="fa fa-search" />
-          </Link>
-        </li>
+        <NavLink
+          route="/search"
+          onClick={clickSearchButton}
+          reference={bigSearchButton}
+        >
+          <i className="fa fa-search" />
+        </NavLink>
       </ul>
 
       <ul id="nav-small">
@@ -138,15 +138,13 @@ const Nav = (props) => {
             onKeyUp={handleSmallReturnKeyUp}
           />
         </li>
-        <li>
-          <Link
-            to="/search"
-            onClick={clickSmallSearchButton}
-            ref={smallSearchButton}
-          >
-            <i className="fa fa-search" />
-          </Link>
-        </li>
+        <NavLink
+          route="/search"
+          onClick={clickSmallSearchButton}
+          reference={smallSearchButton}
+        >
+          <i className="fa fa-search" />
+        </NavLink>
       </ul>
     </nav>
   );
