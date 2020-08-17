@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
-import ChantSub from './chantSub';
 
-const Chant = (props) => {
+import ChantListSub from './chantListSub';
+
+const ChantList = (props) => {
   const { chant, updateHomeChantLists, history } = props;
   const [onEllipsis, setEllipsis] = useState(false);
 
@@ -35,7 +36,7 @@ const Chant = (props) => {
           <i className="fa fa-ellipsis-v" />
         </p>
       </li>
-      <ChantSub
+      <ChantListSub
         chant={chant}
         updateHomeChantLists={updateHomeChantLists}
         setHidden={setHidden}
@@ -45,4 +46,4 @@ const Chant = (props) => {
   );
 };
 
-export default Chant;
+export default ChantList;

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import Modal from 'react-modal';
 
-const ChantSub = (props) => {
+const ChantListSub = (props) => {
   const { chant, updateHomeChantLists, setHidden, handleClickEllipsis } = props;
   const [modalIsOpen, setModalOpen] = useState(false);
 
@@ -114,4 +114,4 @@ const ChantSub = (props) => {
   );
 };
 
-export default ChantSub;
+export default ChantListSub;

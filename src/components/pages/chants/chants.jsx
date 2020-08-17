@@ -1,5 +1,6 @@
 import React from 'react';
-import Chant from '../chant';
+
+import ChantList from '../common/chantList';
 
 const Chants = (props) => {
   const { chants: allChants, updateHomeChantLists, history } = props;
@@ -18,7 +19,7 @@ const Chants = (props) => {
     <main>
       <ul className="chant-ul">
         {chants.map((chant) => (
-          <Chant
+          <ChantList
             chant={chant}
             key={chant.id}
             updateHomeChantLists={updateHomeChantLists}
