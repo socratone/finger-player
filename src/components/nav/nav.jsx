@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
 
+import NavLink from './navLink';
+import NavTextInput from './navTextInput';
 import DropDown from './dropDown';
 import chants from '../../lib/chants';
-import '../../styles/nav.scss';
+import './nav.scss';
 
 const bigSearchButton = React.createRef();
 const smallSearchButton = React.createRef();
@@ -14,16 +15,6 @@ const Nav = (props) => {
   const { setSearchedChants } = props;
   const [isSearchButtonOn, setIsSearchButtonOn] = useState(false);
   const [querry, setQuerry] = useState(SEARCH_INPUT_VALUE);
-
-  const setHidden = () => {
-    if (isSearchButtonOn) return 'hidden';
-    return '';
-  };
-
-  const setVisible = () => {
-    if (!isSearchButtonOn) return 'hidden';
-    return '';
-  };
 
   const clickXButton = () => {
     setQuerry(SEARCH_INPUT_VALUE);
@@ -78,77 +69,56 @@ const Nav = (props) => {
     searchChants(querry);
   };
 
-  const handleSmallReturnKeyUp = (e) => {
-    if (e.keyCode === 13) smallSearchButton.current.click();
-  };
-
   return (
     <nav>
       <ul id="nav-big">
-        <li>
-          <Link to="/">
-            <i className="fa fa-home" />
-          </Link>
-        </li>
-        <li className={setHidden()}>
-          <Link to="/1">1</Link>
-        </li>
-        <li className={setHidden()}>
-          <Link to="/100">100</Link>
-        </li>
-        <li className={setHidden()}>
-          <Link to="/200">200</Link>
-        </li>
-        <li className={setHidden()}>
-          <Link to="/300">300</Link>
-        </li>
-        <li className={setHidden()}>
-          <Link to="/400">400</Link>
-        </li>
-        <li className={setHidden()}>
-          <Link to="/500">500</Link>
-        </li>
-        <li className={'search-input ' + setVisible()}>
-          <input
-            type="text"
+        <NavLink route="/">
+          <i className="fa fa-home" />
+        </NavLink>
+        {!isSearchButtonOn && [
+          <NavLink route="/1">1</NavLink>,
+          <NavLink route="/100">100</NavLink>,
+          <NavLink route="/200">200</NavLink>,
+          <NavLink route="/300">300</NavLink>,
+          <NavLink route="/400">400</NavLink>,
+          <NavLink route="/500">500</NavLink>,
+        ]}
+        {isSearchButtonOn && (
+          <NavTextInput
             value={querry}
             onChange={(e) => setQuerry(e.target.value)}
             onClick={clickSearchInput}
             onKeyUp={handleReturnKeyUp}
-          />
-          <p className={setVisible()} onClick={clickXButton}>
-            <i className="fa fa-times" />
-          </p>
-        </li>
-        <li>
-          <Link to="/search" onClick={clickSearchButton} ref={bigSearchButton}>
-            <i className="fa fa-search" />
-          </Link>
-        </li>
+          >
+            <p onClick={clickXButton}>
+              <i className="fa fa-times" />
+            </p>
+          </NavTextInput>
+        )}
+        <NavLink
+          route="/search"
+          onClick={clickSearchButton}
+          reference={bigSearchButton}
+        >
+          <i className="fa fa-search" />
+        </NavLink>
       </ul>
 
       <ul id="nav-small">
-        <li>
-          <DropDown Link={Link} />
-        </li>
-        <li className="search-input">
-          <input
-            type="text"
-            value={querry}
-            onChange={(e) => setQuerry(e.target.value)}
-            onClick={clickSearchInput}
-            onKeyUp={handleSmallReturnKeyUp}
-          />
-        </li>
-        <li>
-          <Link
-            to="/search"
-            onClick={clickSmallSearchButton}
-            ref={smallSearchButton}
-          >
-            <i className="fa fa-search" />
-          </Link>
-        </li>
+        <DropDown />
+        <NavTextInput
+          value={querry}
+          onChange={(e) => setQuerry(e.target.value)}
+          onClick={clickSearchInput}
+          onKeyUp={handleReturnKeyUp}
+        />
+        <NavLink
+          route="/search"
+          onClick={clickSmallSearchButton}
+          reference={smallSearchButton}
+        >
+          <i className="fa fa-search" />
+        </NavLink>
       </ul>
     </nav>
   );

@@ -1,39 +1,26 @@
 import React from 'react';
-import '../../styles/dropDown.scss';
 
-const DropDown = (props) => {
-  const { Link } = props;
+import NavLink from './navLink';
+import './dropDown.scss';
+
+const DropDown = () => {
   return (
-    <>
+    <li>
       <div id="drop-down">
         <i className="fa fa-bars" />
         <ul>
-          <li>
-            <Link to="/">
-              <i className="fa fa-home" />
-            </Link>
-          </li>
-          <li>
-            <Link to="/1">1</Link>
-          </li>
-          <li>
-            <Link to="/100">100</Link>
-          </li>
-          <li>
-            <Link to="/200">200</Link>
-          </li>
-          <li>
-            <Link to="/300">300</Link>
-          </li>
-          <li>
-            <Link to="/400">400</Link>
-          </li>
-          <li>
-            <Link to="/500">500</Link>
-          </li>
+          <NavLink route="/">
+            <i className="fa fa-home" />
+          </NavLink>
+          <NavLink route="/1">1</NavLink>
+          <NavLink route="/100">100</NavLink>
+          <NavLink route="/200">200</NavLink>
+          <NavLink route="/300">300</NavLink>
+          <NavLink route="/400">400</NavLink>
+          <NavLink route="/500">500</NavLink>
         </ul>
       </div>
-    </>
+    </li>
   );
 };
 
