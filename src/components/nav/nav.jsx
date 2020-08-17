@@ -69,22 +69,20 @@ const Nav = (props) => {
     searchChants(querry);
   };
 
-  const handleSmallReturnKeyUp = (e) => {
-    if (e.keyCode === 13) smallSearchButton.current.click();
-  };
-
   return (
     <nav>
       <ul id="nav-big">
         <NavLink route="/">
           <i className="fa fa-home" />
         </NavLink>
-        {!isSearchButtonOn && <NavLink route="/1">1</NavLink>}
-        {!isSearchButtonOn && <NavLink route="/100">100</NavLink>}
-        {!isSearchButtonOn && <NavLink route="/200">200</NavLink>}
-        {!isSearchButtonOn && <NavLink route="/300">300</NavLink>}
-        {!isSearchButtonOn && <NavLink route="/400">400</NavLink>}
-        {!isSearchButtonOn && <NavLink route="/500">500</NavLink>}
+        {!isSearchButtonOn && [
+          <NavLink route="/1">1</NavLink>,
+          <NavLink route="/100">100</NavLink>,
+          <NavLink route="/200">200</NavLink>,
+          <NavLink route="/300">300</NavLink>,
+          <NavLink route="/400">400</NavLink>,
+          <NavLink route="/500">500</NavLink>,
+        ]}
         {isSearchButtonOn && (
           <NavTextInput
             value={querry}
