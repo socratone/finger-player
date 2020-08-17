@@ -12,22 +12,22 @@ const SEARCH_INPUT_VALUE = '번호나 제목을 입력하세요.';
 
 const Nav = (props) => {
   const { setSearchedChants } = props;
-  const [onSearchButton, setSearchButton] = useState(false);
+  const [isSearchButtonOn, setIsSearchButtonOn] = useState(false);
   const [querry, setQuerry] = useState(SEARCH_INPUT_VALUE);
 
   const setHidden = () => {
-    if (onSearchButton === true) return 'hidden';
+    if (isSearchButtonOn) return 'hidden';
     return '';
   };
 
   const setVisible = () => {
-    if (onSearchButton === false) return 'hidden';
+    if (!isSearchButtonOn) return 'hidden';
     return '';
   };
 
   const clickXButton = () => {
     setQuerry(SEARCH_INPUT_VALUE);
-    setSearchButton(false);
+    setIsSearchButtonOn(false);
   };
 
   const clickSearchInput = () => {
@@ -57,16 +57,16 @@ const Nav = (props) => {
   };
 
   const clickSearchButton = () => {
-    if (onSearchButton === true) {
+    if (isSearchButtonOn) {
       // input이 비어 있을 때만 원래대로 돌아간다.
       if (querry === '' || querry === SEARCH_INPUT_VALUE) {
         setQuerry(SEARCH_INPUT_VALUE);
-        setSearchButton(false);
+        setIsSearchButtonOn(false);
       } else {
         searchChants(querry);
       }
     } else {
-      setSearchButton(true);
+      setIsSearchButtonOn(true);
     }
   };
 
