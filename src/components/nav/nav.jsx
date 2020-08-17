@@ -15,11 +15,6 @@ const Nav = (props) => {
   const [isSearchButtonOn, setIsSearchButtonOn] = useState(false);
   const [querry, setQuerry] = useState(SEARCH_INPUT_VALUE);
 
-  const setHidden = () => {
-    if (isSearchButtonOn) return 'hidden';
-    return '';
-  };
-
   const setVisible = () => {
     if (!isSearchButtonOn) return 'hidden';
     return '';
@@ -88,24 +83,12 @@ const Nav = (props) => {
         <NavLink route="/">
           <i className="fa fa-home" />
         </NavLink>
-        <NavLink hidden={setHidden()} route="/1">
-          1
-        </NavLink>
-        <NavLink hidden={setHidden()} route="/100">
-          100
-        </NavLink>
-        <NavLink hidden={setHidden()} route="/200">
-          200
-        </NavLink>
-        <NavLink hidden={setHidden()} route="/300">
-          300
-        </NavLink>
-        <NavLink hidden={setHidden()} route="/400">
-          400
-        </NavLink>
-        <NavLink hidden={setHidden()} route="/500">
-          500
-        </NavLink>
+        {!isSearchButtonOn && <NavLink route="/1">1</NavLink>}
+        {!isSearchButtonOn && <NavLink route="/100">100</NavLink>}
+        {!isSearchButtonOn && <NavLink route="/200">200</NavLink>}
+        {!isSearchButtonOn && <NavLink route="/300">300</NavLink>}
+        {!isSearchButtonOn && <NavLink route="/400">400</NavLink>}
+        {!isSearchButtonOn && <NavLink route="/500">500</NavLink>}
         <li className={'search-input ' + setVisible()}>
           <input
             type="text"

@@ -2,9 +2,9 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 const NavLink = (props) => {
-  const { route, hidden, children, onClick, reference } = props;
+  const { route, onClick, reference, children } = props;
   return (
-    <li className={hidden}>
+    <li>
       <Link to={route} onClick={onClick} ref={reference}>
         {children}
       </Link>
