@@ -1,10 +1,11 @@
 import React from 'react';
-import '../../styles/dropDown.scss';
+import { Link } from 'react-router-dom';
 
-const DropDown = (props) => {
-  const { Link } = props;
+import './dropDown.scss';
+
+const DropDown = () => {
   return (
-    <>
+    <li>
       <div id="drop-down">
         <i className="fa fa-bars" />
         <ul>
@@ -33,7 +34,7 @@ const DropDown = (props) => {
           </li>
         </ul>
       </div>
-    </>
+    </li>
   );
 };
 
