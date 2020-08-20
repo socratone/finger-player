@@ -19,6 +19,7 @@ export default function App() {
     dispatch: [],
     etc: [],
   });
+  const [soundQuality, setSoundQuality] = useState('low');
 
   useEffect(() => {
     const lists = JSON.parse(localStorage.getItem('home-chant-lists'));
@@ -71,10 +72,19 @@ export default function App() {
         <Switch>
           <Route
             path="/player"
-            render={(props) => <Player chants={chantsData} {...props} />}
+            render={(props) => (
+              <Player
+                chants={chantsData}
+                soundQuality={soundQuality}
+                {...props}
+              />
+            )}
           />
           <Route path="/settings">
-            <Settings />
+            <Settings
+              soundQuality={soundQuality}
+              setSoundQuality={setSoundQuality}
+            />
           </Route>
           <Route
             path="/100"

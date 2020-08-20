@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 import './index.css';
-import './styles/App.scss';
+import './styles/common.scss';
 import './styles/button.scss';
 import './styles/checkBox.scss';
 import './styles/radioButton.scss';
