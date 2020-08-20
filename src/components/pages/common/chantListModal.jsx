@@ -1,7 +1,7 @@
 import React from 'react';
 import Modal from 'react-modal';
 
-import './modal.scss';
+import './chantListModal.scss';
 
 const customStyles = {
   content: {
