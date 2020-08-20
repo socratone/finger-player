@@ -81,7 +81,10 @@ export default function App() {
             )}
           />
           <Route path="/settings">
-            <Settings />
+            <Settings
+              soundQuality={soundQuality}
+              setSoundQuality={setSoundQuality}
+            />
           </Route>
           <Route
             path="/100"
