@@ -97,4 +97,4 @@ const removeNote = (...notes) => {
   }, FADEOUT_SECONDS * 1000 + 100);
 };
 
-export { loadNote, playNote, fadeoutNote, removeNote };
+export default { loadNote, playNote, fadeoutNote, removeNote };

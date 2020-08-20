@@ -3,12 +3,8 @@ import { Midi } from '@tonejs/midi';
 import Mousetrap from 'mousetrap';
 
 import Lyrics from './lyrics';
-import {
-  loadNote,
-  playNote,
-  fadeoutNote,
-  removeNote,
-} from './helper/audioPlayer';
+import audioPlayerHigh from './helper/audioPlayerHigh';
+import audioPlayerLow from './helper/audioPlayerLow';
 import isNextLyrics from './helper/isNextLyrics';
 import './player.scss';
 
@@ -17,7 +13,7 @@ let sopPlayer, altoPlayer, tenPlayer, bassPlayer;
 
 const Player = (props) => {
   const { pathname: path } = props.location;
-  const { chants } = props;
+  const { chants, soundQuality } = props;
   const [wordIndex, setWordIndex] = useState(0);
   const [allNotes, setAllNotes] = useState([]);
   const [isLoad, setIsLoad] = useState(false);
@@ -25,6 +21,8 @@ const Player = (props) => {
   // 절
   const [currentLyricsNumber, setCurrentLyricsNumber] = useState(1);
   const [isPrelude, setIsPrelude] = useState(false);
+
+  const audioPlayer = soundQuality === 'low' ? audioPlayerLow : audioPlayerHigh;
 
   // 단축키 설정
   Mousetrap.bind('space', () => {
@@ -140,7 +138,7 @@ const Player = (props) => {
 
     // componentWillUnmount
     return () => {
-      removeNote(sopPlayer, altoPlayer, tenPlayer, bassPlayer);
+      audioPlayer.removeNote(sopPlayer, altoPlayer, tenPlayer, bassPlayer);
     };
   }, []);
 
@@ -160,7 +158,7 @@ const Player = (props) => {
         for (let key in pitchs) {
           loadPitchs.push(key);
         }
-        loadNote.apply(null, loadPitchs);
+        audioPlayer.loadNote.apply(null, loadPitchs);
         setIsLoad(true);
       }
     })();
@@ -168,22 +166,22 @@ const Player = (props) => {
 
   const handleReleaseButton = () => {
     if (sopPlayer) {
-      fadeoutNote(sopPlayer);
+      audioPlayer.fadeoutNote(sopPlayer);
       // setSopPlayer(undefined);
       sopPlayer = undefined;
     }
     if (altoPlayer) {
-      fadeoutNote(altoPlayer);
+      audioPlayer.fadeoutNote(altoPlayer);
       // setAltoPlayer(undefined);
       altoPlayer = undefined;
     }
     if (tenPlayer) {
-      fadeoutNote(tenPlayer);
+      audioPlayer.fadeoutNote(tenPlayer);
       // setTenPlayer(undefined);
       tenPlayer = undefined;
     }
     if (bassPlayer) {
-      fadeoutNote(bassPlayer);
+      audioPlayer.fadeoutNote(bassPlayer);
       // setBassPlayer(undefined);
       bassPlayer = undefined;
     }
@@ -195,16 +193,16 @@ const Player = (props) => {
 
     // 각 파트를 소리 내기 전에 이전의 소리를 멈춤
     const { soprano, alto, tenor, bass } = currentNotes;
-    if (soprano && sopPlayer) fadeoutNote(sopPlayer);
-    if (alto && altoPlayer) fadeoutNote(altoPlayer);
-    if (tenor && tenPlayer) fadeoutNote(tenPlayer);
-    if (bass && bassPlayer) fadeoutNote(bassPlayer);
+    if (soprano && sopPlayer) audioPlayer.fadeoutNote(sopPlayer);
+    if (alto && altoPlayer) audioPlayer.fadeoutNote(altoPlayer);
+    if (tenor && tenPlayer) audioPlayer.fadeoutNote(tenPlayer);
+    if (bass && bassPlayer) audioPlayer.fadeoutNote(bassPlayer);
 
     // 연주
-    if (soprano) sopPlayer = playNote(soprano.pitch);
-    if (alto) altoPlayer = playNote(alto.pitch);
-    if (tenor) tenPlayer = playNote(tenor.pitch);
-    if (bass) bassPlayer = playNote(bass.pitch);
+    if (soprano) sopPlayer = audioPlayer.playNote(soprano.pitch);
+    if (alto) altoPlayer = audioPlayer.playNote(alto.pitch);
+    if (tenor) tenPlayer = audioPlayer.playNote(tenor.pitch);
+    if (bass) bassPlayer = audioPlayer.playNote(bass.pitch);
 
     // wordIndex가 끝에 이르렀을 경우
     if (allNotes.length - 1 === wordIndex) {
