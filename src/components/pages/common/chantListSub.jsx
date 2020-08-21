@@ -12,11 +12,11 @@ const ChantListSub = (props) => {
 
   const closeModal = () => {
     setModalOpen(false);
+    handleClickEllipsis();
   };
 
   const handleClickV = () => {
     openModal();
-    handleClickEllipsis();
   };
 
   const handleClickX = () => {
