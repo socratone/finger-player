@@ -18,13 +18,6 @@ const ChantList = (props) => {
     }
   };
 
-  const setHidden = () => {
-    if (onEllipsis === false) {
-      return 'hidden';
-    }
-    return '';
-  };
-
   return (
     <>
       <li>
@@ -36,12 +29,13 @@ const ChantList = (props) => {
           <i className="fa fa-ellipsis-v" />
         </p>
       </li>
-      <ChantListSub
-        chant={chant}
-        updateHomeChantLists={updateHomeChantLists}
-        setHidden={setHidden}
-        handleClickEllipsis={handleClickEllipsis}
-      />
+      {onEllipsis && (
+        <ChantListSub
+          chant={chant}
+          updateHomeChantLists={updateHomeChantLists}
+          handleClickEllipsis={handleClickEllipsis}
+        />
+      )}
     </>
   );
 };
