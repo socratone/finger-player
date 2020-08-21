@@ -55,6 +55,10 @@ const fadeoutNote = (note) => {
   }, INTERVAL);
 };
 
-const removeNote = (...notes) => {};
+const removeNote = (...notes) => {
+  notes.forEach((note) => {
+    if (note) fadeoutNote(note);
+  });
+};
 
 export default { loadNote, playNote, fadeoutNote, removeNote };
