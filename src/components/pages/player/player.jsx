@@ -11,6 +11,10 @@ import './player.scss';
 // 파트
 let sopPlayer, altoPlayer, tenPlayer, bassPlayer;
 
+const topSection = React.createRef();
+const lyricsSection = React.createRef();
+const buttonsSection = React.createRef();
+
 const Player = (props) => {
   const { pathname: path } = props.location;
   const { chants, soundQuality } = props;
@@ -35,6 +39,21 @@ const Player = (props) => {
     return () => {
       Mousetrap.unbind('space');
       Mousetrap.unbind('backspace');
+    };
+  }, []);
+
+  useEffect(() => {
+    const [NAV_HEIGHT, PADDING, TOP_HEIGHT, BUTTONS_HEIGHT] = [
+      64,
+      16,
+      24 + 8,
+      128,
+    ];
+    const restHeight = NAV_HEIGHT + PADDING + TOP_HEIGHT + BUTTONS_HEIGHT;
+    lyricsSection.current.style.height = window.innerHeight - restHeight + 'px';
+    window.onresize = function () {
+      lyricsSection.current.style.height =
+        window.innerHeight - restHeight + 'px';
     };
   }, []);
 
@@ -231,7 +250,7 @@ const Player = (props) => {
   return (
     <main id="player">
       <section className="section-padding">
-        <div id="top">
+        <div id="top" ref={topSection}>
           <h3>
             {id}번 {chant.title}
           </h3>
@@ -245,7 +264,7 @@ const Player = (props) => {
             />
           </div>
         </div>
-        <div id="lyrics">
+        <div id="lyrics" ref={lyricsSection}>
           {isPrelude && (
             <div id="lyrics-sub">전주로 시작할 가사를 클릭해주세요!</div>
           )}
@@ -261,7 +280,7 @@ const Player = (props) => {
               />
             ))}
         </div>
-        <div id="buttons">
+        <div id="buttons" ref={buttonsSection}>
           <button
             disabled={!isLoad}
             onMouseDown={handleReleaseButton}

@@ -22,7 +22,7 @@ $chant-sub-background: rgb(255, 239, 234);
     }
   }
   #lyrics {
-    overflow: visible;
+    overflow: auto;
     p {
       line-height: 2rem;
       span {
