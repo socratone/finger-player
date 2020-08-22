@@ -266,6 +266,7 @@ const Player = (props) => {
             disabled={!isLoad}
             onMouseDown={handleReleaseButton}
             className="normal-button"
+            id="stop-button"
           >
             멈 춤
           </button>
@@ -273,6 +274,7 @@ const Player = (props) => {
             disabled={!isLoad}
             onMouseDown={handlePlayButton}
             className="normal-button"
+            id="play-button"
           >
             연 주
           </button>
