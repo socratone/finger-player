@@ -8,12 +8,11 @@ import audioPlayerLow from './helper/audioPlayerLow';
 import isNextLyrics from './helper/isNextLyrics';
 import './player.scss';
 
+const lyricsSection = React.createRef();
+const [NAV_HEIGHT, PADDING, TOP_HEIGHT, BUTTONS_HEIGHT] = [64, 16, 24 + 8, 128];
+
 // 파트
 let sopPlayer, altoPlayer, tenPlayer, bassPlayer;
-
-const topSection = React.createRef();
-const lyricsSection = React.createRef();
-const buttonsSection = React.createRef();
 
 const Player = (props) => {
   const { pathname: path } = props.location;
@@ -43,17 +42,14 @@ const Player = (props) => {
   }, []);
 
   useEffect(() => {
-    const [NAV_HEIGHT, PADDING, TOP_HEIGHT, BUTTONS_HEIGHT] = [
-      64,
-      16,
-      24 + 8,
-      128,
-    ];
     const restHeight = NAV_HEIGHT + PADDING + TOP_HEIGHT + BUTTONS_HEIGHT;
     lyricsSection.current.style.height = window.innerHeight - restHeight + 'px';
-    window.onresize = function () {
+    window.onresize = () => {
       lyricsSection.current.style.height =
         window.innerHeight - restHeight + 'px';
+    };
+    return () => {
+      window.onresize = null;
     };
   }, []);
 
@@ -250,7 +246,7 @@ const Player = (props) => {
   return (
     <main id="player">
       <section className="section-padding">
-        <div id="top" ref={topSection}>
+        <div id="top">
           <h3>
             {id}번 {chant.title}
           </h3>
@@ -280,7 +276,7 @@ const Player = (props) => {
               />
             ))}
         </div>
-        <div id="buttons" ref={buttonsSection}>
+        <div id="buttons">
           <button
             disabled={!isLoad}
             onMouseDown={handleReleaseButton}
