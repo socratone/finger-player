@@ -13,8 +13,14 @@ $chant-sub-background: rgb(255, 239, 234);
     margin-bottom: 0.5rem;
     display: flex;
     justify-content: space-between;
+    h3 {
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      overflow: hidden;
+    }
     div {
       display: flex;
+      white-space: nowrap;
       span {
         line-height: 1.5rem;
         margin-right: 0.2rem;
