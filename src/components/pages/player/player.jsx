@@ -41,12 +41,19 @@ const Player = (props) => {
     };
   }, []);
 
-  useEffect(() => {
+  const getDocumentHeight = () => {
+    return document.documentElement.clientHeight;
+  };
+
+  const getLyricsSectionHeight = () => {
     const restHeight = NAV_HEIGHT + PADDING + TOP_HEIGHT + BUTTONS_HEIGHT;
-    lyricsSection.current.style.height = window.innerHeight - restHeight + 'px';
+    return getDocumentHeight() - restHeight + 'px';
+  };
+
+  useEffect(() => {
+    lyricsSection.current.style.height = getLyricsSectionHeight();
     window.onresize = () => {
-      lyricsSection.current.style.height =
-        window.innerHeight - restHeight + 'px';
+      lyricsSection.current.style.height = getLyricsSectionHeight();
     };
     return () => {
       window.onresize = null;
