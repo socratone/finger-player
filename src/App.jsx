@@ -19,7 +19,7 @@ export default function App() {
     dispatch: [],
     etc: [],
   });
-  const [soundQuality, setSoundQuality] = useState('low');
+  const [soundQuality, setSoundQuality] = useState('high');
 
   useEffect(() => {
     const lists = JSON.parse(localStorage.getItem('home-chant-lists'));

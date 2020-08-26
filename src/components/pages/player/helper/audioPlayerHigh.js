@@ -21,28 +21,27 @@ const loadNote = (...pitchs) => {
     notes1[pitch] = { audio: await new Audio(`../audio/${pitch}.mp3`) };
     notes2[pitch] = { audio: await new Audio(`../audio/${pitch}.mp3`) };
 
-    const audioContext1 = new AudioContext();
-    const audioContext2 = new AudioContext();
+    const context = new AudioContext();
 
     // pass it into the audio context
-    const source1 = audioContext1.createMediaElementSource(notes1[pitch].audio);
-    const source2 = audioContext2.createMediaElementSource(notes2[pitch].audio);
+    const source1 = context.createMediaElementSource(notes1[pitch].audio);
+    const source2 = context.createMediaElementSource(notes2[pitch].audio);
 
     // 게인 조절
-    const gainNode1 = audioContext1.createGain();
-    const gainNode2 = audioContext2.createGain();
+    const gainNode1 = context.createGain();
+    const gainNode2 = context.createGain();
 
-    gainNode1.gain.setValueAtTime(0, audioContext1.currentTime);
-    gainNode2.gain.setValueAtTime(0, audioContext2.currentTime);
+    gainNode1.gain.setValueAtTime(0, context.currentTime);
+    gainNode2.gain.setValueAtTime(0, context.currentTime);
     source1.connect(gainNode1);
     source2.connect(gainNode2);
-    gainNode1.connect(audioContext1.destination);
-    gainNode2.connect(audioContext2.destination);
+    gainNode1.connect(context.destination);
+    gainNode2.connect(context.destination);
 
     notes1[pitch]['gainNode'] = gainNode1;
     notes2[pitch]['gainNode'] = gainNode2;
-    notes1[pitch]['audioContext'] = audioContext1;
-    notes2[pitch]['audioContext'] = audioContext2;
+    notes1[pitch]['audioContext'] = context;
+    notes2[pitch]['audioContext'] = context;
   });
 };
 
@@ -89,9 +88,9 @@ const removeNote = (...notes) => {
     for (let pitch in notes1) {
       notes1[pitch].audioContext.close();
     }
-    for (let pitch in notes2) {
-      notes2[pitch].audioContext.close();
-    }
+    // for (let pitch in notes2) {
+    //   notes2[pitch].audioContext.close();
+    // }
     notes1 = {};
     notes2 = {};
   }, FADEOUT_SECONDS * 1000 + 100);
