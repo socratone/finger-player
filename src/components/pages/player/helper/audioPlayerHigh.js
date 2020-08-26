@@ -57,17 +57,6 @@ const removeNote = (...notes) => {
   notes.forEach((note) => {
     if (note) fadeoutNote(note);
   });
-
-  setTimeout(function () {
-    console.log('메모리에서 노트 제거');
-    for (let pitch in notes) {
-      notes[pitch].audioContext.close();
-    }
-    // for (let pitch in notes2) {
-    //   notes2[pitch].audioContext.close();
-    // }
-    notes = {};
-  }, FADEOUT_SECONDS * 1000 + 100);
 };
 
 export default { loadNote, playNote, fadeoutNote, removeNote };
