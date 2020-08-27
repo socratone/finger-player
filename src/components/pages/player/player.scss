@@ -33,14 +33,18 @@ $chant-sub-background: rgb(255, 239, 234);
       line-height: 2rem;
       span {
         cursor: pointer;
+        display: inline-block;
+        transition: transform 0.2s;
       }
       span:hover {
         color: green;
         font-weight: 900;
+        transform: scale(1.1);
       }
       span:active {
         color: blue;
         font-weight: 900;
+        transform: scale(1);
       }
     }
   }

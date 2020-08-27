@@ -9,7 +9,6 @@ const Word = (props) => {
     convertWordIndex,
     isCurrentLyrics,
   } = props;
-  // console.log('wordNumber:', wordNumber, 'currentWordIndex:', currentWordIndex);
 
   if (
     isCurrentLyrics() &&
@@ -18,7 +17,7 @@ const Word = (props) => {
   ) {
     return (
       <span
-        style={{ color: 'red', fontWeight: '900' }}
+        style={{ color: 'red', fontWeight: '900', transform: 'scale(1.1)' }}
         onClick={() => convertWordIndex(wordNumber, lyricsNumber)}
       >
         {word}
