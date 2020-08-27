@@ -290,7 +290,7 @@ const Player = (props) => {
             className="normal-button"
             id="stop-button"
           >
-            멈 춤
+            쉼표
           </button>
           <button
             disabled={!isLoad}
@@ -298,7 +298,7 @@ const Player = (props) => {
             className="normal-button"
             id="play-button"
           >
-            연 주
+            리듬 연주
           </button>
         </div>
       </section>
