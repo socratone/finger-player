@@ -77,11 +77,13 @@ main {
     background-color: rgb(247, 247, 247);
   }
   .chant-sub {
-    background-color: $chant-sub-background;
-    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.025), 0 3px 6px rgba(0, 0, 0, 0.05);
-    height: 3rem;
+    transition: background-color 0.4s, height 0.4s, box-shadow 0.4s;
+    background-color: white;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0), 0 3px 6px rgba(0, 0, 0, 0);
+    height: 0rem;
     border-radius: 0.5rem;
     line-height: 2.4rem;
+    overflow: hidden;
     p {
       grid-column: span 3;
       display: flex;
@@ -98,6 +100,11 @@ main {
         color: red;
       }
     }
+  }
+  .chant-sub-animation {
+    background-color: $chant-sub-background;
+    height: 3rem;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.025), 0 3px 6px rgba(0, 0, 0, 0.05);
   }
   .chant-sub:hover {
     background-color: $chant-sub-background;

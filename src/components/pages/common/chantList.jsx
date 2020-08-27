@@ -5,6 +5,7 @@ import ChantListSub from './chantListSub';
 const ChantList = (props) => {
   const { chant, updateHomeChantLists, history } = props;
   const [onEllipsis, setEllipsis] = useState(false);
+  const chantSub = React.createRef();
 
   const handleClickTitle = (id) => {
     history.push(`/player/${id}`);
@@ -14,7 +15,10 @@ const ChantList = (props) => {
     if (onEllipsis === false) {
       setEllipsis(true);
     } else {
-      setEllipsis(false);
+      chantSub.current.classList.remove('chant-sub-animation');
+      setTimeout(() => {
+        setEllipsis(false);
+      }, 400);
     }
   };
 
@@ -34,6 +38,7 @@ const ChantList = (props) => {
           chant={chant}
           updateHomeChantLists={updateHomeChantLists}
           handleClickEllipsis={handleClickEllipsis}
+          chantSub={chantSub}
         />
       )}
     </>

@@ -246,9 +246,24 @@ const Player = (props) => {
   };
 
   const handleCheckBox = () => {
-    if (isPrelude) setIsPrelude(false);
-    else setIsPrelude(true);
+    if (isPrelude) {
+      lyricsSub.current.classList.remove('lyrics-sub-animation');
+      setTimeout(() => {
+        setIsPrelude(false);
+      }, 400);
+    } else {
+      setIsPrelude(true);
+    }
   };
+
+  const lyricsSub = React.createRef();
+  useEffect(() => {
+    if (isPrelude === true) {
+      setTimeout(() => {
+        lyricsSub.current.classList.add('lyrics-sub-animation');
+      }, 0);
+    }
+  }, [isPrelude]);
 
   return (
     <main id="player">
@@ -269,7 +284,9 @@ const Player = (props) => {
         </div>
         <div id="lyrics" ref={lyricsSection}>
           {isPrelude && (
-            <div id="lyrics-sub">전주로 시작할 가사를 클릭해주세요!</div>
+            <div className="lyrics-sub" ref={lyricsSub}>
+              전주로 시작할 가사를 클릭해주세요!
+            </div>
           )}
           {chant.lyrics &&
             chant.lyrics.map((words, index) => (

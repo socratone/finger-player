@@ -1,10 +1,14 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 import ChantListModal from './chantListModal';
 
 const ChantListSub = (props) => {
-  const { chant, updateHomeChantLists, handleClickEllipsis } = props;
+  const { chant, updateHomeChantLists, handleClickEllipsis, chantSub } = props;
   const [modalIsOpen, setModalOpen] = useState(false);
+
+  useEffect(() => {
+    chantSub.current.classList.add('chant-sub-animation');
+  }, []);
 
   const openModal = () => {
     setModalOpen(true);
@@ -24,7 +28,7 @@ const ChantListSub = (props) => {
   };
 
   return (
-    <li className="chant-sub">
+    <li className="chant-sub" ref={chantSub}>
       <p>
         <span>홈 화면에 추가 하시겠습니까?</span>
         <span className="chant-v" onClick={handleClickV}>
