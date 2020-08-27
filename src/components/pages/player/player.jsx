@@ -231,7 +231,7 @@ const Player = (props) => {
       if (isPrelude) {
         console.log('전주를 끝내고 처음 절로 돌아갑니다.');
         setCurrentLyricsNumber(1);
-        setIsPrelude(false);
+        closePreludeBox();
       } else if (isNextLyrics(currentLyricsNumber, chant.lyrics)) {
         console.log('다음 절로 갑니다.');
         setCurrentLyricsNumber(currentLyricsNumber + 1);
@@ -245,12 +245,22 @@ const Player = (props) => {
     }
   };
 
+  const closePreludeBox = () => {
+    lyricsSub.current.classList.remove('lyrics-sub-animation');
+    setTimeout(() => {
+      setIsPrelude(false);
+    }, 400);
+  };
+
+  const openPreludeBox = () => {
+    setTimeout(() => {
+      lyricsSub.current.classList.add('lyrics-sub-animation');
+    }, 0);
+  };
+
   const handleCheckBox = () => {
     if (isPrelude) {
-      lyricsSub.current.classList.remove('lyrics-sub-animation');
-      setTimeout(() => {
-        setIsPrelude(false);
-      }, 400);
+      closePreludeBox();
     } else {
       setIsPrelude(true);
     }
@@ -259,9 +269,7 @@ const Player = (props) => {
   const lyricsSub = React.createRef();
   useEffect(() => {
     if (isPrelude === true) {
-      setTimeout(() => {
-        lyricsSub.current.classList.add('lyrics-sub-animation');
-      }, 0);
+      openPreludeBox();
     }
   }, [isPrelude]);
 
