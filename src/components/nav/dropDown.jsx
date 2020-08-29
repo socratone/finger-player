@@ -1,12 +1,12 @@
 import React from 'react';
 
 import NavLink from './navLink';
-import './navDropDown.scss';
+import './dropDown.scss';
 
-const NavDropDown = () => {
+const DropDown = () => {
   return (
     <li>
-      <div id="drop-down">
+      <div className="drop-down">
         <i className="fa fa-bars" />
         <ul>
           <NavLink route="/">
@@ -36,4 +36,4 @@ const NavDropDown = () => {
   );
 };
 
-export default NavDropDown;
+export default DropDown;

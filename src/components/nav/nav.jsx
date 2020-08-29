@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 
 import NavLink from './navLink';
 import NavTextInput from './navTextInput';
-import NavDropDown from './navDropDown';
+import DropDown from './dropDown';
 import chantsData from '../../lib/chantsData';
 import './nav.scss';
 
@@ -117,7 +117,7 @@ const Nav = (props) => {
       </ul>
 
       <ul id="nav-small">
-        <NavDropDown />
+        <DropDown />
         <NavTextInput
           value={querry}
           onChange={(e) => setQuerry(e.target.value)}
