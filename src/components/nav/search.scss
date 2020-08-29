@@ -4,14 +4,17 @@
   position: relative;
   display: grid;
   align-items: center;
+
   input {
     font-size: $font-small;
     border: none;
     padding: 0.5rem;
+
+    &:active {
+      border: none;
+    }
   }
-  input:active {
-    border: none;
-  }
+
   p {
     position: absolute;
     top: 0;

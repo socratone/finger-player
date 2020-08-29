@@ -4,6 +4,7 @@
   background-color: rgba(255, 255, 255, 0);
   border: 0;
   cursor: pointer;
+
   ul {
     display: none;
   }
@@ -11,6 +12,7 @@
   &:hover {
     background-color: rgb(235, 211, 166);
     border: 0;
+
     ul {
       display: block;
       position: absolute;
@@ -20,9 +22,11 @@
       width: 7rem;
       background-color: whitesmoke;
       box-shadow: 0 3px 6px rgba(0, 0, 0, 0.05), 0 3px 6px rgba(0, 0, 0, 0.1);
+
       li {
         line-height: 6vh;
         padding: 0.2rem 1rem;
+
         a {
           font-size: $font-small;
         }
