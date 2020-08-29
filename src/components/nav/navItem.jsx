@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-const NavLink = (props) => {
+const NavItem = (props) => {
   const { route, onClick, reference, children } = props;
   return (
     <li>
@@ -12,4 +12,4 @@ const NavLink = (props) => {
   );
 };
 
-export default NavLink;
+export default NavItem;

@@ -1,6 +1,6 @@
 import React from 'react';
 
-import NavLink from './navLink';
+import NavItem from './navItem';
 import './dropDown.scss';
 
 const DropDown = () => {
@@ -9,27 +9,27 @@ const DropDown = () => {
       <div className="drop-down">
         <i className="fa fa-bars" />
         <ul>
-          <NavLink route="/">
+          <NavItem route="/">
             <i className="fa fa-home" />
-          </NavLink>
-          <NavLink route="/1" key="1">
+          </NavItem>
+          <NavItem route="/1" key="1">
             1
-          </NavLink>
-          <NavLink route="/100" key="100">
+          </NavItem>
+          <NavItem route="/100" key="100">
             100
-          </NavLink>
-          <NavLink route="/200" key="200">
+          </NavItem>
+          <NavItem route="/200" key="200">
             200
-          </NavLink>
-          <NavLink route="/300" key="300">
+          </NavItem>
+          <NavItem route="/300" key="300">
             300
-          </NavLink>
-          <NavLink route="/400" key="400">
+          </NavItem>
+          <NavItem route="/400" key="400">
             400
-          </NavLink>
-          <NavLink route="/500" key="500">
+          </NavItem>
+          <NavItem route="/500" key="500">
             500
-          </NavLink>
+          </NavItem>
         </ul>
       </div>
     </li>

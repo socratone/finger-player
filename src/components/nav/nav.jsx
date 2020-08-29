@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-import NavLink from './navLink';
+import NavItem from './navItem';
 import Search from './search';
 import DropDown from './dropDown';
 import chantsData from '../../lib/chantsData';
@@ -70,30 +70,30 @@ const Nav = (props) => {
   };
 
   return (
-    <nav>
-      <ul id="nav-big">
-        <NavLink route="/">
+    <nav className="nav">
+      <ul className="nav__long-list">
+        <NavItem route="/">
           <i className="fa fa-home" />
-        </NavLink>
+        </NavItem>
         {!isSearchButtonOn && [
-          <NavLink route="/1" key="1">
+          <NavItem route="/1" key="1">
             1
-          </NavLink>,
-          <NavLink route="/100" key="100">
+          </NavItem>,
+          <NavItem route="/100" key="100">
             100
-          </NavLink>,
-          <NavLink route="/200" key="200">
+          </NavItem>,
+          <NavItem route="/200" key="200">
             200
-          </NavLink>,
-          <NavLink route="/300" key="300">
+          </NavItem>,
+          <NavItem route="/300" key="300">
             300
-          </NavLink>,
-          <NavLink route="/400" key="400">
+          </NavItem>,
+          <NavItem route="/400" key="400">
             400
-          </NavLink>,
-          <NavLink route="/500" key="500">
+          </NavItem>,
+          <NavItem route="/500" key="500">
             500
-          </NavLink>,
+          </NavItem>,
         ]}
         {isSearchButtonOn && (
           <Search
@@ -107,16 +107,16 @@ const Nav = (props) => {
             </p>
           </Search>
         )}
-        <NavLink
+        <NavItem
           route="/search"
           onClick={clickSearchButton}
           reference={bigSearchButton}
         >
           <i className="fa fa-search" />
-        </NavLink>
+        </NavItem>
       </ul>
 
-      <ul id="nav-small">
+      <ul className="nav__short-list">
         <DropDown />
         <Search
           value={querry}
@@ -124,13 +124,13 @@ const Nav = (props) => {
           onClick={clickSearchInput}
           onKeyUp={handleReturnKeyUp}
         />
-        <NavLink
+        <NavItem
           route="/search"
           onClick={clickSmallSearchButton}
           reference={smallSearchButton}
         >
           <i className="fa fa-search" />
-        </NavLink>
+        </NavItem>
       </ul>
     </nav>
   );
