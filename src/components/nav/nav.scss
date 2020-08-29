@@ -19,34 +19,12 @@ nav {
     li:hover {
       background-color: rgb(235, 211, 166);
     }
-    .search-input {
-      position: relative;
-      display: grid;
-      align-items: center;
-      input {
-        font-size: $font-small;
-        border: none;
-        padding: 0.5rem;
-      }
-      input:active {
-        border: none;
-      }
-      p {
-        position: absolute;
-        top: 0;
-        right: 1rem;
-        font-size: $font-middle;
-        font-weight: 900;
-        cursor: pointer;
-        color: gray;
-      }
-    }
   }
 }
 
 #nav-big {
   grid-template-columns: repeat(8, 1fr);
-  .search-input {
+  .nav__search {
     grid-column: span 6;
   }
 }

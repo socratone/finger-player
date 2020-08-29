@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
 import NavLink from './navLink';
-import NavTextInput from './navTextInput';
+import Search from './search';
 import DropDown from './dropDown';
 import chantsData from '../../lib/chantsData';
 import './nav.scss';
@@ -96,7 +96,7 @@ const Nav = (props) => {
           </NavLink>,
         ]}
         {isSearchButtonOn && (
-          <NavTextInput
+          <Search
             value={querry}
             onChange={(e) => setQuerry(e.target.value)}
             onClick={clickSearchInput}
@@ -105,7 +105,7 @@ const Nav = (props) => {
             <p onClick={clickXButton}>
               <i className="fa fa-times" />
             </p>
-          </NavTextInput>
+          </Search>
         )}
         <NavLink
           route="/search"
@@ -118,7 +118,7 @@ const Nav = (props) => {
 
       <ul id="nav-small">
         <DropDown />
-        <NavTextInput
+        <Search
           value={querry}
           onChange={(e) => setQuerry(e.target.value)}
           onClick={clickSearchInput}

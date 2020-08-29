@@ -1,0 +1,24 @@
+@import '../../styles/variables.scss';
+
+.search {
+  position: relative;
+  display: grid;
+  align-items: center;
+  input {
+    font-size: $font-small;
+    border: none;
+    padding: 0.5rem;
+  }
+  input:active {
+    border: none;
+  }
+  p {
+    position: absolute;
+    top: 0;
+    right: 1rem;
+    font-size: $font-middle;
+    font-weight: 900;
+    cursor: pointer;
+    color: gray;
+  }
+}

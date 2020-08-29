@@ -1,9 +1,11 @@
 import React from 'react';
 
-const NavTextInput = (props) => {
+import './search.scss';
+
+const Search = (props) => {
   const { value, onChange, onClick, onKeyUp, children } = props;
   return (
-    <li className="search-input">
+    <li className="search nav__search">
       <input
         type="text"
         value={value}
@@ -16,4 +18,4 @@ const NavTextInput = (props) => {
   );
 };
 
-export default NavTextInput;
+export default Search;
