@@ -6,7 +6,7 @@
   cursor: pointer;
 
   ul {
-    display: none;
+    display: none !important;
   }
 
   &:hover {
@@ -14,7 +14,7 @@
     border: 0;
 
     ul {
-      display: block;
+      display: block !important;
       position: absolute;
       margin: 1rem;
       top: $nav-height - 2rem;
