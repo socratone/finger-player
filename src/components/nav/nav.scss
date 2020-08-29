@@ -1,11 +1,11 @@
 @import '../../styles/variables.scss';
 
-nav {
+.nav {
   display: grid;
   box-shadow: 0 3px 6px rgba(0, 0, 0, 0.05), 0 3px 6px rgba(0, 0, 0, 0.05);
   ul {
     background-color: wheat;
-    display: grid;
+    // display: grid;
     li {
       text-align: center;
       line-height: $nav-height;
@@ -22,24 +22,30 @@ nav {
   }
 }
 
-#nav-big {
+.nav__long-list {
+  display: grid;
   grid-template-columns: repeat(8, 1fr);
-  .nav__search {
-    grid-column: span 6;
-  }
 }
 
-#nav-small {
+.nav__search {
+  grid-column: span 6;
+}
+
+.nav__short-list {
   display: none;
 }
 
 @media (max-width: 500px) {
-  #nav-big {
+  .nav__long-list {
     display: none;
   }
 
-  #nav-small {
+  .nav__short-list {
     display: grid;
-    grid-template-columns: 1fr 4fr 1fr;
+    grid-template-columns: repeat(6, 1fr);
+  }
+
+  .nav__search {
+    grid-column: span 4;
   }
 }
