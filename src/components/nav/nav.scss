@@ -26,7 +26,7 @@
   }
 }
 
-.nav__long-list {
+.nav__long-items {
   display: grid !important;
   grid-template-columns: repeat(8, 1fr);
 
@@ -35,12 +35,12 @@
   }
 }
 
-.nav__short-list {
+.nav__short-items {
   display: none !important;
 }
 
 @media (max-width: 500px) {
-  .nav__short-list {
+  .nav__short-items {
     display: grid !important;
     grid-template-columns: repeat(6, 1fr);
 
@@ -49,7 +49,7 @@
     }
   }
 
-  .nav__long-list {
+  .nav__long-items {
     display: none !important;
   }
 }

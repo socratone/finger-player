@@ -71,7 +71,7 @@ const Nav = (props) => {
 
   return (
     <nav className="nav">
-      <ul className="nav__long-list">
+      <ul className="nav__long-items">
         <NavItem route="/">
           <i className="fa fa-home" />
         </NavItem>
@@ -116,7 +116,7 @@ const Nav = (props) => {
         </NavItem>
       </ul>
 
-      <ul className="nav__short-list">
+      <ul className="nav__short-items">
         <DropDown />
         <Search
           value={querry}
