@@ -1,13 +1,17 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 
 const HomeChantSub = (props) => {
   const {
     chant,
     updateHomeChantLists,
     homeChantListName,
-    setHidden,
     handleClickEllipsis,
+    chantSub
   } = props;
+
+  useEffect(() => {
+    chantSub.current.classList.add('chant-sub-animation');
+  }, []);
 
   const handleClickV = () => {
     updateHomeChantLists(homeChantListName, chant, 'remove');
@@ -19,7 +23,7 @@ const HomeChantSub = (props) => {
   };
 
   return (
-    <li className={'chant-sub ' + setHidden()}>
+    <li className="chant-sub" ref={chantSub}>
       <p>
         <span>홈 화면에서 지우시겠습니까?</span>
         <span className="chant-v" onClick={handleClickV}>

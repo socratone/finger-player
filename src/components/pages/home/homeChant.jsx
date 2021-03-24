@@ -4,6 +4,7 @@ import HomeChantSub from './homeChantSub';
 const HomeChant = (props) => {
   const { chant, updateHomeChantLists, homeChantListName, history } = props;
   const [onEllipsis, setEllipsis] = useState(false);
+  const chantSub = React.createRef();
 
   const handleClickTitle = (id) => {
     history.push(`/player/${id}`);
@@ -13,15 +14,11 @@ const HomeChant = (props) => {
     if (onEllipsis === false) {
       setEllipsis(true);
     } else {
-      setEllipsis(false);
+      chantSub.current.classList.remove('chant-sub-animation');
+      setTimeout(() => {
+        setEllipsis(false);
+      }, 400);
     }
-  };
-
-  const setHidden = () => {
-    if (onEllipsis === false) {
-      return 'hidden';
-    }
-    return '';
   };
 
   return (
@@ -35,13 +32,13 @@ const HomeChant = (props) => {
           <i className="fa fa-ellipsis-v" />
         </p>
       </li>
-      <HomeChantSub
+      {onEllipsis && <HomeChantSub
         chant={chant}
         updateHomeChantLists={updateHomeChantLists}
         homeChantListName={homeChantListName}
-        setHidden={setHidden}
         handleClickEllipsis={handleClickEllipsis}
-      />
+        chantSub={chantSub}
+      />}
     </>
   );
 };
